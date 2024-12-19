@@ -1,0 +1,394 @@
+.fcontainer {
+    padding: 0 10px;
+    display: flex;
+}
+
+.foptions {
+    flex: 3;
+    height: 100%;
+    padding: 5px 20px;
+    margin: 40px;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+}
+
+.fcode {}
+
+.ffilter {}
+
+.fprice {}
+
+.fkeywords {
+    display: flex;
+    /* 使用彈性盒模型 */
+    flex-wrap: wrap;
+    gap: 10px;
+    /* 設置按鈕之間的間距 */
+}
+
+.fkeywords>a {
+    color: rgb(54, 54, 54);
+    margin: 5px 0;
+    padding: 5px 10px;
+    background-color: lightgray;
+    border-radius: 15px;
+    font-size: 16px;
+    /* 設置字體大小 */
+    text-align: center;
+    /* 文字居中 */
+}
+
+.fmaincontainer {
+    flex: 8;
+    padding: 10px 20px 10px 0px;
+}
+
+.fsearch {
+    display: flex;
+}
+
+.fsearch>div {
+    flex: 2;
+}
+
+.fsearch .fkeyword {
+    flex: 3;
+    height: 45px;
+    border-radius: 30px;
+    border: 2px solid lightgray;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.fkeyword img {
+    margin: 0 30px;
+}
+
+.fkeyword p {
+    color: #626D7E;
+    margin: 0 10px;
+}
+
+.fkeyword {
+    flex: 1;
+    height: 40px;
+    /* border-radius: 20px; */
+    /* border: 2px solid lightgray; */
+    margin: 10px;
+    text-align: center;
+}
+
+.forder {
+    display: flex;
+    height: 40px;
+    border-radius: 15px;
+    background-color: lightgray;
+    text-align: center;
+    margin: 10px;
+}
+
+.forder p,
+.forder>a {
+    flex: 3;
+    margin: 10px;
+    color: #354052;
+}
+
+.fcontentone {
+    background-color: #7fc5d280;
+    height: 300px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    display: flex;
+}
+
+.fcontentone a {
+    color: inherit;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+}
+
+.fcontent {
+    background-color: #F5F5DC;
+    height: 300px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    display: flex;
+}
+
+.fcontent1 {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.fhot {
+    float: left;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+}
+
+.fcompanyphoto {
+    flex: 8;
+    /* height: 170px;
+    width: 170px; */
+    background-color: white;
+    border-radius: 100px;
+    margin: 5px 25px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.fcompanyphoto img {
+    max-width: 100%;
+    /* 確保圖片不超出父容器 */
+    max-height: 100%;
+    /* 確保圖片不超出父容器 */
+    margin: auto;
+}
+
+.fcompanyname {
+    flex: 2;
+    text-align: center;
+    margin: 5px;
+}
+
+.fcompanystar {
+    flex: 2;
+    text-align: center;
+    margin: 5px;
+    display: flex;
+}
+
+.fcompanystar>div:first-child {
+    flex: 1;
+}
+
+.fgreen {
+    flex: 1;
+}
+
+.fstar {
+    flex: 6;
+}
+
+.fstar img {
+    margin: 0 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.fcontent2 {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+}
+
+.ftitle {
+    flex: 1;
+}
+
+.ftitle>h1 {
+    margin: 5px;
+    padding: 5px;
+}
+
+.fset {
+    flex: 1;
+    display: flex;
+}
+
+.fdate {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.fcaseprice {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.flocation {
+    flex: 1;
+}
+
+.fcasecontent {
+    flex: 1;
+}
+
+.frequire {
+    flex: 1;
+    display: flex;
+}
+
+.frequire div {
+    display: flex;
+}
+
+.frequire div p {
+    background-color: #F0F0F0;
+    border-radius: 20px;
+    padding: 4px 15px;
+    margin: 15px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fcontentnew img {
+    margin: 15px 0 0 0;
+}
+
+.fcontent .contentnew img {
+    margin: 10px 0 0 0;
+}
+
+.fcontent3 {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.ftime {
+    flex: 1;
+    font-weight: 700;
+    padding: 0 10px;
+    margin: 20px 5px;
+}
+
+.fcontent3btn {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.fcontent3btn>a {
+    flex: 1.5;
+    color: black;
+    background-color: #F5F5DC;
+    width: 75px;
+    border-radius: 50px;
+    padding: 0;
+    margin: 5px 30px;
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-items: center;
+}
+
+.fcontent .content3btn>a {
+    flex: 1.5;
+    color: black;
+    background-color: #81C7D4;
+    width: 75px;
+    border-radius: 50px;
+    padding: 0;
+    margin: 5px 30px;
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-items: center;
+}
+
+.fcollect {}
+
+.ftakecase {}
+
+.fpeople {
+    flex: 1;
+    padding-top: 15px;
+    margin: 10px 20px 0px 20px;
+    font-size: 14px;
+    color: #354052;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ffrequency {
+    flex: 1;
+    margin: 0px 20px;
+    font-size: 14px;
+    color: #354052;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ftab {
+    height: 40px;
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ftab a {
+    color: white;
+    background-color: #464646;
+    border-radius: 5px;
+    padding: 9px 20px;
+    margin: 0 2px;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.ftab img {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.ftab p {
+    padding: 0 5px;
+    margin: 0 15px 5px 15px;
+}
+
+.fLeftnext {
+    display: flex;
+    height: 20px;
+}
+
+.fRightnext {
+    display: flex;
+    height: 20px;
+}
+
+.fLeftnext img {
+    flex: 1;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.fRightnext img {
+    flex: 1;
+}
+
+.fLeftnext p {
+    flex: 3;
+}
+
+.fRightnext p {
+    flex: 3;
+}

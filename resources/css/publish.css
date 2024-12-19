@@ -1,0 +1,244 @@
+/* Breadcrumb 路徑樣式 */
+.breadcrumb {
+    margin: 25px auto;
+    max-width: 800px;
+    margin-left: 50px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+    color: #0056b3;
+}
+
+.breadcrumb span {
+    color: #888;
+}
+
+.breadcrumb img {
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 30px;
+}
+
+.breadcrumb span {
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    vertical-align: top
+}
+
+/* 表單區域設計 */
+.form-section {
+    background-color: #fdfbea;
+    border: 1px solid #e5e5e5;
+    width: 1000px;
+    padding: 30px;
+    margin-left: 20px;
+    margin: 30px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.form-section form {
+    width: 1000px;
+}
+
+.form-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    margin-bottom: 15px;
+
+}
+
+.two-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.two-columns>div {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: black;
+}
+
+.hint {
+    display: block;
+    font-size: 0.8rem;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: rgb(89, 183, 183);
+    box-shadow: 0 0 5px rgba(89, 183, 183, 0.5);
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+.submit-row {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: rgb(89, 183, 183);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: rgb(68, 150, 150);
+}
+
+
+/* 懸浮按鈕區塊 */
+.floating-buttons {
+    position: fixed;
+    right: 20px;
+    /* 距離右側 */
+    bottom: 100px;
+    /* 距離底部 */
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列 */
+    align-items: center;
+    gap: 15px;
+    /* 按鈕之間的間距 */
+    z-index: 1000;
+}
+
+/* 單個按鈕樣式 */
+.floating-btn {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    /* 背景白色 */
+    border: 1px solid #ddd;
+    /* 淺灰色邊框 */
+    border-radius: 50%;
+    /* 圓形 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 輕微陰影 */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 圖示大小 */
+.floating-btn img {
+    width: 60%;
+    /* 縮小圖片以適應按鈕 */
+    height: auto;
+}
+
+/* 懸停效果 */
+.floating-btn:hover {
+    background-color: #f0f0f0;
+    /* 背景變灰 */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    /* 陰影加深 */
+    transform: translateY(-3px);
+    /* 微微上移 */
+}
+
+/* 遮罩層 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* 半透明黑色 */
+    backdrop-filter: blur(5px);
+    /* 背景模糊化 */
+    z-index: 999;
+    /* 確保在上層 */
+}
+
+/* 隱藏元素 */
+.hidden {
+    display: none;
+}
+
+/* 彈出視窗 */
+.publishmodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.publishmodal-content .checkmark {
+    font-size: 50px;
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.publishmodal-content p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.publishmodal-content button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #FFD700;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.publishmodal-content button:hover {
+    background-color: #FFC300;
+}
