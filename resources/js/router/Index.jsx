@@ -14,6 +14,10 @@ import Testform from '../pageslab/TestForm';
 import Publish2 from '../pageslab/Publish2';
 import TastExtract from '../pageslab/TestExtract';
 import Testfree from '../pageslab/Testfree';
+import TestPusher from '../pageslab/TestPusher';
+import TestPostForm from '../pageslab/TestPostForm';
+import Testuser from '../pageslab/Testuser';
+import TestSystem from '../pageslab/TestSystem';
 
 const Index = () => {
     return (
@@ -31,6 +35,10 @@ const Index = () => {
             <Route path="/publish2" element={<Publish2 />} />{/* TestForm 頁面 */}
             <Route path="/extract" element={<TastExtract />} />
             <Route path="/testfree" element={<Testfree />} />
+            <Route path="/testpusher" element={<TestPusher />} />
+            <Route path="/testpostform" element={<TestPostForm />} />
+            <Route path="/testuser" element={<Testuser />} />
+            <Route path="/testsystem" element={<TestSystem />} />
         </Routes>
     );
 };

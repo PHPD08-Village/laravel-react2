@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
 
     protected $middlewareGroups = [
         'web' => [
+            \App\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\Cors::class,
             // 其他 web 中介軟體
         ],
@@ -24,5 +25,10 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+    ];
+
+    protected $routeMiddleware = [
+        // 其他中間件...
+        'csrf.ignore' => \App\Http\Middleware\IgnoreCsrfToken::class,
     ];
 }
