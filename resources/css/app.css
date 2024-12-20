@@ -1,0 +1,238 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+/* 匯入 google font 字型 */
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jockey+One&display=swap');
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    height: 100px;
+    background-color: #F5F7FA;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin: 0;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    padding: 0 10px;
+    flex: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-family: "Jockey One", sans-serif;
+    font-size: 1.6rem;
+}
+
+.logo>a>.LanceDom {
+    flex: 2;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+}
+
+.logo>a:nth-child(2) {
+    flex: 1;
+    width: 50px;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    color: black;
+}
+
+.navbar {
+    font-size: 20px;
+    flex: 6;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+    font-family: "Jockey One", "Inter", sans-serif;
+}
+
+.navbar>a {
+    color: black;
+}
+
+.member {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px;
+}
+
+.member>a {
+    color: rgb(89, 183, 183);
+    border: 1px solid rgba(255, 255, 255, 0);
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    /* display: inline-block; */
+    /* 設置為行內塊元素，讓內邊距生效 */
+    font-size: 16px;
+    /* 設置字體大小 */
+    text-align: center;
+    /* 文字居中 */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.member>.sign {
+    color: white;
+    background-color: rgb(89, 183, 183);
+}
+
+.member>a:hover {
+    background-color: white;
+    /* 背景顏色變為白色 */
+    color: rgb(89, 183, 183);
+    /* 文字顏色變為背景顏色 */
+    border: 1px solid rgb(89, 183, 183);
+    /* 保持邊框顏色 */
+}
+
+.space {
+    flex: 1;
+    display: flex;
+    z-index: 101;
+}
+
+.space>div:nth-child(1) {
+    flex: 1;
+}
+.space>div:nth-child(2) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 110px;
+    right: 50px;
+    height: 400px;
+}
+
+.bgc {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+.spacemember {
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.spacealarm {
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.spacechat {
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.toparraw {
+    display: flex;
+    border-radius: 8px;
+    position: absolute; /* 絕對定位 */ 
+    bottom: 0; /* 緊貼容器底部 */
+    margin: 10px;
+}
+
+.space img {
+    width: 45px;
+}
+
+div img.spacered {
+    width: 15px;
+    position: absolute;
+    right: 10px;
+    margin: 4px;
+}
+
+/* 以下是 Footer */
+.footer {
+    margin: 0;
+    display: flex;
+    height: 125px;
+    background-color: #D3D3D3;
+    font-family: "Jockey One", sans-serif;
+    position: relative;
+    z-index: 100;
+}
+
+.icons {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.icons>a {
+    text-align: center;
+    padding: 10px;
+    /* object-fit: cover; */
+    /* 添加內邊距以提高可點擊區域 */
+    background-color: lightgray;
+    /* 添加背景色便於視覺區分 */
+    margin: 5px;
+    margin-right: auto;
+    /* 添加外邊距以增加間距 */
+    color: black;
+    /* 設置文字顏色 */
+    transition: background-color 0.3s;
+    /* 添加過渡效果 */
+}
+
+.icons a:hover {
+    background-color: gray;
+    /* 鼠標懸停時改變背景色 */
+    color: white;
+    /* 鼠標懸停時改變文字顏色 */
+}
+
+.icons img {
+    width: 30px;
+}
+
+.spacer {
+    flex: 4;
+}
+
+.copyright {
+    flex: 4;
+    text-align: center;
+    margin: 25px 10px;
+}
+
+.copyright a {
+    font-family: "Inter", sans-serif;
+}
+
+.copyright a,
+.copyright>div+div {
+    color: black;
+    padding: 20px;
+    font-size: 1rem;
+}

@@ -1,0 +1,339 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.pcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 個人資訊 */
+.pinfo {
+    display: flex;
+    width: 90vw;
+    margin: 80px;
+    background-color: #FFFFFF;
+}
+
+/* 右側區域 */
+.pright {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 20px;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+    background-color: #D9D9D9;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 頭貼 */
+.pright>img {
+    padding: 20px 0;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 驗證勾勾 */
+.pitem>img {
+    width: 30px;
+    height: 30px
+}
+
+/* 排版 */
+.pitem {
+    display: flex;
+    margin: 20px;
+}
+
+.pitem span:nth-child(2) {
+    font-size: 20px;
+}
+
+/* 評價排版 */
+.pstar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pstar span {
+    font-size: 24px;
+}
+
+.peditBtn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #81c7d4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    /* 滑鼠變成手指 */
+    transition: background-color 0.p3s ease;
+    /* 增加滑鼠懸停效果 */
+    width: fit-content;
+    /* 讓按鈕寬度自適應文字內容 */
+}
+
+.peditBtn:hover {
+    /* background-color: #6699a1; */
+    /* 懸停時的深藍色 */
+    background-color: #F0F0F0;
+    border: 1px solid #81C7D4;
+    color: #81C7D4;
+}
+
+.pckBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 30vw;
+}
+
+/* 左側資訊 */
+.pleft {
+    flex: 7;
+    margin: 20px 40px 0 0;
+}
+
+.pleft p:nth-child(1) {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 5px 5px 5px;
+}
+
+.pleft p:nth-child(2) {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+    color: #FD6F00;
+}
+
+.pleft p:nth-child(3) {
+    font-size: 84px;
+    font-weight: 800;
+    margin: -20px 0;
+}
+
+.pleft p:nth-child(4) {
+    font-size: 84px;
+    font-weight: 800;
+    margin: -30px 0 0 0;
+    padding-left: 200px;
+}
+
+.pleft p:nth-child(5) {
+    background-color: #F5F5DC66;
+    box-shadow: 1px 1px 5px gray;
+    padding: 30px 20px;
+    line-height: 1.p6;
+    /* 增加行距使內容易讀 */
+    margin: 30px 0 0 0;
+    font-size: 20px;
+}
+
+/* 作品集區 */
+.pwork {
+    display: flex;
+    width: 90vw;
+    padding: 20px 0 0 0;
+    justify-content: space-around;
+    background-color: #FFFFFF;
+    /* border-radius: 10px; */
+    /* border: 1px solid black; */
+}
+
+.pwork>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 作品集圖片 */
+.pwork img {
+    width: 400px;
+    height: 500px;
+    /* border-radius: 50%; */
+    border-radius: 10%;
+    object-fit: cover;
+    box-shadow: 1px 1px 5px gray;
+}
+
+.pworkCard div {
+    width: 400px;
+    margin: 30px 0 0 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 5px gray;
+    background-color: #81C7D433;
+}
+
+.pworkCard span:first-of-type {
+    color: #FD6F00;
+    padding: 5px 80px 5px 0;
+    font-size: 20px;
+}
+
+.pworkCard span:nth-of-type(2) {
+    color: #FD6F00;
+    padding: 5px 0 3px 80px;
+    font-size: 20px;
+}
+
+/* 標題 */
+.pcontainer h2 {
+    font-size: 72px;
+    margin: 10px;
+    font-weight: 800;
+}
+
+.pcontainer h2+p {
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 10px 0;
+}
+
+/* 作品集標籤 */
+.pworkTag {
+    margin: 20px 0 30px 50px;
+}
+
+.pworkTag a {
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    color: black;
+    font-size: 28px;
+    font-weight: 500;
+    border: 1px solid #545454;
+    border-radius: 8px;
+    background-color: #F8F8F8;
+}
+
+.pworkTag a:hover {
+    background-color: #FD6F00;
+    color: white;
+}
+
+.pworkTag a:checked {
+    background-color: #FD6F00;
+    color: white;
+}
+
+/* 作品集名稱 */
+.pworkCard p {
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px gray;
+}
+
+/* 已完成專案 */
+.pproject {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    padding: 40px 0 0 0;
+    border-radius: 10px;
+    background-color: #D9D9D9CC;
+}
+
+.pproject div {
+    display: flex;
+    width: 90%;
+    margin: 20px 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* justify-content: space-around; */
+
+}
+
+.pproject>div>span {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    /* 文字靠左 */
+    word-break: nowrap;
+}
+
+/* 加背景樣式，除了按鈕 */
+.pproject>div:not(:last-child) {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin: 10px;
+}
+
+/* 日期 */
+.pproject>div>span:first-of-type {
+    margin: 5px -100px 0 0;
+    font-size: 30px;
+}
+
+/* 專案名稱 */
+.pproject>div>span:nth-of-type(2) {
+    margin: 0 -100px;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+/* 案主名稱 */
+.pproject>div>span:nth-of-type(3) {
+    color: #000080;
+    font-size: 26px;
+}
+
+/* 語言標籤 */
+.ptag {
+    flex: 1;
+    width: 100%;
+    padding: 0 30px;
+    margin: 0 50px;
+    gap: 10px;
+
+}
+
+.ptag span {
+    color: #686161;
+    background-color: #F0F0F0;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px gray;
+}
+
+/* 換頁按鈕 */
+.pchangeBtn {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pcontainer button {
+    background-color: #81C7D4;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    color: #F0F0F0;
+}
+
+.pcontainer button:hover {
+    background-color: #FFA50080;
+    color: black;
+}

@@ -1,0 +1,553 @@
+.ocontainer {
+    padding: 0 10px;
+    display: flex;
+}
+
+.ooptions {
+    flex: 3;
+    height: 100%;
+    padding: 5px 20px;
+    margin: 40px;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+}
+
+.ocode {}
+
+.ofilter {}
+
+.oprice {}
+
+.okeywords {
+    display: flex;
+    /* 使用彈性盒模型 */
+    flex-wrap: wrap;
+    gap: 10px;
+    /* 設置按鈕之間的間距 */
+}
+
+.okeywords {
+    display: flex;
+    /* 使用彈性盒模型 */
+    flex-wrap: wrap;
+    gap: 10px;
+    /* 設置按鈕之間的間距 */
+}
+
+.okeywords>a {
+    color: rgb(54, 54, 54);
+    margin: 5px 0;
+    padding: 5px 10px;
+    background-color: lightgray;
+    border-radius: 15px;
+    font-size: 16px;
+    /* 設置字體大小 */
+    text-align: center;
+    /* 文字居中 */
+}
+
+.omaincontainer {
+    flex: 8;
+    padding: 10px 20px 10px 0px;
+}
+
+.osearch {
+    display: flex;
+}
+
+.osearchtab {
+    flex: 5;
+}
+
+.okeyword {
+    flex: 6;
+    height: 45px;
+    width: 380px;
+    border-radius: 30px;
+    border: 2px solid lightgray;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.okeyword img {
+    margin: 0 30px;
+}
+
+.okeyword p {
+    color: #626D7E;
+    margin: 0 10px;
+}
+
+.ohanber {
+    flex: 1;
+    height: 40px;
+    /* border-radius: 20px; */
+    /* border: 2px solid lightgray; */
+    margin: 10px;
+    text-align: center;
+}
+
+/* 彈出框樣式 */
+.omodal {
+    display: none;
+    /* 初始隱藏 */
+    position: fixed;
+    z-index: 1;
+    /* width: 100%;  */
+    /* height: 100%;  */
+    /* overflow: auto; */
+}
+
+.omodal-content {
+    background-color: #D9D9D9;
+    margin: 10px;
+    padding: 5px 10px;
+    border: 1px solid #888;
+    width: 200px;
+    height: auto;
+    position: fixed;
+    /* top: 50%;  */
+    right: 0;
+    /* transform: translateY(-50%); */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.oclose {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 1%;
+    top: -1%;
+}
+
+.oclose:hover,
+.oclose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.omyself {
+    flex: 3;
+    display: flex;
+}
+
+.ophoto {
+    flex: 1;
+    background-color: white;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.omyself2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ochatcall {
+    flex: 1;
+    display: flex;
+}
+
+.ochatcall img {
+    width: 90%;
+}
+
+.ochat {
+    flex: 1;
+    margin: 4px;
+    border-radius: 20px;
+}
+
+.ocall {
+    flex: 1;
+    margin: 4px;
+    border-radius: 20px;
+}
+
+.ointroduction {
+    flex: 2;
+    font-size: 14px;
+}
+
+.oinformation {
+    flex: 1;
+    font-size: 14px;
+    margin: -5px 0 5px 0;
+}
+
+.overify {
+    display: flex;
+    margin: 0;
+}
+
+.oStar {
+    display: flex;
+    margin: 0 10px;
+}
+
+.ocase {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+}
+
+.oeverycase {
+    flex: 1;
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+}
+
+.oorder {
+    display: flex;
+    height: 40px;
+    border-radius: 15px;
+    background-color: lightgray;
+    text-align: center;
+    margin: 10px;
+}
+
+.oorder p,
+.oorder>a {
+    flex: 3;
+    margin: 10px;
+    color: #354052;
+}
+
+.ocontentone {
+    background-color: #7fc5d280;
+    height: 300px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    display: flex;
+}
+
+.ocontentone a {
+    color: inherit;
+    /* border: none; */
+    /* padding: 0; */
+    /* margin: 0; */
+    /* font: inherit; */
+}
+
+
+
+.ocontent {
+    background-color: #F5F5DC;
+    height: 300px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    display: flex;
+}
+
+.ocontent1 {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.ohot {
+    float: left;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+}
+
+.ocompanyphoto {
+    flex: 8;
+    height: 160px;
+    width: 160px;
+    background-color: white;
+    border-radius: 150px;
+    margin: 5px 25px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.ocompanyphoto img {
+    max-width: 100%;
+    /* 確保圖片不超出父容器 */
+    max-height: 100%;
+    /* 確保圖片不超出父容器 */
+    margin: auto;
+}
+
+.ocompanyname {
+    flex: 2;
+    /* text-align: center; */
+    margin: 5px;
+}
+
+.ocompanystar {
+    flex: 2;
+    margin: 5px;
+    display: flex;
+}
+
+.ocompanystar>div:first-child {
+    flex: 1;
+}
+
+.ogreen {
+    flex: 1;
+}
+
+.ostar {
+    flex: 6;
+}
+
+.ostar img {
+    margin: 0 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.ocontent2 {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+}
+
+.otitle {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    /* 垂直方向底部對齊 */
+    justify-content: space-between;
+    /* 水平方向分佈 */
+}
+
+.otitle>div {
+    display: flex;
+    align-items: flex-end;
+    /* 垂直方向底部對齊 */
+    justify-content: space-between;
+    /* 水平方向分佈 */
+}
+
+.otitle>div>h1 {
+    margin: 5px;
+    padding: 5px;
+    margin: 0 10px 0 0;
+    padding: 0;
+    /* 清除默認外邊距 */
+}
+
+.otitle>div>p {
+    margin: 2px;
+    padding: 1px;
+    /* 清除默認外邊距 */
+}
+
+.otitle>div>img {
+    width: 25px;
+    height: 25px;
+    margin: 0 2px;
+    padding: 0;
+    /* 清除默認外邊距 */
+}
+
+.oset {
+    flex: 1;
+    display: flex;
+}
+
+.odate {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.ocaseprice {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.olocation {
+    flex: 1;
+}
+
+.ocasecontent {
+    flex: 1;
+}
+
+.orequire {
+    flex: 1;
+    display: flex;
+}
+
+.orequire div {
+    display: flex;
+}
+
+.orequire div p {
+    background-color: #F0F0F0;
+    border-radius: 20px;
+    padding: 4px 15px;
+    margin: 15px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ocontentnew img {
+    margin: 15px 0 0 0;
+}
+
+.ocontent .ocontentnew img {
+    margin: 10px 0 0 0;
+}
+
+.ocontent3 {
+    flex: 2.o3;
+    display: flex;
+    flex-direction: column;
+}
+
+.otime {
+    flex: 1;
+    font-weight: 700;
+    padding: 0 10px;
+    margin: 20px 5px;
+}
+
+.ocontent3btn {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.ocontent3btn>a {
+    flex: 1.o5;
+    color: black;
+    background-color: #F5F5DC;
+    width: 75px;
+    border-radius: 50px;
+    padding: 0;
+    margin: 5px 30px;
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-items: center;
+}
+
+.ocontent .ocontent3btn>a {
+    flex: 1.o5;
+    color: black;
+    background-color: #81C7D4;
+    width: 75px;
+    border-radius: 50px;
+    padding: 0;
+    margin: 5px 30px;
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-items: center;
+}
+
+.ocollect {}
+
+.otakecase {}
+
+.opeople {
+    flex: 1;
+    padding-top: 10px;
+    margin: 0 5px 0px 0;
+    font-size: 14px;
+    color: #354052;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ofrequency {
+    flex: 1;
+    margin: 0px 20px;
+    font-size: 14px;
+    color: #354052;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.otab {
+    height: 40px;
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.otab a {
+    color: white;
+    background-color: #464646;
+    border-radius: 5px;
+    padding: 9px 20px;
+    margin: 0 2px;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.otab img {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.otab p {
+    padding: 0 5px;
+    margin: 0 15px 5px 15px;
+}
+
+.oLeftnext {
+    display: flex;
+    height: 20px;
+}
+
+.oRightnext {
+    display: flex;
+    height: 20px;
+}
+
+.oLeftnext img {
+    flex: 1;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.oRightnext img {
+    flex: 1;
+}
+
+.oLeftnext p {
+    flex: 3;
+}
+
+.oRightnext p {
+    flex: 3;
+}
