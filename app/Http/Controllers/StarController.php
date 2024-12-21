@@ -15,7 +15,7 @@ class StarController extends Controller
             'count' => 'required|integer',
         ]);
 
-        // 尋找是否有已有的評價記錄
+        // 尋找是否有已有的評價記錄，查找特定用戶
         $rating = Star::where('uid', $request->uid)->first();
 
         if ($rating) {
