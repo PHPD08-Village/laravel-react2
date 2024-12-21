@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const StarSystem = ({ userId }) => {
-    const [uid, setUid] = useState(userId || null);
+    // const [uid, setUid] = useState(userId || null);
+    const [uid, setUid] = useState('1');
     const [professionalism, setProfessionalism] = useState(null);
     const [responseSpeed, setResponseSpeed] = useState(null);
     const [cooperation, setCooperation] = useState(null);
 
+    // const history = useHistory();
+    const navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        if (!professionalism || !responseSpeed || !cooperation) {
+        // if (!starProElement || !starReplyElement || !starCoorElement) {
+            alert('請確保所有評分項目都已選取');
+            // 當評分項目沒有全部選取時，不執行後續程式碼
+            return;
+        }
+
         // 計算平均評分
-        const averating = (professionalism + responseSpeed + cooperation) / 3;
+        const averating = ((professionalism + responseSpeed + cooperation) / 3).toFixed(5);
+
+        // alert(`您已評價 ${averating} 星`)
 
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/star', {
@@ -20,6 +34,11 @@ const StarSystem = ({ userId }) => {
                 count: 1 // 新增一條評論時，count 設置為 1
             });
             alert(response.data.message);
+
+            // 當收到評價成功的回應時，導向首頁
+            if (response.data.message === '評價已成功提交') {
+                navigate('/');
+            }
         } catch (error) {
             console.error('There was an error!', error);
         }
@@ -62,7 +81,8 @@ const StarSystem = ({ userId }) => {
             </div>
 
             <form onSubmit={handleSubmit} className="ratingSystem">
-                <input type="hidden" name="uid" value={uid || ''} />
+                {/* <input type="hidden" name="uid" value={uid || ''} /> */}
+                <input type="hidden" name="uid" value={uid} />
                 <div className="rating">
                     <div className="starPro">
                         <p>對方專業度：</p>
