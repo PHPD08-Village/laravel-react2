@@ -27,4 +27,10 @@ class Publish extends Model
     protected $hidden = [
         'created_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(UserInfo::class, 'uid', 'uid');
+    }
 }
+

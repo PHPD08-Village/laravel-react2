@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PubForStarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublishController;
@@ -11,7 +12,8 @@ Route::get('/api/get-publishes', [PublishController::class, 'getAllPublishes']);
 
 Route::post('/api/star', [StarController::class, 'store']);
 // Route::get('/api/get-star', [StarController::class, 'getAllstar']);
-
+Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
+Route::get('/api/case/{caseId}', [PubForStarController::class, 'getCaseInfo']);
 
 
 // React 路由的配置應該在後面
@@ -19,12 +21,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{pathMatch}', function(){
+Route::get('/{pathMatch}', function () {
     return view('index');
 })->where('pathMatch', ".*");
 
 // use App\Http\Controllers\DataController;
 
 // Route::post('/api/submit-data', [DataController::class, 'mydata']);
-
-

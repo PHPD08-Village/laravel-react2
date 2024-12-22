@@ -10,6 +10,7 @@ class UserInfo extends Model
     use HasFactory;
 
     protected $table = 'userinfo';
+    protected $primaryKey = 'uid';
 
     protected $fillable = [
         'profile_picture',
@@ -38,4 +39,9 @@ class UserInfo extends Model
         'job_status' => 'boolean',
         'rating' => 'integer',
     ];
+
+    public function publishes()
+    {
+        return $this->hasMany(Publish::class, 'uid', 'uid');
+    }
 }
