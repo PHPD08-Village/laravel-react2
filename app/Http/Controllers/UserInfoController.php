@@ -10,7 +10,9 @@ class UserInfoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:userinfo',
+            'username' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|digits:10',
         ]);
 
         return UserInfo::create($request->all());

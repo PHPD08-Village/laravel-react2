@@ -42,7 +42,7 @@ userinfo 資料表
 
 	job_status: 使用者是否可接案，BOOLEAN類型，用於表示 true 或 false。
 
-	rating: 使用者的星數評價，使用 TINYINT 並加上 CHECK 條件限制範圍在1到5之間。
+	rating: 使用者的星數評價，使用 TINYINT 並加上 CHECK 條件限制範圍在1到5之間，可以空值。
 
 	preferred_location: 理想的接案地區，可以空值。
 

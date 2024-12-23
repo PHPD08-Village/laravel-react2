@@ -12,7 +12,7 @@ class UserInfo extends Model
     protected $table = 'userinfo';
 
     protected $fillable = [
-        'profile_picture',
+        'headshot',
         'username',
         'nickname',
         'company_name',

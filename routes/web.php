@@ -17,15 +17,15 @@ Route::post('/api/star', [StarController::class, 'store']);
 // Route::get('/api/get-star', [StarController::class, 'getAllstar']);
 
 // 使用者資訊表單
-Route::post('/apo/userinfo', [UserInfoController::class, 'store']);
+Route::post('/api/userinfo', [UserInfoController::class, 'store']);
 Route::get('/api/userinfo', [UserInfoController::class, 'index']);
 
 // 登入登出功能
-Route::middleware(['auth'])->group(function () {
-    // 使用者資訊表單
-    Route::post('/api/userinfo', [UserInfoController::class, 'store']);
-    Route::get('/api/userinfo', [UserInfoController::class, 'index']);
-});
+// Route::middleware(['auth'])->group(function () {
+//     // 使用者資訊表單
+//     Route::post('/api/userinfo', [UserInfoController::class, 'store']);
+//     Route::get('/api/userinfo', [UserInfoController::class, 'index']);
+// });
 
 // 添加錯誤日誌的路由
 Route::post('/api/log-error', [ErrorLogController::class, 'logError']);

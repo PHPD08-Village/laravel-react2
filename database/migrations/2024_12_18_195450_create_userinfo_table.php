@@ -16,13 +16,13 @@ class CreateUserinfoTable extends Migration
     {
         Schema::create('userinfo', function (Blueprint $table) {
             $table->bigIncrements('uid');                      // 自動遞增的uid (bigint(20) UNSIGNED、primary key)
-            $table->string('profile_picture')->nullable();     // 大頭照URL（可空）
             $table->string('username')->nullable();            // 使用者名稱（可空）
+            $table->binary('headshot')->nullable();            // 大頭照URL（可空）
             $table->string('nickname')->nullable();            // 暱稱（可空）
+            $table->char('phone', 10)->nullable();             // 使用char類型，固定長度為10
             $table->string('company_name')->nullable();        // 企業名稱（可空）
             $table->string('job_title')->nullable();           // 接案身分（可空）
             $table->string('location')->nullable();            // 居住地（可空）
-            $table->string('contact_phone')->nullable();       // 連絡電話（可空）
             $table->boolean('phone_verified')->default(false); // 電話認證狀態（true或false）
             $table->string('email')->unique();                 // 電子信箱
             $table->boolean('email_verified')->default(false); // 電子信箱驗證狀態（true或false）

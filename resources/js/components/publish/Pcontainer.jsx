@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or jQuery/publish'; // 更新為你的文件路徑 
+import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or jQuery/publish'; 
 
 const Pcontainer = () => {
     const [formData, setFormData] = useState({
@@ -56,10 +56,10 @@ const Pcontainer = () => {
         }
     };
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
+    const handleChange = (e) => { // e 作為參數傳遞給 handleChange 函數
+        setFormData({ // 更新 formData 狀態的函數
+            ...formData, // 創建 formData 狀態的副本，並將新的表單輸入值添加到其中
+            [e.target.name]: e.target.value  // [e.target.name] 是一個「計算屬性名」，它會根據表單元素的 name 屬性的值來設置對應的狀態變數，動態地設置屬性名稱
         });
     };
 
