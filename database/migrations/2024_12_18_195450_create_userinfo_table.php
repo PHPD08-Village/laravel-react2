@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use \Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUserinfoTable extends Migration
@@ -11,10 +12,10 @@ class CreateUserinfoTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('userinfo', function (Blueprint $table) {
-            $table->id();                                      // 自動遞增的ID
+            $table->bigIncrements('uid');                      // 自動遞增的uid (bigint(20) UNSIGNED、primary key)
             $table->string('profile_picture')->nullable();     // 大頭照URL（可空）
             $table->string('username')->nullable();            // 使用者名稱（可空）
             $table->string('nickname')->nullable();            // 暱稱（可空）
@@ -28,7 +29,11 @@ class CreateUserinfoTable extends Migration
             $table->string('line_id')->nullable();             // LINE ID（可空）
             $table->enum('login_status', ['online', 'offline'])->default('offline'); // 登入狀態（online或offline）
             $table->boolean('job_status')->default(false);     // 接案狀態（true或false）
-            $table->tinyInteger('rating')->unsigned()->default(0)->check('rating >= 1 AND rating <= 5'); // 星數評價（1到5的評價等級）
+            $table->tinyInteger('rating')->unsigned()->nullable()->check(function ($column) {
+                $column->when($column->isNotNull(), function ($query) {
+                    $query->whereBetween('rating', [1, 5]);
+                });
+            }); // 星數評價（1到5的評價等級，起始值可空）
             $table->string('preferred_location')->nullable();  // 理想接案地區（可空）
             $table->string('job_category')->nullable();        // 接案類別（可空）
             $table->text('accumulated_experience')->nullable();// 累積經驗（可空）
@@ -42,9 +47,17 @@ class CreateUserinfoTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
+        // 先刪除 star 表中的外鍵約束
+        Schema::table('star', function (Blueprint $table) {
+            $table->dropForeign(['uid']);
+        });
+
+        // 然後刪除與 userinfo 表相關的記錄
+        DB::table('star')->whereNotNull('uid')->delete();
+
+        // 最後刪除 userinfo 表
         Schema::dropIfExists('userinfo');
     }
 }
-
