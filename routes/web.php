@@ -1,12 +1,11 @@
 <?php
 
-// 此為備份
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PublishController;
 use App\Http\Controllers\StarController;
 use App\Http\Controllers\UserInfoController;
+use App\Http\Controllers\ErrorLogController; // 添加新的控制器
 
 // 將 API 路由置於開始處
 // 案件刊登表單
@@ -28,19 +27,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/userinfo', [UserInfoController::class, 'index']);
 });
 
-
-
-
-
+// 添加錯誤日誌的路由
+Route::post('/api/log-error', [ErrorLogController::class, 'logError']);
 
 // React 路由的配置應該在後面
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{pathMatch}', function(){
+Route::get('/{any}', function(){
     return view('index');
-})->where('pathMatch', ".*");
+})->where('any', ".*");
 
 // use App\Http\Controllers\DataController;
 

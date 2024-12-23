@@ -15,7 +15,7 @@ class CreatePublishTable extends Migration
     {
         Schema::create('publish', function (Blueprint $table) {
             $table->bigIncrements('pid'); // 自動遞增的pid (bigint(20) UNSIGNED、primary key)
-            $table->unsignedBigInteger('uid'); // 添加外鍵欄位 uid
+            $table->unsignedBigInteger('uid')->nullable(); // 添加外鍵欄位 uid
             $table->string('title'); // 添加新欄位 title
             $table->string('contact_name'); // 添加新欄位 contact_name
             $table->timestamp('completion_time'); // 添加完成時間欄位

@@ -12,6 +12,7 @@ class PublishController extends Controller
     {
         // 驗證請求數據
         $request->validate([
+            'uid' => 'nullable|integer', // 確保 uid 允許為空
             'title' => 'required|string|max:255',
             'contact_name' => 'required|string|max:255',
             'completion_time' => 'required|date',

@@ -12,6 +12,7 @@ class Publish extends Model
     protected $table = 'publish';
 
     protected $fillable = [
+        'uid',
         'title',
         'contact_name',
         'completion_time',

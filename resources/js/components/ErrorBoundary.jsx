@@ -12,14 +12,33 @@ class ErrorBoundary extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        // 你可以將錯誤日誌記錄到你的錯誤報告服務
+        // 將錯誤日誌發送到後端伺服器
+        fetch('/api/log-error', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                error: error.toString(),
+                errorInfo: errorInfo.componentStack
+            }),
+        }).catch(err => {
+            console.error('Error sending log to server:', err);
+        });
+
+        // 也可以在控制台記錄錯誤，方便開發者調試
         console.error('Uncaught error:', error, errorInfo);
     }
 
     render() {
         if (this.state.hasError) {
-            // 你可以自訂任何回退 UI
-            return <h1>出了點問題。</h1>;
+            // 自訂的回退 UI
+            return (
+                <div>
+                    <h1>伺服器維修中。</h1>
+                    <button onClick={() => window.location.reload()}>重新加載頁面</button>
+                </div>
+            );
         }
 
         return this.props.children;
