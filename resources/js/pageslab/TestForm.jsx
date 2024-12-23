@@ -42,8 +42,8 @@ const TestForm = () => {
         e.preventDefault(); // 阻止默認行為發生
 
         // 在這裡處理自定義的表單提交邏輯，例如發送數據到伺服器
-        console.log(formData); // 印出資料內容
-        console.log(JSON.stringify(formData, null, 2)); // JSON.stringify 將數據轉換為 JSON 字符串 replacer:可指定也可不指定。space:可指定也可不指定，用於控制縮進的空格數。
+        // console.log(formData); // 印出資料內容
+        // console.log(JSON.stringify(formData, null, 2)); // JSON.stringify 將數據轉換為 JSON 字符串 replacer:可指定也可不指定。space:可指定也可不指定，用於控制縮進的空格數。
 
         // try {  // 成功儲存數據方法1
         //     await axios.get('/sanctum/csrf-cookie'); // 確保 CSRF token 已經被設置
