@@ -12,7 +12,7 @@ Route::get('/api/get-publishes', [PublishController::class, 'getAllPublishes']);
 
 Route::post('/api/star', [StarController::class, 'store']);
 // Route::get('/api/get-star', [StarController::class, 'getAllstar']);
-Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
+// Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
 Route::get('/api/case/{caseId}', [PubForStarController::class, 'getCaseInfo']);
 
 

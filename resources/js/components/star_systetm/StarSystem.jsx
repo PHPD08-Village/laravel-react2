@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const StarSystem = ({ userId }) => {
-    // const StarSystem = ({ userId,caseId }) => {
-    // const [uid, setUid] = useState(userId);
+// const StarSystem = ({ userId }) => {
+const StarSystem = ({ userId, caseId }) => {
+    // const [uid, setUid] = useState('1');
     const [uid, setUid] = useState(userId); // 用戶 ID
-    // const [caseInfo, setCaseInfo] = useState(null); // 評價對象的用戶 ID
+    const [caseInfo, setCaseInfo] = useState(null); // 評價對象的用戶 ID
     const [professionalism, setProfessionalism] = useState(null);
     const [responseSpeed, setResponseSpeed] = useState(null);
     const [cooperation, setCooperation] = useState(null);
     // 重新導向至新頁面的內建函數
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     // 當組件加載時請求用戶資料
-    //     const fetchCaseInfo = async () => {
-    //         try {
-    //             const response = await axios.get(`http://127.0.0.1:8000/api/case/${caseId}`);
-    //             setCaseInfo(response.data);
-    //         } catch (error) {
-    //             alert('用戶資料請求失敗',error);
-    //         }
-    //     };
-    //     fetchCaseInfo();
-    // }, [caseId]);
+    useEffect(() => {
+        setUid(userId); // 確認用戶 ID 已經設置
+        // 當組件加載時請求用戶資料
+        const fetchCaseInfo = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/case/${caseId}`);
+                setCaseInfo(response.data);
+            } catch (error) {
+                console.error('發案用戶資料請求失敗', error);
+                alert('發案用戶資料獲取失敗，請稍後再試');
+            }
+        };
+        fetchCaseInfo();
+    }, [caseId, userId]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -46,9 +48,10 @@ const StarSystem = ({ userId }) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/star', {
                 uid,        // 評價者的用戶 ID
-                // targetUserId: caseInfo.uid, // 評價對象的用戶 ID     
+                targetUserId: caseInfo.publisher_uid, // 評價對象的用戶 ID     
                 averating,
-                count: 1 // 新增一條評論時，count 設置為 1
+                count: 1, // 新增一條評論時，count 設置為 1
+                caseId,     // 傳遞案件 ID 以便後端進行檢查
             });
             alert(response.data.message);
 
@@ -57,7 +60,7 @@ const StarSystem = ({ userId }) => {
                 navigate('/');
             }
         } catch (error) {
-            console.error('There was an error!', error);
+            console.error('提交評價時出錯', error);
         }
     };
 
@@ -89,7 +92,7 @@ const StarSystem = ({ userId }) => {
                     </ul>
                 </div>
                 <hr />
-                {/* {caseInfo && (
+                {caseInfo && (
                 <div className="staruserInfo">
                     <img src={caseInfo.profile_picture} alt="avatar" />
                     <div className="staruserInfoText">
@@ -98,15 +101,15 @@ const StarSystem = ({ userId }) => {
                         <p id="caseDate" name="caseDate">{caseInfo.publish_date}</p>
                     </div>
                 </div>
-                )} */}
-                <div className="staruserInfo">
+                )}
+                {/* <div className="staruserInfo">
                     <img src="/img/Icon/Male User.png" alt="avatar" />
                     <div className="staruserInfoText">
                         <h3 id="caseName" name="caseName">獨立品牌網頁設計</h3>
                         <p id="userName" name="userName">陳曉白快樂工作室</p>
                         <p id="caseDate" name="caseDate">2024/10/30</p>
                     </div>
-                </div>
+                </div> */}
                 {/* <input type="hidden" name="uid" value={uid || ''} /> */}
                 <input type="hidden" name="uid" value={uid} />
                 <div className="rating">
