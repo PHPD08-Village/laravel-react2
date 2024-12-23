@@ -34,34 +34,34 @@ const StarSystem = ({ userId }) => {
                 <a href="#">評價回饋</a>
             </div>
 
-            <div className="explain">
-                <h2>評價接案者</h2>
-                <ul>
-                    <li>
-                        交易完成後，您可以給予「優良」、「普通」或「差勁」的評價，並留下意見評語。
-                    </li>
-                    <li>
-                        「優良」代表五顆星、「普通」代表三顆星、「差勁」代表一顆星。
-                    </li>
-                    <li>
-                        評價一旦送出便無法修改，請謹慎給予。
-                    </li>
-                    <li>
-                        所有評價都會記錄在會員的「評價頁面」，供其他會員做參考。
-                    </li>
-                </ul>
-            </div>
-            <hr />
-            <div className="staruserInfo">
-                <img src="/img/Icon/Male User.png" alt="avatar" />
-                <div className="staruserInfoText">
-                    <h3 id="caseName" name="caseName">獨立品牌網頁設計</h3>
-                    <p id="userName" name="userName">陳曉白快樂工作室</p>
-                    <p id="caseDate" name="caseDate">2024/10/30</p>
-                </div>
-            </div>
-
             <form onSubmit={handleSubmit} className="ratingSystem">
+                <div className="explain">
+                    <h2>評價接案者</h2>
+                    <ul>
+                        <li>
+                            交易完成後，您可以給予「優良」、「普通」或「差勁」的評價，並留下意見評語。
+                        </li>
+                        <li>
+                            「優良」代表五顆星、「普通」代表三顆星、「差勁」代表一顆星。
+                        </li>
+                        <li>
+                            評價一旦送出便無法修改，請謹慎給予。
+                        </li>
+                        <li>
+                            所有評價都會記錄在會員的「評價頁面」，供其他會員做參考。
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+                <div className="staruserInfo">
+                    <img src="/img/Icon/Male User.png" alt="avatar" />
+                    <div className="staruserInfoText">
+                        <h3 id="caseName" name="caseName">獨立品牌網頁設計</h3>
+                        <p id="userName" name="userName">陳曉白快樂工作室</p>
+                        <p id="caseDate" name="caseDate">2024/10/30</p>
+                    </div>
+                </div>
+
                 <input type="hidden" name="uid" value={uid || ''} />
                 <div className="rating">
                     <div className="starPro">
