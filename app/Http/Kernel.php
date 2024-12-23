@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         // 其他中間件...
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'csrf.ignore' => \App\Http\Middleware\IgnoreCsrfToken::class,
     ];
 }

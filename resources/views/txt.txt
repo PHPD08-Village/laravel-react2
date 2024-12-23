@@ -1,6 +1,6 @@
 publish 資料表
     #		名稱	
-	1		id：自增主鍵 
+	1		pid：自增主鍵 
 	2		title：案件標題 
 	3		contact_name：聯絡人名稱 
 	4		completion_time：案件完成時間 
@@ -14,7 +14,7 @@ publish 資料表
 	12		updated_at：記錄更新時間
 
 userinfo 資料表		
-	id: 自動遞增的唯一ID。
+	uid: 自動遞增的唯一ID。
 
 	profile_picture: 儲存大頭照的URL，允許空值。
 
@@ -32,13 +32,13 @@ userinfo 資料表
 
 	phone_verified: 電話是否已認證，BOOLEAN類型，用於表示 true 或 false。
 
-	email: 使用者的電子信箱，這是一個必填欄位。
+	email: 使用者的電子信箱，這是一個必填欄位，設置為唯一，確保每個使用者的電子信箱都是獨一無二
 
 	email_verified: 電子信箱是否已認證，BOOLEAN類型，用於表示 true 或 false。
 
 	line_id: 使用者的 LINE ID，可以空值。
 
-	login_status: 使用者的登入狀態，使用 ENUM 類型限制只允許 online 或 offline。
+	login_status: 使用者的登入狀態，使用 ENUM 類型限制只允許 online 或 offline。(目前不做)
 
 	job_status: 使用者是否可接案，BOOLEAN類型，用於表示 true 或 false。
 
@@ -68,16 +68,7 @@ userinfo 資料表
 	 
 	 
 		 	
-		 		
-		 		
-		 				
-
-
-需要麻煩再幫我檢查一下 這是我的laravel-react庫publish表的資料 欄位如下 
-
-
-
-
+		 	
 
 
 

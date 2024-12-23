@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UserInfoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -16,5 +21,8 @@ class UserInfoController extends Controller
         return UserInfo::create($request->all());
     }
 
-
+    public function index()
+    {
+        return UserInfo::all();
+    }
 }
