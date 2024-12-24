@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublishController;
 use App\Http\Controllers\StarController;
+use App\Http\Controllers\PubForHomeLatestController;
 
 // 將 API 路由置於開始處
 Route::post('/api/submit-publish', [PublishController::class, 'publish']);
@@ -14,7 +15,8 @@ Route::post('/api/star', [StarController::class, 'store']);
 // Route::get('/api/get-star', [StarController::class, 'getAllstar']);
 // Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
 Route::get('/api/case/{caseId}', [PubForStarController::class, 'getCaseInfo']);
-
+// Route::get('/api/get-latest-projectsUser', [PubForHomeLatestController::class, 'getLatestProjUser']);   // 新增首頁最新案件發案人資訊 API
+Route::get('/api/get-latest-projects', [PubForHomeLatestController::class, 'getLatestProjects']);   // 新增首頁最新案件案件資訊 API
 
 // React 路由的配置應該在後面
 Route::get('/', function () {

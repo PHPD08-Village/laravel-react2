@@ -35,4 +35,3 @@ class Publish extends Model
         return $this->belongsTo(UserInfo::class, 'uid', 'uid');
     }
 }
-

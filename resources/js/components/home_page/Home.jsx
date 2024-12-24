@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+import ReactDom from 'react-dom';
+import LatestList from './LatestList';
 
-// import $ from 'jquery';
+
 
 const Home = () => {
+
   return (
     // <!-- 案件頁面-- >
     <React.Fragment>
       <div className="mainContent">
         <h1>最新案件</h1>
-        <div className="latestCase">
-          {/* <!-- 左箭頭 --> */}
-          <button id="latestCaseLeft">
+        <LatestList />
+        {/* <div className="latestCase"> */}
+        {/* <!-- 左箭頭 --> */}
+        {/* <button id="latestCaseLeft">
             <ion-icon name="chevron-back-outline"></ion-icon>
-          </button>
-          <div className="card">
-            {/* <!-- 每一個案件卡片 --> */}
-            <div className="cardSingle">
+          </button> */}
+        {/* <div className="card"> */}
+        {/* <!-- 每一個案件卡片 --> */}
+        {/* <div className="cardSingle">
               <div className="cardHeader">
                 <div className="userInfo">
                   <img src="/img/Icon/Male User.png" alt="avatar" />
@@ -159,12 +164,12 @@ const Home = () => {
                 <a href="#" id="catchCase1" name="catchCase1">接案</a>
               </div>
             </div>
-          </div>
-          {/* <!-- 右箭頭 --> */}
-          <button id="latestCaseRight">
+          </div> */}
+        {/* <!-- 右箭頭 --> */}
+        {/* <button id="latestCaseRight">
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </button>
-        </div>
+        </div> */}
         <h1>點閱率最高案件</h1>
         <div className="clickHighestCase">
           {/* <!-- 左箭頭 --> */}

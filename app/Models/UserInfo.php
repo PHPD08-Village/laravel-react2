@@ -44,4 +44,9 @@ class UserInfo extends Model
     {
         return $this->hasMany(Publish::class, 'uid', 'uid');
     }
+    
+    public function star()
+    {
+        return $this->hasOne(Star::class, 'uid', 'uid');
+    }
 }
