@@ -1,6 +1,6 @@
 import React from 'react';
 import Maincontainer from './Maincontainer'
-import Space from './Space'
+import Floatingbuttons from '../allpage/Floatingbuttons'
 
 
 const Container = () => (
@@ -9,7 +9,7 @@ const Container = () => (
         <div className="detailcontainer">
             <div></div>
             <Maincontainer />
-            <Space />
+            <Floatingbuttons />
             <div></div>
         </div>
     </div>

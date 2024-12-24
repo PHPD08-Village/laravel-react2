@@ -1,5 +1,5 @@
 import './bootstrap';
-import ErrorBoundary from '../js/components/ErrorBoundary'
+import ErrorBoundary from './components/allpage/ErrorBoundary'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

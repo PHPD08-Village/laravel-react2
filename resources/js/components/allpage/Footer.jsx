@@ -1,8 +1,4 @@
 import React from 'react';
-// import LOGO from '../../img/LOGO.png'; // 確保圖片路徑正確
-import LINE from '../../../public/img/LINE.png';
-import Facebook from '../../../public/img/Facebook.png';
-import Instagram from '../../../public/img/Instagram.png';
 
 const Footer = () => (
     <div className="footer">
@@ -15,13 +11,13 @@ const Footer = () => (
                 <a href="#">LanceDom</a>
             </div>
             <a href="#">
-                <img src={LINE} alt="LINE" />
+                <img src="/img/LINE.png" alt="LINE" />
             </a>
             <a href="#">
-                <img src={Facebook} alt="Facebook" />
+                <img src="/img/Facebook.png" alt="Facebook" />
             </a>
             <a href="#">
-                <img src={Instagram} alt="Instagram" />
+                <img src="/img/Instagram.png" alt="Instagram" />
             </a>
         </div>
         <div className="spacer"></div> {/* 使用 className 或 style */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Router from '../router/Index';
+import Router from '../../router/Index';
 
 const Header = () => (
     <>

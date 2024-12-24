@@ -1,14 +1,75 @@
 import React, { useEffect } from 'react';
 import Floating from './Floating';
-import { initializePersonalEditor } from '../../JS or jQuery/Personal_editor'; // 引入 JavaScript 文件
-import { contentMapping } from '../../JS or jQuery/contentMapping'; // 引入 contentMapping
 
+// import '../../JS or jQuery/Personal_editor'
 
-
-// 個人資訊編輯頁面
+// 個人資訊編輯頁面(測試中)
 const Personal_editor = () => {
     useEffect(() => {
-        initializePersonalEditor();
+        const sidebarItems = document.querySelectorAll(".sidebar-item");
+        const rowsContainer = document.getElementById("rows-container");
+        const freelancerBtn = document.getElementById("freelancer-btn");
+
+        // 更新右側內容
+        function refreshContent(itemName) {
+            const topBarHTML = `
+            <div class="top-bar">
+                <div class="avatar-info">
+                    <div class="avatar-upload">
+                        <input type="file" id="avatarInput" accept="image/*" hidden>
+                        <label for="avatarInput" class="avatar-box">
+                            <img src="./img/Person/avatar.jpg" alt="大頭貼" class="avatar-img">
+                        </label>
+                    </div>
+                    <div class="avatar-details">
+                        <span>你好！XXXX</span>
+                        <span>會員編號：XXXX</span>
+                    </div>
+                </div>
+                <button class="top-bar-button">刊登新服務</button>
+            </div>
+        `;
+
+            rowsContainer.innerHTML = topBarHTML + (contentMapping[itemName] || `
+            <div class="info-box">
+                <h3>${itemName}</h3>
+                <hr>
+                <p>暫無內容。</p>
+            </div>
+        `);
+        }
+
+        // 清除高亮样式
+        function clearHighlight() {
+            sidebarItems.forEach((item) => {
+                item.classList.remove("active");
+            });
+        }
+
+        // 點擊左側項目處理邏輯
+        sidebarItems.forEach((item) => {
+            item.addEventListener("click", () => {
+                const itemName = item.textContent.trim();
+                clearHighlight();
+                item.classList.add("active");
+                refreshContent(itemName);
+            });
+        });
+
+        // 點擊接案者按鈕
+        freelancerBtn.addEventListener("click", () => {
+            clearHighlight();
+            refreshContent("接案資料");
+            document.getElementById("case-info").classList.add("active");
+        });
+
+        // 頁面初始化
+        function initializePage() {
+            refreshContent("接案資料");
+            document.getElementById("case-info").classList.add("active");
+        }
+
+        initializePage();
     }, []);
 
     return (
@@ -79,7 +140,7 @@ const Personal_editor = () => {
             </div>
             <Floating />
         </>
-    );
+    )
 }
 
-export default Personal_editor;
+export default Personal_editor

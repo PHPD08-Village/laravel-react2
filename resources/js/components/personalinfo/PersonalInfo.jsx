@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Floatingbuttons from '../allpage/Floatingbuttons'
 // import MyLayout from '../layouts/MyLayout';
 // import '../../../css/personalinfo.css';
 
@@ -148,6 +150,7 @@ function PersonalInfo() {
                     <button id="nextPage">&gt;</button>
                 </div>
             </div>
+            <Floatingbuttons />
         </div>
     );
 }

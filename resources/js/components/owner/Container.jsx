@@ -1,7 +1,7 @@
 import React from 'react';
 import Options from './Options'
 import Maincontainer from './Maincontainer'
-import Space from './Space'
+import Floatingbuttons from '../allpage/Floatingbuttons'
 
 
 const Container = () => (
@@ -10,7 +10,7 @@ const Container = () => (
         <div className="container">
             <Options />
             <Maincontainer />
-            <Space />
+            <Floatingbuttons />
         </div>
     </div>
 );

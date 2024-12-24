@@ -1,7 +1,7 @@
 import React from 'react'
 // import Router from '../router/Index';
-import Header from './Header'
-import Footer from './Footer'
+import Header from './allpage/Header'
+import Footer from './allpage/Footer'
 import '../../css/app.css'
 
 const App = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import StarSystem from './StarSystem'
-import Space from './Space'
+import Floatingbuttons from '../allpage/Floatingbuttons'
 
 function submitRating() {
     const starProElement = document.querySelector('input[name="star1"]:checked');
@@ -39,7 +39,7 @@ const StarPage = () => {
     return (
         <div className="container">
             <StarSystem />
-            <Space />
+            <Floatingbuttons />
         </div>
     );
 }
