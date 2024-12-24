@@ -3,8 +3,6 @@ import Floating from './Floating';
 import { initializePersonalEditor } from '../../JS or jQuery/Personal_editor'; // 引入 JavaScript 文件
 import { contentMapping } from '../../JS or jQuery/contentMapping'; // 引入 contentMapping
 
-
-
 // 個人資訊編輯頁面
 const Personal_editor = () => {
     useEffect(() => {
@@ -18,7 +16,8 @@ const Personal_editor = () => {
                 <img src="./img/Icon/Start.png" alt="" />
                 <a href="#">首頁</a><img src="./img/Icon/Forward.png" alt="" />
                 <a href="#">我是接案者</a><img src="./img/Icon/Forward.png" alt="" />
-                <span>作品專區&ensp; &gt; &ensp;影片圖片類</span>
+                <a href="#">作品專區</a><img src="./img/Icon/Forward.png" alt="" />
+                <span>影片圖片類</span>
             </div>
             {/* <!-- 主要網頁內容 --> */}
 

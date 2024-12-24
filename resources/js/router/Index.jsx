@@ -8,7 +8,7 @@ import Detail from '../pages/Detail';
 import PersonalInfo from '../pages/PersonalInfo';
 import Star from '../pages/StarPage';
 import Publish from '../pages/Publish';
-import Personal from '../pages/Personal';
+import Personal from '../pages/Personal_editor';
 import NotFound from '../pages/NotfoundPage';
 
 import Testform from '../pageslab/TestForm';
