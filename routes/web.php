@@ -6,6 +6,7 @@ use App\Http\Controllers\PublishController;
 use App\Http\Controllers\StarController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\ErrorLogController; // 添加新的控制器
+use App\Http\Controllers\SearchController; // 添加新的控制器
 
 // 將 API 路由置於開始處
 // 案件刊登表單
@@ -18,7 +19,9 @@ Route::post('/api/star', [StarController::class, 'store']);
 
 // 使用者資訊表單
 Route::post('/api/userinfo', [UserInfoController::class, 'store']);
-Route::get('/api/userinfo', [UserInfoController::class, 'index']);
+
+// 案件搜尋頁頁面
+Route::get('/api/get-userinfo-publish', [SearchController::class, 'getdata']);
 
 // 登入登出功能
 // Route::middleware(['auth'])->group(function () {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'; // axios 會自動處理了 JSON 解析
 import moment from 'moment'; // 使用 moment.js 庫來處理日期和時間
 
-const Testfree = () => {
+const Search = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -36,17 +36,13 @@ const Testfree = () => {
         }
     };
 
-
-
-
     return (
-        <div className="fmaincontainer">
+        <>
             {/* <!-- content --> */}
-            {/* <!-- contentone --> */}
             {data.map((item) => (
-                <div className="fcontentone"  key={item.pid}>
+                <div className="fcontent" key={item.pid}>
                     <div className="fcontent1">
-                        <a href="/detail">
+                        <Link to="/detail" className='link'>
                             <div className="fhot"><img src="https://github.com/PHPD08-Village/PHPD08-Team/blob/main/img/Icon/Crown.png?raw=true" alt="hot" /></div>
                             <div style={{ flex: 1 }}></div>
                             <div className="fcompanyphoto">
@@ -64,10 +60,10 @@ const Testfree = () => {
                                     <img src="/img/Star 5.png" alt="star" />
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     <div className="fcontent2">
-                        <Link to="/detail">
+                        <Link to="/detail" className='link'>
                             <div className="ftitle">
                                 <h1>{item.title}</h1>
                             </div>
@@ -76,7 +72,7 @@ const Testfree = () => {
                                     <h4>完成時間：{item.completion_time}</h4>
                                 </div>
                                 <div className="fcaseprice">
-                                    <h4>案件預算：${item.budget}</h4>
+                                    <h4>案件預算：${Math.floor(item.budget)}</h4> {/* 使用 Math.floor 去除小數部分 */} {/* 使用 Math.round（如果需要四捨五入） */}
                                 </div>
                             </div>
                             <div className="flocation">地區：{item.location}</div>
@@ -92,10 +88,9 @@ const Testfree = () => {
                         </Link>
                     </div>
                     <div className="fcontentnew">
-                        <img src="https://github.com/PHPD08-Village/PHPD08-Team/blob/main/img/Icon/New.png?raw=true" alt="new" />
                     </div>
                     <div className="fcontent3">
-                    <div className="ftime">{timeDifference(item.updated_at)}</div>
+                        <div className="ftime">{timeDifference(item.updated_at)}</div>
                         <div className="fcontent3btn">
                             <a className="fcollect" href="#">收藏</a>
                             <a className="ftakecase" href="#">接案</a>
@@ -106,8 +101,8 @@ const Testfree = () => {
                     </div>
                 </div>
             ))}
-        </div>
+        </>
     )
 }
 
-export default Testfree
+export default Search

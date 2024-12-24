@@ -24,6 +24,7 @@
     "dependencies": {
         "@types/jquery": "^3.5.32",
         "jquery": "^3.7.1",
+        "moment": "^2.30.1",
         "pusher-js": "^8.4.0-rc2",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",

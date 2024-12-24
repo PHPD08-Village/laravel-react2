@@ -17,7 +17,7 @@ const Header = () => (
                 <a href="/freelancer">我要接案</a>
                 <a href="/owner">我要委託</a>
                 <a href="/publish">我要發案 </a>
-                <a href="#">FAQ </a>
+                <a href="/Personal_editor">FAQ </a>
                 <a href="/star">Star </a>
             </div>
             {/* <!-- member --> */}

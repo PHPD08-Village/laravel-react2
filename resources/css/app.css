@@ -18,6 +18,11 @@ a {
     text-decoration: none;
 }
 
+.alink {
+    text-decoration: none;
+    color: inherit;
+}
+
 .nav {
     height: 100px;
     background-color: #F5F7FA;
