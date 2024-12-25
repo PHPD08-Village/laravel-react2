@@ -17,6 +17,7 @@ import TastExtract from '../pageslab/TestExtract';
 import Testfree from '../pageslab/Testfree';
 import Testfreelance from '../pageslab/Testfreelance';
 import Testsearch from '../pageslab/Testsearch';
+import Testsearchbox from '../pageslab/Testsearchbox';
 
 const Index = () => {
     return (
@@ -37,6 +38,7 @@ const Index = () => {
             <Route path="/testfree" element={<Testfree />} />
             <Route path="/testfreelance" element={<Testfreelance />} />
             <Route path="/testsearch" element={<Testsearch />} />
+            <Route path="/testsearchbox" element={<Testsearchbox />} />
         </Routes>
     );
 };

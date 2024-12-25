@@ -1,21 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 import Search from './Search';
 
 const Maincontainer = () => (
     <div className="fmaincontainer">
-        {/* <!-- tab/search --> */}
+        {/* <!-- tab(還沒加回去) --> */}
+        {/* <!-- 關鍵字搜尋 --> */}
         <div className="fsearch">
-            <div></div>
-            {/* <!-- search keyword --> */}
-            {/* <div className="fkeyword"> */}
-            <div>
-                {/* <p>|</p> */}
-                <input type="text" placeholder="請輸入關鍵字" />
-                {/* <img src="https://github.com/PHPD08-Village/PHPD08-Team/blob/main/img/Icon/Search.png?raw=true" alt="fsearch" /> */}
-            </div>
-            <div></div>
+            <input type="text" placeholder="請輸入關鍵字" maxLength="10" />
+            <button><img src="/img/Search.png" alt="fsearch" /> </button>
         </div>
         {/* <!-- order --> */}
         <div className="forder">

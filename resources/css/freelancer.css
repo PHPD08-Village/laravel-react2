@@ -30,6 +30,7 @@
     display: block;
     margin: 5px;
 }
+
 .fprice {}
 
 .fkeywords {
@@ -59,10 +60,25 @@
 
 .fsearch {
     display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中，這需要容器有高度 */
 }
 
-.fsearch>div {
-    flex: 2;
+.fsearch input {
+    width: 300px;
+}
+
+.fsearch button {
+    border: none;
+    /* 移除按鈕邊框 */
+    background: none;
+    /* 移除按鈕背景 */
+}
+
+.fsearch img {
+    width: 40px;
 }
 
 .fsearch .fkeyword {
@@ -108,6 +124,14 @@
     flex: 3;
     margin: 10px;
     color: #354052;
+}
+
+.fcontent.one {
+    background-color: #7fc5d280;
+    height: 300px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    display: flex;
 }
 
 .fcontentone {
