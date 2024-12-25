@@ -6,7 +6,7 @@ import Space from './Space'
 const StarPage = () => {
     return (
         <div className="container">
-            <StarSystem userId={1} caseId={1} />
+            <StarSystem userId={1} caseId={15} />
             <Space />
         </div>
     );

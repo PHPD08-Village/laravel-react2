@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import ReactDom from 'react-dom';
 import LatestList from './LatestList';
+import ClickHIghestList from './ClickHighestList';
+import StarHighestList from './StarHighestList';
 
 
 
@@ -171,14 +173,15 @@ const Home = () => {
           </button>
         </div> */}
         <h1>點閱率最高案件</h1>
-        <div className="clickHighestCase">
-          {/* <!-- 左箭頭 --> */}
-          <button id="clickHighestCaseLeft">
+        <ClickHIghestList />
+        {/* <div className="clickHighestCase"> */}
+        {/* <!-- 左箭頭 --> */}
+        {/* <button id="clickHighestCaseLeft">
             <ion-icon name="chevron-back-outline"></ion-icon>
-          </button>
-          <div className="card">
-            {/* <!-- 每一個案件卡片 --> */}
-            <div className="cardSingle">
+          </button> */}
+        {/* <div className="card"> */}
+        {/* <!-- 每一個案件卡片 --> */}
+        {/* <div className="cardSingle">
               <div className="cardHeader">
                 <div className="userInfo">
                   <img src="/img/Icon/Male User.png" alt="avatar" />
@@ -322,25 +325,84 @@ const Home = () => {
                 <a href="#" id="catchCase1" name="catchCase1">接案</a>
               </div>
             </div>
-          </div>
-          {/* <!-- 右箭頭 --> */}
-          <button id="clickHighestCaseRight">
+          </div> */}
+        {/* <!-- 右箭頭 --> */}
+        {/* <button id="clickHighestCaseRight">
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </button>
-        </div>
+        </div> */}
         <h1>最高評價接案者</h1>
-        <div className="starHighestTaker">
-          {/* <!-- 左箭頭 --> */}
-          <button id="starHighestTakerLeft">
+        <StarHighestList />
+        {/* <div className="starHighestTaker"> */}
+        {/* <!-- 左箭頭 --> */}
+        {/* <button id="starHighestTakerLeft">
             <ion-icon name="chevron-back-outline"></ion-icon>
-          </button>
-          <div className="card">
-            {/* <!-- 每一個案件卡片 --> */}
-            <div className="cardSingle">
+          </button> */}
+        {/* <div className="card"> */}
+        {/* <!-- 每一個案件卡片 --> */}
+        {/* <div className="cardSingle">
               <div className="cardHeader">
-                <div className="imgGroup">
-                  {/* <!-- <div className="backImg"></div> --> */}
-                  <img className="backImg" src="/img/Person/083ab285feae1959eacd9c804923b293.jpg"
+                <div className="imgGroup"> */}
+        {/* <!-- <div className="backImg"></div> --> */}
+        {/* <img className="backImg" src="/img/Person/083ab285feae1959eacd9c804923b293.jpg"
+                    alt="user background img" />
+                  <img className="avatar" src="/img/Person/f0af053eccfbe3fc956663721b368124.jpg"
+                    alt="avatar" />
+                </div>
+                <div className="takerUserName">
+                  <div className="userNameText">
+                    <h4>陳先生</h4>
+                    <img src="/img/Icon/Green_Circle.png" alt="上線中" />
+                    <img className="keep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
+                  </div>
+                  <div className="userStar">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <img src="/img/Icon/Star 5.png" alt="半顆星" />
+                    <label id="starValue">4.5/5</label>
+                    <label id="starValueTotal">(100)</label>
+                  </div>
+                </div>
+              </div>
+              <div className="cardContent">
+                <div className="quantityInfo">
+                  <div id="workNum">
+                    <label>作品：</label>
+                    <a href="#">55</a>
+                  </div>
+                  <div id="successTimes">
+                    <label>成交：</label>
+                    <a href="#">20</a>
+                  </div>
+                  <div className="location">
+                    <img src="/img/Icon/Location.png" alt="location icon" />
+                    <label>可遠端</label>
+                  </div>
+                </div>
+                <div className="codeLang">
+                  <label>擅長語言：</label>
+                  <div className="codeLangA">
+                    <a href="#">HTML</a>
+                    <a href="#">CSS</a>
+                    <a href="#">C++</a>
+                    <a href="#">Java</a>
+                    <a href="#">PHP</a>
+                  </div>
+                </div>
+              </div>
+              <div className="cardFooter">
+                <label>2024/12/12 更新</label>
+                <button id="talk1" name="talk1">聊聊</button>
+                <a href="#" id="entrust1" name="entrust1">委託</a>
+              </div>
+            </div> */}
+        {/* <div className="cardSingle">
+              <div className="cardHeader">
+                <div className="imgGroup"> */}
+        {/* <!-- <div className="backImg"></div> --> */}
+        {/* <img className="backImg" src="/img/Person/083ab285feae1959eacd9c804923b293.jpg"
                     alt="user background img" />
                   <img className="avatar" src="/img/Person/f0af053eccfbe3fc956663721b368124.jpg"
                     alt="avatar" />
@@ -398,7 +460,7 @@ const Home = () => {
               <div className="cardHeader">
                 <div className="imgGroup">
                   {/* <!-- <div className="backImg"></div> --> */}
-                  <img className="backImg" src="/img/Person/083ab285feae1959eacd9c804923b293.jpg"
+        {/* <img className="backImg" src="/img/Person/083ab285feae1959eacd9c804923b293.jpg"
                     alt="user background img" />
                   <img className="avatar" src="/img/Person/f0af053eccfbe3fc956663721b368124.jpg"
                     alt="avatar" />
@@ -451,71 +513,13 @@ const Home = () => {
                 <button id="talk1" name="talk1">聊聊</button>
                 <a href="#" id="entrust1" name="entrust1">委託</a>
               </div>
-            </div>
-            <div className="cardSingle">
-              <div className="cardHeader">
-                <div className="imgGroup">
-                  {/* <!-- <div className="backImg"></div> --> */}
-                  <img className="backImg" src="/img/Person/083ab285feae1959eacd9c804923b293.jpg"
-                    alt="user background img" />
-                  <img className="avatar" src="/img/Person/f0af053eccfbe3fc956663721b368124.jpg"
-                    alt="avatar" />
-                </div>
-                <div className="takerUserName">
-                  <div className="userNameText">
-                    <h4>陳先生</h4>
-                    <img src="/img/Icon/Green_Circle.png" alt="上線中" />
-                    <img className="keep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
-                  </div>
-                  <div className="userStar">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <img src="/img/Icon/Star 5.png" alt="半顆星" />
-                    <label id="starValue">4.5/5</label>
-                    <label id="starValueTotal">(100)</label>
-                  </div>
-                </div>
-              </div>
-              <div className="cardContent">
-                <div className="quantityInfo">
-                  <div id="workNum">
-                    <label>作品：</label>
-                    <a href="#">55</a>
-                  </div>
-                  <div id="successTimes">
-                    <label>成交：</label>
-                    <a href="#">20</a>
-                  </div>
-                  <div className="location">
-                    <img src="/img/Icon/Location.png" alt="location icon" />
-                    <label>可遠端</label>
-                  </div>
-                </div>
-                <div className="codeLang">
-                  <label>擅長語言：</label>
-                  <div className="codeLangA">
-                    <a href="#">HTML</a>
-                    <a href="#">CSS</a>
-                    <a href="#">C++</a>
-                    <a href="#">Java</a>
-                    <a href="#">PHP</a>
-                  </div>
-                </div>
-              </div>
-              <div className="cardFooter">
-                <label>2024/12/12 更新</label>
-                <button id="talk1" name="talk1">聊聊</button>
-                <a href="#" id="entrust1" name="entrust1">委託</a>
-              </div>
-            </div>
-          </div>
-          {/* <!-- 右箭頭 --> */}
-          <button id="starHighestTakerRight">
+            </div> */}
+        {/* </div> */}
+        {/* <!-- 右箭頭 --> */}
+        {/* <button id="starHighestTakerRight">
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </button>
-        </div>
+        </div> */}
         <h1>最新消息與活動</h1>
         <div className="news">
           <a href="#">

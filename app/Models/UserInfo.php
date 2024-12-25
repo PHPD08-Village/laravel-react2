@@ -14,6 +14,7 @@ class UserInfo extends Model
 
     protected $fillable = [
         'profile_picture',
+        'profile_back_img',
         'username',
         'nickname',
         'company_name',

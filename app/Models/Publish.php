@@ -23,6 +23,7 @@ class Publish extends Model
         'email',
         'details',
         'require_code',
+        'click_count',
         'updated_at',
     ];
 

@@ -58,11 +58,11 @@ class StarController extends Controller
 
             $rating->save();
 
-            Log::info('評價已成功提交', ['rating' => $rating]);
+            // Log::info('評價已成功提交', ['rating' => $rating]);
 
             return response()->json(['message' => '評價已成功提交']);
         } catch (\Exception $e) {
-            Log::error('評價提交失敗', ['error' => $e->getMessage()]);
+            // Log::error('評價提交失敗', ['error' => $e->getMessage()]);
             return response()->json(['message' => '評價提交失敗，請稍後再試', 'error' => $e->getMessage()]);
         }
     }

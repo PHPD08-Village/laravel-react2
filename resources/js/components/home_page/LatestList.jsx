@@ -77,8 +77,272 @@ const LatestCard = ({ latest }) => {
     };
 
     // 獲取評價資料，若不存在則設置為 0
-    const averating = latest.user.star?.averating ?? 0;
+    // 這邊的 user 源頭是 Publish Model 的 user() 方法，所以這邊的 user 是 User Model 的資料，而 star 是 User Model 的 star() 方法，所以這邊的 star 是 Star Model 的資料
+    const averatingRaw = latest.user.star?.averating ?? 0;
     const count = latest.user.star?.count ?? 0;
+    // 將評價資料轉換為浮點數，並取小數點後一位
+    const averating = parseFloat(averatingRaw).toFixed(1);
+
+    // 判斷星星數量
+    // 這裡不需要解構賦值，因為不會有其他元件需要使用這個函式，故不需要大括號
+    // 我自己寫的
+    // const decideStar = (averating) => {
+    //     const starArray = [];
+    //     let starFilled = <ion-icon name="star" className="star-filled"></ion-icon>;
+    //     let starHalf = <ion-icon name="star-half" className="star-filled"></ion-icon>;
+    //     let starOutline = <ion-icon name="star-outline" className="star-outline"></ion-icon>;
+
+    //     if (4 < averating && averating < 5) {
+    //         for (let i = 0; i < 4; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         starArray.push(
+    //             <span className='star-wrapper' key={4}>
+    //                 {starOutline}
+    //                 {starHalf}
+    //             </span>
+    //         );
+    //         return <>{starArray}</>
+
+    //     } else if (3 < averating && averating < 4) {
+    //         for (let i = 0; i < 3; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         starArray.push(
+    //             <span className='star-wrapper' key={3}>
+    //                 {starOutline}
+    //                 {starHalf}
+    //             </span>
+    //         );
+    //         starArray.push(
+    //             <span className='star-wrapper' key={4}>
+    //                 {starOutline}
+    //             </span>
+    //         );
+    //         return <>{starArray}</>
+    //     } else if (2 < averating && averating < 3) {
+    //         for (let i = 0; i < 2; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         starArray.push(
+    //             <span className='star-wrapper' key={2}>
+    //                 {starOutline}
+    //                 {starHalf}
+    //             </span>
+    //         );
+    //         for (let i = 3; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else if (1 < averating && averating < 2) {
+    //         for (let i = 0; i < 1; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         starArray.push(
+    //             <span className='star-wrapper' key={1}>
+    //                 {starOutline}
+    //                 {starHalf}
+    //             </span>
+    //         );
+    //         for (let i = 2; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else if (0 < averating && averating < 1) {
+    //         starArray.push(
+    //             <span className='star-wrapper' key={0}>
+    //                 {starOutline}
+    //                 {starHalf}
+    //             </span>
+    //         );
+    //         for (let i = 1; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else if (averating == 5) {
+    //         for (let i = 0; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else if (averating == 4) {
+    //         for (let i = 0; i < 4; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         starArray.push(
+    //             <span className='star-wrapper' key={4}>
+    //                 {starOutline}
+    //             </span>
+    //         );
+    //         return <>{starArray}</>
+    //     } else if (averating == 3) {
+    //         for (let i = 0; i < 3; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         for (let i = 3; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else if (averating == 2) {
+    //         for (let i = 0; i < 2; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         for (let i = 2; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else if (averating == 1) {
+    //         for (let i = 0; i < 1; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                     {starFilled}
+    //                 </span>
+    //             );
+    //         }
+    //         for (let i = 1; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     } else {
+    //         for (let i = 0; i < 5; i++) {
+    //             starArray.push(
+    //                 <span className='star-wrapper' key={i}>
+    //                     {starOutline}
+    //                 </span>
+    //             );
+    //         }
+    //         return <>{starArray}</>
+    //     }
+    // };
+
+    // AI 重構教的
+    const decideStar = (averating) => {
+        const starArray = [];
+        const starFilled = <ion-icon name="star" className="star-filled"></ion-icon>;
+        const starHalf = <ion-icon name="star-half" className="star-filled"></ion-icon>;
+        const starOutline = <ion-icon name="star-outline" className="star-outline"></ion-icon>;
+
+        const createStarElements = (filled, half, outline) => {
+            for (let i = 0; i < filled; i++) {
+                starArray.push(
+                    <span className="star-wrapper" key={i}>
+                        {starOutline}
+                        {starFilled}
+                    </span>
+                );
+            }
+            if (half) {
+                starArray.push(
+                    <span className="star-wrapper" key={filled}>
+                        {starOutline}
+                        {starHalf}
+                    </span>
+                );
+                filled++;
+            }
+            for (let i = filled; i < 5; i++) {
+                starArray.push(
+                    <span className="star-wrapper" key={i}>
+                        {starOutline}
+                    </span>
+                );
+            }
+        };
+
+        // 四捨五入至小數點後第一位，以確保這個參數的數字只到小數點後第一位
+        const roundedAverating = Math.round(averating * 10) / 10;
+
+        if (roundedAverating > 4 && roundedAverating < 5) {
+            createStarElements(4, true, 0);
+        } else if (roundedAverating > 3 && roundedAverating < 4) {
+            createStarElements(3, true, 1);
+        } else if (roundedAverating > 2 && roundedAverating < 3) {
+            createStarElements(2, true, 2);
+        } else if (roundedAverating > 1 && roundedAverating < 2) {
+            createStarElements(1, true, 3);
+        } else if (roundedAverating > 0 && roundedAverating < 1) {
+            createStarElements(0, true, 4);
+        } else if (roundedAverating === 5) {
+            createStarElements(5, false, 0);
+        } else if (roundedAverating === 4) {
+            createStarElements(4, false, 1);
+        } else if (roundedAverating === 3) {
+            createStarElements(3, false, 2);
+        } else if (roundedAverating === 2) {
+            createStarElements(2, false, 3);
+        } else if (roundedAverating === 1) {
+            createStarElements(1, false, 4);
+        } else {
+            createStarElements(0, false, 5);
+        }
+        console.log(starArray);
+        return <>{starArray}</>;
+    };
+    
 
     return (
         <div className="cardSingle">
@@ -91,11 +355,9 @@ const LatestCard = ({ latest }) => {
                             <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         </div>
                         <div className="userStar">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <img src="/img/Icon/Star 5.png" alt="半顆星" />
+                            <div className="starDiv">
+                                {decideStar(averating)}
+                            </div>
                             <label id="starValue">{averating}/5</label>
                             <label id="starValueTotal">({count})</label>
                         </div>
@@ -129,6 +391,5 @@ const LatestCard = ({ latest }) => {
         </div>
     );
 }
-
 
 export default LatestList;
