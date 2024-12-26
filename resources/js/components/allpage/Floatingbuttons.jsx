@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or jQuery/floatingbuttons';
 
 const Floatingbuttons = () => {
@@ -13,9 +15,11 @@ const Floatingbuttons = () => {
         <div className="space">
             <div></div>
             <div className="floating-buttons">
-                <button className="floating-btn" id="profile-btn" title="個人資料">
-                    <img src="/img/Icon/Male User.png" alt="個人資料" />
-                </button>
+                <Link to="/personal_editor">
+                    <button className="floating-btn" id="profile-btn" title="個人資料">
+                        <img src="/img/Icon/Male User.png" alt="個人資料" />
+                    </button>
+                </Link>
                 <button className="floating-btn" id="notification-btn" title="通知">
                     <img src="/img/Icon/Alarm.png" alt="通知" />
                 </button>

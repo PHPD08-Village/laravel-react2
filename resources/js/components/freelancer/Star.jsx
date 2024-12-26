@@ -69,8 +69,8 @@ const Star = ({ item }) => {
     // console.log(item.averating);
     const averating = item.averating
     const averatingnum = averatingNumber(item.averating)
-    console.log(`原始數字: ${averating}`);
-    console.log(`四捨五入到小數點第一位:${averatingnum}`);
+    // console.log(`原始數字: ${averating}`);
+    // console.log(`四捨五入到小數點第一位:${averatingnum}`);
 
 
     return (

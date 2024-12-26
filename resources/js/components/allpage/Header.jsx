@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Router from '../../router/Index';
 
 const Header = () => (
@@ -13,17 +15,17 @@ const Header = () => (
             </div>
             {/* <!-- navbar --> */}
             <div className="navbar">
-                <a href="/">首頁</a>
-                <a href="/freelancer">我要接案</a>
-                <a href="/owner">我要委託</a>
-                <a href="/publish">我要發案 </a>
-                <a href="/Personal_editor">FAQ </a>
-                <a href="/star">Star </a>
+                <Link to="/" className="alink">首頁</Link>
+                <Link to="/freelancer" className="alink">我要接案</Link>
+                <Link to="/owner" className="alink">我要委託</Link>
+                <Link to="/publish" className="alink">我要發案</Link>
+                <Link to="/Personal_editor" className="alink">FAQ</Link>
+                <Link to="/star" className="alink">Star</Link>
             </div>
             {/* <!-- member --> */}
             <div className="member">
-                <a href="#">Login</a>
-                <a className="sign" href="#">Sign up</a>
+            <Link to="/login" className="alink">Login</Link>
+            <Link to="/signup" className="sign alink">Sign up</Link>
             </div>
         </div>
         <Router />

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import DataList from './DataList';
 
-const Maincontainer = () => {
+const Maincontainer = forwardRef((props, ref) => {
     // 定義狀態變數
     const [data, setData] = useState([]); // 儲存從 API 獲取的原始數據
     const [query, setQuery] = useState(''); // 儲存用戶輸入的關鍵字
@@ -15,18 +15,27 @@ const Maincontainer = () => {
     const [currentPage, setCurrentPage] = useState(1); // 當前頁碼
     const [itemsPerPage, setItemsPerPage] = useState(10); // 每頁顯示的數據數量
 
+    // 使用 ref 來暴露添加關鍵字的方法
+    useImperativeHandle(ref, () => ({
+        addKeywordFromOutside(keyword) {
+            if (!keywords.includes(keyword)) {
+                setKeywords([...keywords, keyword]);
+            }
+        }
+    }));
+
     // 請求數據並初始化數據
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
                 const response = await axios.get('/api/get-userinfo-publish');
-    
+
                 let data = response.data; // response.data 從後端獲取的資料
-    
+
                 // 確認資料結構
                 // console.log("Fetched Data:", data);
-    
+
                 setData(data); // 初始化時顯示所有數據
                 setFilteredData(data); // 初始化時顯示所有數據
             } catch (error) {
@@ -36,10 +45,10 @@ const Maincontainer = () => {
                 setIsLoading(false);
             }
         };
-    
+
         fetchData();
     }, []);
-    
+
 
 
 
@@ -61,7 +70,8 @@ const Maincontainer = () => {
         let result = data.filter(item =>
             keywords.every(keyword =>
                 item.title.toLowerCase().includes(keyword.toLowerCase()) ||
-                item.details.toLowerCase().includes(keyword.toLowerCase())
+                item.details.toLowerCase().includes(keyword.toLowerCase()) ||
+                item.require_code.toLowerCase().includes(keyword.toLowerCase())
             )
         );
 
@@ -204,6 +214,6 @@ const Maincontainer = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Maincontainer;
