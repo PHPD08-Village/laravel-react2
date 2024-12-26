@@ -1,6 +1,6 @@
 import React from 'react'
 
-// 印出評價星星數
+// 印出評價星星數(目前無法使用)
 const Star = ({item}) => {
     const decideStar = (averating) => {
         const starArray = [];

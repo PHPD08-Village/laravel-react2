@@ -1,7 +1,7 @@
 import React from 'react';
 import Options from './Options'
 // import Maincontainer from './Maincontainer'
-import Maincontainer from './Maincontainer2'
+import Maincontainer from './Maincontainer'
 import Floatingbuttons from '../allpage/Floatingbuttons'
 
 
