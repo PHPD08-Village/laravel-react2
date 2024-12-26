@@ -7,6 +7,7 @@ use App\Http\Controllers\StarController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\ErrorLogController; // 添加新的控制器
 use App\Http\Controllers\SearchController; // 添加新的控制器
+use App\Http\Controllers\ProjectController;
 
 // 將 API 路由置於開始處
 // 案件刊登表單
@@ -45,3 +46,10 @@ Route::get('/{any}', function(){
 // use App\Http\Controllers\DataController;
 
 // Route::post('/api/submit-data', [DataController::class, 'mydata']);
+
+Route::get('/api/projects', [ProjectController::class, 'index']); // 取得所有作品
+Route::get('/api/projects/{id}', [ProjectController::class, 'show']); // 取得單一作品
+Route::post('/api/projects', [ProjectController::class, 'store']); // 新增作品
+Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更新作品
+Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除作品
+
