@@ -20,7 +20,9 @@ function StarHighestList() {
     }, []);
 
     const nextFreelancer = () => {
-        if (currentIndex < freelancers.length - 1) {
+        // 當 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動
+        // 這邊的 currentIndex 是指目前顯示的第一個案件的索引，所以當 currentIndex 小於 freelancers 陣列的長度減 3 時，代表還有案件可以顯示
+        if (currentIndex < freelancers.length - 3) {
             setCurrentIndex(currentIndex + 1);
         }
     };
@@ -166,7 +168,7 @@ const StarHighestCard = ({ starHighest }) => {
                         <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         <img className="keep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
                     </div>
-                    <div className="userStar">
+                    <div className="homeUserStar">
                         <div className="starDiv">
                             {decideStar(averating)}
                         </div>

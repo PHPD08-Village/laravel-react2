@@ -7,6 +7,7 @@ import StarHighestList from './StarHighestList';
 
 
 
+
 const Home = () => {
 
   return (
@@ -520,7 +521,7 @@ const Home = () => {
             <ion-icon name="chevron-forward-outline"></ion-icon>
           </button>
         </div> */}
-        <h1>最新消息與活動</h1>
+        {/* <h1>最新消息與活動</h1>
         <div className="news">
           <a href="#">
             <label>2024 . 10 . 22</label> 快樂狗狗最新消息 貓咪聽說有四隻腳？！...更多
@@ -534,7 +535,7 @@ const Home = () => {
           <a href="#">
             <label>2024 . 10 . 22</label> 快樂狗狗最新消息 貓咪聽說有四隻腳？！...更多
           </a>
-        </div>
+        </div> */}
       </div>
     </React.Fragment>
   );

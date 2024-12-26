@@ -1,13 +1,12 @@
 import React from 'react';
 import Red from '../../../../public/img/Red.png'
 import Arrow from '../../../../public/img/toparrow.png'
-import Floatingbuttons from './Floatingbuttons';
 
 
 const Space = () => (
     // <!-- space -->
     <div className="space">
-        {/* <div></div>
+        <div></div>
         <div>
             <div className='bgc'>
                 <a href="#">
@@ -27,8 +26,7 @@ const Space = () => (
             <a href="#">
                 <img className='toparraw' src={Arrow} alt="" />
             </a>
-        </div> */}
-        <Floatingbuttons />
+        </div>
     </div>
 );
 

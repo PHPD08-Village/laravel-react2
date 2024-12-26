@@ -22,6 +22,11 @@ class StarController extends Controller
                 'caseId' => 'required|integer',  // 案件ID
             ]);
 
+            // 確認用戶ID和被評分的用戶ID是否相同
+            if ($request->uid == $request->targetUserId) {
+                return response()->json(['message' => '不能評價自己']);
+            }
+
             // 確認案件是否存在
             $caseExist = Publish::where('cid', $request->caseId)->exists();
             if (!$caseExist) {

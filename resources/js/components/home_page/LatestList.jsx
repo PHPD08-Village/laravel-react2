@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const LatestList = () => {
     const [latestCases, setLatestCases] = useState([]);
@@ -78,8 +79,9 @@ const LatestCard = ({ latest }) => {
 
     // 獲取評價資料，若不存在則設置為 0
     // 這邊的 user 源頭是 Publish Model 的 user() 方法，所以這邊的 user 是 User Model 的資料，而 star 是 User Model 的 star() 方法，所以這邊的 star 是 Star Model 的資料
-    const averatingRaw = latest.user.star?.averating ?? 0;
-    const count = latest.user.star?.count ?? 0;
+    // const averatingRaw = latest.user.star?.averating ?? 0;
+    const averatingRaw = latest.averating ?? 0;
+    const count = latest.count ?? 0;
     // 將評價資料轉換為浮點數，並取小數點後一位
     const averating = parseFloat(averatingRaw).toFixed(1);
 
@@ -342,16 +344,16 @@ const LatestCard = ({ latest }) => {
         console.log(starArray);
         return <>{starArray}</>;
     };
-    
+
 
     return (
         <div className="cardSingle">
             <div className="cardHeader">
                 <div className="userInfo">
-                    <img src={latest.user.profile_picture} alt="avatar" />
+                    <img src={latest.profile_picture} alt="avatar" />
                     <div className="userName">
                         <div className="userNameText">
-                            <h4>{latest.user.username}</h4>
+                            <h4>{latest.username}</h4>
                             <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         </div>
                         <div className="userStar">
@@ -365,24 +367,27 @@ const LatestCard = ({ latest }) => {
                 </div>
                 <label id="clickCount">{latest.click_count}點閱率</label>
             </div>
-            <div className="cardContent">
-                <a href="#">{latest.title}</a>
-                <ul className="caseInfo">
-                    <li className="row">
-                        <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
-                        <label>{Math.floor(latest.budget)}</label>
-                    </li>
-                    <li className="row">
-                        <img src="/img/Icon/Location.png" alt="location icon" />
-                        <label>{latest.location}</label>
-                    </li>
-                    <li className="row">
-                        <img src="/img/Icon/Time.png" alt="time icon" />
-                        <label>{formatDate(latest.completion_time)}</label>
-                    </li>
-                </ul>
-                <p>{latest.details}</p>
-            </div>
+            {/* <Link to={`/detail/${latest.cid}`}> */}
+            {/* <Link to={`/detail`}> */}
+                <div className="cardContent">
+                    <Link to={`/detail`}>{latest.title}</Link>
+                    <ul className="caseInfo">
+                        <li className="row">
+                            <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
+                            <label>{Math.floor(latest.budget)}</label>
+                        </li>
+                        <li className="row">
+                            <img src="/img/Icon/Location.png" alt="location icon" />
+                            <label>{latest.location}</label>
+                        </li>
+                        <li className="row">
+                            <img src="/img/Icon/Time.png" alt="time icon" />
+                            <label>{formatDate(latest.completion_time)}</label>
+                        </li>
+                    </ul>
+                    <p>{latest.details}</p>
+                </div>
+            {/* </Link> */}
             <div className="cardFooter">
                 <label>{timeDifference(new Date(latest.updated_at).toLocaleDateString())}</label>
                 <button id="talk1" name="talk1">聊聊</button>

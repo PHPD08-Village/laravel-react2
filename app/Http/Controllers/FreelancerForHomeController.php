@@ -22,7 +22,7 @@ class FreelancerForHomeController extends Controller
                 // ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
                 ->select('userinfo.*', 'star.averating', 'star.count')
                 ->orderBy('averating', 'desc')
-                ->take(5)
+                ->take(10)
                 ->get();
 
             // 將 blob 轉換為 Base64 URL，並返回給前端讓前端能順利拿到可用的 url
@@ -36,7 +36,7 @@ class FreelancerForHomeController extends Controller
             }
 
 
-            Log::info('getStarHighestTaker: ' . $freelancers->toJson());
+            // Log::info('getStarHighestTaker: ' . $freelancers->toJson());
             return response()->json($freelancers);
         } catch (\Exception $e) {
             log::error('getStarHighestTaker: ' . $e->getMessage());

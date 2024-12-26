@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const ClickHighestList = () => {
     const [cliHighestCases, setCliHighestCases] = useState([]);
@@ -79,8 +80,8 @@ const ClickHighestCard = ({ clickHighest }) => {
     };
 
     // 獲取評價資料，若不存在則設置為 0
-    const averatingRaw = clickHighest.user.star?.averating ?? 0;
-    const count = clickHighest.user.star?.count ?? 0;
+    const averatingRaw = clickHighest.averating ?? 0;
+    const count = clickHighest.count ?? 0;
     // 將評價資料轉換為浮點數，並取小數點後一位
     const averating = parseFloat(averatingRaw).toFixed(1);
 
@@ -143,10 +144,10 @@ const ClickHighestCard = ({ clickHighest }) => {
         <div className="cardSingle">
             <div className="cardHeader">
                 <div className="userInfo">
-                    <img src={clickHighest.user.profile_picture} alt="avatar" />
+                    <img src={clickHighest.profile_picture} alt="avatar" />
                     <div className="userName">
                         <div className="userNameText">
-                            <h4>{clickHighest.user.username}</h4>
+                            <h4>{clickHighest.username}</h4>
                             <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         </div>
                         <div className="userStar">
@@ -161,7 +162,7 @@ const ClickHighestCard = ({ clickHighest }) => {
                 <label id="clickCount">{clickHighest.click_count}點閱率</label>
             </div>
             <div className="cardContent">
-                <a href="#">{clickHighest.title}</a>
+                <Link to={`/detail`}>{clickHighest.title}</Link>
                 <ul className="caseInfo">
                     <li className="row">
                         <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />

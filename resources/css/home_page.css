@@ -10,8 +10,8 @@
     display: flex;
     justify-content: center;
     font-family: "Inter", sans-serif;
-    /* position: relative;
-            z-index: -1; */
+    position: relative;
+    z-index: 50;
 }
 
 .banner>.bannerWorker {
@@ -249,14 +249,28 @@
     /* font-weight: 500; */
 }
 
-.userName>.userStar>#starValue {
-    font-size: 0.7rem;
-    font-weight: 400;
+.homeUserStar {
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
-.userName>.userStar>#starValueTotal {
+.starDiv {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#starValue {
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+#starValueTotal {
     font-size: 0.7rem;
     font-weight: 500;
+    margin-bottom: 0;
 }
 
 .cardHeader>#clickCount {
@@ -424,18 +438,18 @@
     cursor: pointer;
 }
 
-.takerUserName>.userStar {
+.takerUserName>.homeUserStar {
     display: flex;
     align-items: center;
 }
 
-.takerUserName>.userStar>#starValue {
+.takerUserName>.homeUserStar>#starValue {
     font-size: 0.7rem;
     font-weight: 400;
     margin-left: 10px;
 }
 
-.takerUserName>.userStar>#starValueTotal {
+.takerUserName>.homeUserStar>#starValueTotal {
     font-size: 0.7rem;
     font-weight: 500;
     margin-left: 5px;

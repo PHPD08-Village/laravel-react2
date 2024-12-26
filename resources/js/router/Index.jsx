@@ -9,6 +9,8 @@ import Personal from '../pages/PersonalInfo';
 import Star from '../pages/StarPage';
 import NotFound from '../pages/NotfoundPage';
 import Publish from '../pages/Publish';
+import CaseMng from '../pages/CaseManager';
+import SeleTaker from '../pages/SeleTaker';
 
 import Testform from '../pageslab/TestForm';
 import Publish2 from '../pageslab/Publish2';
@@ -28,6 +30,8 @@ const Index = () => {
             <Route path="/detail" element={<Detail />} />
             <Route path="/personalinfo" element={<Personal />} />
             <Route path="/star" element={<Star />} />
+            <Route path="/casemng" element={<CaseMng />} />
+            <Route path="/seletaker" element={<SeleTaker />} />
             <Route path="/publish" element={<Publish />} />{/* TestForm 頁面 */}
             <Route path="/*" element={<NotFound />} />
 
