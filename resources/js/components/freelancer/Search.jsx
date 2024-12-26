@@ -1,25 +1,88 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios'; // axios 會自動處理了 JSON 解析
-import moment from 'moment'; // 使用 moment.js 庫來處理日期和時間
+import axios from 'axios';
+import moment from 'moment';
+import DataList from './DataList';
 
-const Search = () => {
-    const [data, setData] = useState([]);
+const Searchbox = () => {
+    // 定義狀態變數
+    const [data, setData] = useState([]); // 儲存從 API 獲取的原始數據
+    const [query, setQuery] = useState(''); // 儲存用戶輸入的關鍵字
+    const [filteredData, setFilteredData] = useState([]); // 儲存過濾後的數據
+    const [keywords, setKeywords] = useState([]); // 儲存用戶添加的關鍵字
+    const [isLoading, setIsLoading] = useState(false); // 請求數據時的加載狀態
+    const [error, setError] = useState(null); // 儲存錯誤信息
+    const [sortOrder, setSortOrder] = useState('desc'); // 儲存排序順序，初始為從大到小
+    const [currentPage, setCurrentPage] = useState(1); // 當前頁碼
+    const [itemsPerPage, setItemsPerPage] = useState(10); // 每頁顯示的數據數量
 
+    // 請求數據並初始化數據
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             try {
-                const response = await axios.get('/api/get-userinfo-publish')
-                console.log(response.data);
+                const response = await axios.get('/api/get-userinfo-publish');
                 setData(Array.isArray(response.data) ? response.data : []);
+                setFilteredData(Array.isArray(response.data) ? response.data : []); // 初始化時顯示所有數據
             } catch (error) {
-                console.error('Error fetching data', error)
+                setError('Error fetching data');
+                console.error('Error fetching data', error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchData();
     }, []);
 
+    // 添加關鍵字
+    const handleAddKeyword = () => {
+        if (query && !keywords.includes(query)) {
+            setKeywords([...keywords, query]);
+            setQuery('');
+        }
+    };
+
+    // 移除關鍵字
+    const handleRemoveKeyword = (keyword) => {
+        setKeywords(keywords.filter(k => k !== keyword));
+    };
+
+    // 過濾和排序數據
+    useEffect(() => {
+        let result = data.filter(item =>
+            keywords.every(keyword =>
+                item.title.toLowerCase().includes(keyword.toLowerCase()) ||
+                item.details.toLowerCase().includes(keyword.toLowerCase())
+            )
+        );
+
+        // 排序數據
+        result.sort((a, b) => {
+            const timeA = moment(a.updated_at);
+            const timeB = moment(b.updated_at);
+
+            if (sortOrder === 'asc') {
+                return timeA - timeB;
+            } else {
+                return timeB - timeA;
+            }
+        });
+
+        setFilteredData(result);
+    }, [keywords, data, sortOrder]);
+
+    // 切換排序順序
+    const handleSortToggle = () => {
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    };
+
+    // 更改每頁顯示的數據數量
+    const handleItemsPerPageChange = (e) => {
+        setItemsPerPage(Number(e.target.value));
+        setCurrentPage(1); // 重置到第 1 頁
+    };
+
+    // 計算更新時間差異
     const timeDifference = (timestamp) => {
         const now = moment();
         const updatedAt = moment(timestamp);
@@ -36,73 +99,70 @@ const Search = () => {
         }
     };
 
+    // 分頁邏輯
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
     return (
         <>
-            {/* <!-- content --> */}
-            {data.map((item) => (
-                <div className="fcontent" key={item.pid}>
-                    <div className="fcontent1">
-                        <Link to="/detail" className='link'>
-                            <div className="fhot"><img src="https://github.com/PHPD08-Village/PHPD08-Team/blob/main/img/Icon/Crown.png?raw=true" alt="hot" /></div>
-                            <div style={{ flex: 1 }}></div>
-                            <div className="fcompanyphoto">
-                                <img src={item.headshot} alt={`${item.username}'s Headshot`} />
-                            </div>
-                            <div className="fcompanyname">
-                                <h4 style={{ margin: '5px' }}>{item.username}</h4>
-                            </div>
-                            <div className="fcompanystar">
-                                <div></div>
-                                <div className="fgreen">
-                                    <img src="/img/Green Circle.png" alt="green" />
-                                </div>
-                                <div className="fstar">
-                                    <img src="/img/Star 5.png" alt="star" />
-                                </div>
-                            </div>
-                        </Link>
+            {/* 關鍵字輸入框和添加按鈕 */}
+            <div>
+                <input type="text" placeholder="請輸入關鍵字" value={query} onChange={(e) => setQuery(e.target.value)} />
+                <button onClick={handleAddKeyword} disabled={isLoading || !query}>
+                    添加關鍵字
+                </button>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+            </div>
+            {/* 顯示已添加的關鍵字 */}
+            <div>
+                {keywords.map((keyword, index) => (
+                    <div key={index} style={{ display: 'inline-block', margin: '5px', padding: '5px', border: '1px solid #ccc', borderRadius: '5px' }}>
+                        {keyword}
+                        <button onClick={() => handleRemoveKeyword(keyword)} style={{ marginLeft: '10px' }}>X</button>
                     </div>
-                    <div className="fcontent2">
-                        <Link to="/detail" className='link'>
-                            <div className="ftitle">
-                                <h1>{item.title}</h1>
-                            </div>
-                            <div className="fset">
-                                <div className="fdate">
-                                    <h4>完成時間：{item.completion_time}</h4>
-                                </div>
-                                <div className="fcaseprice">
-                                    <h4>案件預算：${Math.floor(item.budget)}</h4> {/* 使用 Math.floor 去除小數部分 */} {/* 使用 Math.round（如果需要四捨五入） */}
-                                </div>
-                            </div>
-                            <div className="flocation">地區：{item.location}</div>
-                            <div className="fcasecontent">
-                                描述內容{item.details}
-                            </div>
-                            <div className="frequire">
-                                <p style={{ margin: '16px 4px' }}>需求語言：</p>
-                                <div>
-                                    <p>{item.require_code}</p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="fcontentnew">
-                    </div>
-                    <div className="fcontent3">
-                        <div className="ftime">{timeDifference(item.updated_at)}</div>
-                        <div className="fcontent3btn">
-                            <a className="fcollect" href="#">收藏</a>
-                            <a className="ftakecase" href="#">接案</a>
-                        </div>
-                        <div className="fpeople">0~5 人爭取中</div>
-                        <div className="ffrequency">7777 瀏覽次數</div>
-                        <div style={{ flex: 1.5 }}></div>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
+            {/* 顯示過濾後的數據數量 */}
+            <div>
+                目前查詢到 {filteredData.length} 筆資料
+            </div>
+            {/* 排序按鈕 */}
+            <button onClick={handleSortToggle}>
+                {sortOrder === 'asc' ? '由小到大' : '由大到小'} 排序
+            </button>
+            {/* 每頁顯示數據數量選項 */}
+            <label>
+                每頁顯示:
+                <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                    <option value={5}>5</option>
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                </select>
+            </label>
+            {/* 顯示加載狀態或數據列表 */}
+            {isLoading ? (
+                <div>加載中...</div>
+            ) : (
+                currentItems.map((item, index) => (
+                    <DataList
+                        item={item}
+                        timeDifference={timeDifference}
+                        key={item.pid}
+                    />
+                ))
+            )}
+            {/* 分頁按鈕 */}
+            <div>
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button key={index + 1} onClick={() => setCurrentPage(index + 1)} disabled={currentPage === index + 1}>
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default Search
+export default Searchbox;
