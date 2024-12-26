@@ -324,7 +324,7 @@ body {
     gap: 10px;
 }
 
-.pcontainer button {
+.pcontainer .pbtn {
     background-color: #81C7D4;
     font-size: 20px;
     padding: 10px 20px;
@@ -333,7 +333,7 @@ body {
     color: #F0F0F0;
 }
 
-.pcontainer button:hover {
+.pcontainer .pbtn:hover {
     background-color: #FFA50080;
     color: black;
 }
