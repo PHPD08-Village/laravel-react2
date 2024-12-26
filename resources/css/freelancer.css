@@ -220,12 +220,6 @@
     flex: 6;
 }
 
-.fstar img {
-    margin: 0 5px;
-    display: flex;
-    justify-content: flex-start;
-}
-
 .fcontent2 {
     flex: 7;
     display: flex;
@@ -370,23 +364,26 @@
     display: flex;
     margin: 10px;
     justify-content: center;
-    align-items: center;
 }
 
-.ftab a {
+.ftab>.current-page {
+    background-color: #FFA500;
+}
+
+.ftab button {
     color: white;
     background-color: #464646;
+    height: 100%;
     border-radius: 5px;
-    padding: 9px 20px;
-    margin: 0 2px;
-    justify-content: center;
-    /* 水平置中 */
-    align-items: center;
-    /* 垂直置中 */
+    padding: 10px 20px;
+    margin: 0 5px;
 }
 
 .ftab img {
     width: 20px;
+}
+
+.fleftnext {
     display: flex;
     justify-content: center;
     /* 水平置中 */
@@ -394,24 +391,7 @@
     /* 垂直置中 */
 }
 
-.ftab p {
-    padding: 0 5px;
-    margin: 0 15px 5px 15px;
-}
-
-.fLeftnext {
-    display: flex;
-    height: 20px;
-}
-
-.fRightnext {
-    display: flex;
-    height: 20px;
-}
-
-.fLeftnext img {
-    flex: 1;
-    width: 20px;
+.frightnext {
     display: flex;
     justify-content: center;
     /* 水平置中 */
@@ -419,14 +399,63 @@
     /* 垂直置中 */
 }
 
-.fRightnext img {
-    flex: 1;
+
+
+
+/* 以下是星星 */
+.fstar-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 20px; /* 根據需要調整寬度 */
+    height: 20px; /* 根據需要調整高度 */
+    margin: 0 2px;
 }
 
-.fLeftnext p {
-    flex: 3;
+.fstar-outline {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* 根據需要調整寬度 */
+    height: 100%; /* 根據需要調整高度 */
+    z-index: 2;
 }
 
-.fRightnext p {
-    flex: 3;
+.fstar-filled {
+    color: gold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* 根據需要調整寬度 */
+    height: 100%; /* 根據需要調整高度 */
+    z-index: 1;
 }
+
+
+
+
+
+/* .fstar-wrapper {
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    margin-right: 15px;
+}
+
+.fstar-outline {
+    color: grey;
+    position: absolute;
+    top: -15.5px;
+    left: -1.5px;
+    z-index: 1;
+    font-size: 1rem;
+}
+
+.fstar-filled {
+    color: gold;
+    position: absolute;
+    top: -14px;
+    left: 0;
+    z-index: 2;
+    font-size: 0.82rem;
+} */

@@ -16,7 +16,6 @@ import Publish2 from '../pageslab/Publish2';
 import TastExtract from '../pageslab/TestExtract';
 import Testfree from '../pageslab/Testfree';
 import Testfreelance from '../pageslab/Testfreelance';
-import Testsearch from '../pageslab/Testsearch';
 import Testsearchbox from '../pageslab/Testsearchbox';
 
 const Index = () => {
@@ -37,7 +36,6 @@ const Index = () => {
             <Route path="/extract" element={<TastExtract />} />
             <Route path="/testfree" element={<Testfree />} />
             <Route path="/testfreelance" element={<Testfreelance />} />
-            <Route path="/testsearch" element={<Testsearch />} />
             <Route path="/testsearchbox" element={<Testsearchbox />} />
         </Routes>
     );
