@@ -47,6 +47,8 @@ Route::get('/{any}', function(){
 
 // Route::post('/api/submit-data', [DataController::class, 'mydata']);
 
+
+// 阿桂的
 Route::get('/api/projects', [ProjectController::class, 'index']); // 取得所有作品
 Route::get('/api/projects/{id}', [ProjectController::class, 'show']); // 取得單一作品
 Route::post('/api/projects', [ProjectController::class, 'store']); // 新增作品
