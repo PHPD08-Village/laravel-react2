@@ -27,6 +27,7 @@ class PublishController extends Controller
         try {
             // 創建新的 Publish 實例並保存數據
             $publish = new Publish();
+            $publish->uid = $request->input('uid');     // 新增 uid 欄位的賦值
             $publish->title = $request->input('title');
             $publish->contact_name = $request->input('contact_name');
             $publish->completion_time = $request->input('completion_time');

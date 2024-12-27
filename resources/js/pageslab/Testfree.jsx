@@ -107,7 +107,8 @@ const Testfree = () => {
                 </div>
             ))}
         </div>
-    )
-}
+    );
+};
+
 
 export default Testfree
