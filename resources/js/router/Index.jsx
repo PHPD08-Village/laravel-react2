@@ -12,7 +12,6 @@ import Star from '../pages/StarPage';
 import Publish from '../pages/Publish';
 import Personal from '../pages/Personal_editor';
 import NotFound from '../pages/NotfoundPage';
-import Publish from '../pages/Publish';
 import CaseMng from '../pages/CaseManager';
 import SeleTaker from '../pages/SeleTaker';
 
