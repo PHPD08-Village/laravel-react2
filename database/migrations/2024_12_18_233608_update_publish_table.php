@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,7 +9,7 @@ class UpdatePublishTable extends Migration
     public function up(): void
     {
         Schema::table('publish', function (Blueprint $table) {
-            $table->string('title')->after('id'); // 添加新欄位 title
+            $table->string('title')->after('uid'); // 添加新欄位 title
             $table->string('contact_name')->after('title'); // 添加新欄位 contact_name
             $table->timestamp('completion_time')->after('contact_name'); // 添加完成時間欄位
             $table->decimal('budget', 10, 2)->after('completion_time'); // 添加預算欄位
