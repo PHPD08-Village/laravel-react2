@@ -12,12 +12,13 @@ import Star from '../pages/StarPage';
 import Publish from '../pages/Publish';
 import Personal from '../pages/Personal_editor';
 import NotFound from '../pages/NotfoundPage';
-import Publish from '../pages/Publish';
 import CaseMng from '../pages/CaseManager';
 import SeleTaker from '../pages/SeleTaker';
 
 import Testform from '../pageslab/TestForm';
 import Publish2 from '../pageslab/Publish2';
+import Testfreelance from '../pageslab/Testfreelance';
+import Testsearchbox from '../pageslab/Testsearchbox';
 import TastExtract from '../pageslab/TestExtract';
 import Testfree from '../pageslab/Testfree';
 import TestPusher from '../pageslab/TestPusher';

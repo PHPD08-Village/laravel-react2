@@ -35,10 +35,10 @@ class PubForCaseMngController extends Controller
         }
     }
 
-    public function toggle($cid)
+    public function toggle($pid)
     {
         try {
-            $case = Publish::find($cid);
+            $case = Publish::find($pid);
             $case->is_open = !$case->is_open;
             $case->save();
 

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { IonIcon } from '@ionic/react';
+import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline } from 'ionicons/icons';
+import moment from 'moment';
 
 function StarHighestList() {
     const [freelancers, setFreelancers] = useState([]);
@@ -37,7 +40,7 @@ function StarHighestList() {
         <div className="starHighestTaker">
             {/* <!-- 左箭頭 --> */}
             <button id="starHighestTakerLeft" onClick={prevFreelancer}>
-                <ion-icon name="chevron-back-outline"></ion-icon>
+                <IonIcon icon={chevronBackOutline} />
             </button>
             <div className="card">
                 {/* <!-- 每一個案件卡片 --> */}
@@ -48,7 +51,7 @@ function StarHighestList() {
             </div>
             {/* <!-- 右箭頭 --> */}
             <button id="starHighestTakerRight" onClick={nextFreelancer}>
-                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <IonIcon icon={chevronForwardOutline} />
             </button>
         </div>
     );
@@ -82,7 +85,7 @@ const StarHighestCard = ({ starHighest }) => {
     // 因為在後端的查詢中已經將 averating 及 count 屬性直接選擇出來並包含在每個 starHighest 物件中，所以不是使用 starHighest.star?.averating 的方式取得
     const averatingRaw = starHighest.averating ?? 0;
     // const count = starHighest.star?.count ?? 0;
-    const count = starHighest.count ?? 0;
+    const count = (starHighest.count === null) ? 0 : starHighest.count;
     // 當使用 toFixed(1) 方法時，會將數字轉換為固定的小數位數的字串，而不是浮點數。這意味著 const averating = parseFloat(averatingRaw).toFixed(1); 的結果會是一個字串，這在之後的數值比較中可能會產生問題，特別是在某些條件判斷時（例如四捨五入的條件判斷），所以若要方便，外面直接再包一個 parseFloat最快。但由於這樣整數會變成顯示 4 而不是 4.0，所以這裡不使用這個方法
     const averating = parseFloat(averatingRaw).toFixed(1);
 
@@ -91,15 +94,15 @@ const StarHighestCard = ({ starHighest }) => {
     // AI 重構教的
     const decideStar = (averating) => {
         const starArray = [];
-        const starFilled = <ion-icon name="star" className="star-filled"></ion-icon>;
-        const starHalf = <ion-icon name="star-half" className="star-filled"></ion-icon>;
-        const starOutline = <ion-icon name="star-outline" className="star-outline"></ion-icon>;
+        const starFilled = <IonIcon icon={star} className="star-filled" />;
+        const starHalfIcon = <IonIcon icon={starHalf} className="star-filled" />;
+        const starOutlineIcon = <IonIcon icon={starOutline} className="star-outline" />;
 
         const createStarElements = (filled, half, outline) => {
             for (let i = 0; i < filled; i++) {
                 starArray.push(
                     <span className="star-wrapper" key={i}>
-                        {starOutline}
+                        {starOutlineIcon}
                         {starFilled}
                     </span>
                 );
@@ -107,8 +110,8 @@ const StarHighestCard = ({ starHighest }) => {
             if (half) {
                 starArray.push(
                     <span className="star-wrapper" key={filled}>
-                        {starOutline}
-                        {starHalf}
+                        {starOutlineIcon}
+                        {starHalfIcon}
                     </span>
                 );
                 filled++;
@@ -116,7 +119,7 @@ const StarHighestCard = ({ starHighest }) => {
             for (let i = filled; i < 5; i++) {
                 starArray.push(
                     <span className="star-wrapper" key={i}>
-                        {starOutline}
+                        {starOutlineIcon}
                     </span>
                 );
             }
