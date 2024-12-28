@@ -37,8 +37,8 @@ const Index = () => {
             <Route path="/detail" element={<Detail />} />
             <Route path="/personalinfo" element={<PersonalInfo />} />
             <Route path="/star" element={<Star />} />
-            <Route path="/casemng" element={<CaseMng />} />
-            <Route path="/seletaker" element={<SeleTaker />} />
+            <Route path="/case_manager" element={<CaseMng />} />
+            <Route path="/select_taker" element={<SeleTaker />} />
             <Route path="/publish" element={<Publish />} />{/* TestForm 頁面 */}
             <Route path="/personal_editor" element={<Personal />} />
             <Route path="/*" element={<NotFound />} />

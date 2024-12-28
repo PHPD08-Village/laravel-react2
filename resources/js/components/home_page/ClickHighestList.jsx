@@ -94,6 +94,14 @@ const ClickHighestCard = ({ clickHighest }) => {
     // 將評價資料轉換為浮點數，並取小數點後一位
     const averating = parseFloat(averatingRaw).toFixed(1);
 
+    // 將金額加逗號
+    const [budget, setBudget] = useState('0');
+    useEffect(()=>{
+        let dbbudget = Math.floor(Number(clickHighest.budget));
+        setBudget(dbbudget.toLocaleString());
+    },[clickHighest.budget])
+
+
     // 判斷星星數量
     // 這裡不需要解構賦值，因為不會有其他元件需要使用這個函式，故不需要大括號
     // AI 重構教的
@@ -187,7 +195,7 @@ const ClickHighestCard = ({ clickHighest }) => {
                 <ul className="caseInfo">
                     <li className="row">
                         <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
-                        <label>{Math.floor(clickHighest.budget)}</label>
+                        <label>{budget}</label>
                     </li>
                     <li className="row">
                         <img src="/img/Icon/Location.png" alt="location icon" />

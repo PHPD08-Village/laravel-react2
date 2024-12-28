@@ -85,6 +85,14 @@ const LatestCard = ({ latest }) => {
         return { __html: text.replace(/\n/g, '<br>') };
     };
 
+    // 將金額加逗號
+    const [budget, setBudget] = useState('0');
+    useEffect(() => {
+        let dbbudget = Math.floor(Number(latest.budget));
+        setBudget(dbbudget.toLocaleString());
+    }, [latest.budget])
+
+
     // 獲取評價資料，若不存在則設置為 0
     // 這邊的 user 源頭是 Publish Model 的 user() 方法，所以這邊的 user 是 User Model 的資料，而 star 是 User Model 的 star() 方法，所以這邊的 star 是 Star Model 的資料
     // const averatingRaw = latest.user.star?.averating ?? 0;
@@ -383,7 +391,7 @@ const LatestCard = ({ latest }) => {
                 <ul className="caseInfo">
                     <li className="row">
                         <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
-                        <label>{Math.floor(latest.budget)}</label>
+                        <label>{budget}</label>
                     </li>
                     <li className="row">
                         <img src="/img/Icon/Location.png" alt="location icon" />
