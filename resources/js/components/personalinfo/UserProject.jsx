@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 
 function UserProject() {
   // 設定每頁顯示的專案數量
@@ -13,40 +12,41 @@ function UserProject() {
   // 用來處理錯誤
   const [error, setError] = useState(null);
   // 獲取資料
-//   let url = "http://127.0.0.1:8000/api/projects";
+  let url = 'http://127.0.0.1:8000/api/projects'
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // 使用 axios 獲取資料
-        const response = await axios.get('/api/projects');
-       // 確保 response.data 是一個陣列
-        setProjects(Array.isArray(response.data) ? response.data : []);
-        console.log(response.data); // 檢查回應的資料結構
-        // setLoading(false);
+        const response = await fetch(url)
         if (!response.ok) {
-          throw new Error('Oops! 發生錯誤!');
+          throw new Error('Oops! 發生錯誤!')
         }
-        // const data = await response.json();
-        // setProjects(data.data); // 確認這裡是否正確解析 JSON
-        setLoading(false);
+        const data = await response.json()
+        if (data && data.data) {
+          setProjects(data.data)
+          console.log('Fetched projects:', data.data)
+        } else {
+          throw new Error('資料格式不正確')
+        }
+        setLoading(false)
       } catch (error) {
-        setError(error.message);
-        setLoading(false);
+        setError(error.message)
+        console.error('Error fetching projects:', error)
+        setLoading(false)
       }
-    };
-    fetchProjects();
-  }, []);
+    }
+    fetchProjects()
+  }, [])
 
   // 頁面顯示資料
-  const startIndex = (currentPage - 1) * itemsPerPage; // 此頁面第一筆資料索引值
-  const endIndex = startIndex + itemsPerPage; // 此面最後索引值加一
-  const currentProjects = projects.slice(startIndex, endIndex); // 此頁面陣列資料範圍
-
+  const startIndex = (currentPage - 1) * itemsPerPage  // 此頁面第一筆資料索引值
+  const endIndex = startIndex + itemsPerPage  // 此面最後索引值加一
+  const currentProjects = projects.slice(startIndex, endIndex) // 此頁面陣列資料範圍
+  console.log('測試:',projects[0]);
   // 總頁數
-  const totalPages = Math.ceil(projects.length / itemsPerPage);
+  const totalPages = Math.ceil(projects.length / itemsPerPage)
 
   // 切換頁面函數
-  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber)
   return (
     <>
       {/* <!-- 已完成專案 --> */}
@@ -64,33 +64,33 @@ function UserProject() {
           <div key={index}>
             <span>{project.completed_at}</span>
             <span>{project.name}</span>
-            <span>案主：{project.uid}</span>
-            <div className="tag">
+            <span>案主：{project.name}</span>
+            {/* <div className="tag">
               {project.tags.map((tag, idx) => (
                 <span key={idx}>{tag}</span>
               ))}
-            </div>
+            </div> */}
           </div>
         ))}
 
         {/* 換頁按鈕 */}
         <div className="changeBtn">
-          <button className="pbtn"
+          <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
             &lt;
           </button>
           {Array.from({ length: totalPages }, (_, index) => (
-            <button 
+            <button
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ?  "active" : ""}
+              className={currentPage === index + 1 ? "active" : ""}
             >
               {index + 1}
             </button>
           ))}
-          <button className="pbtn"
+          <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
