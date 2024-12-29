@@ -338,3 +338,11 @@ body {
     background-color: #FFA50080;
     color: black;
 }
+#pno-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 60px;
+}

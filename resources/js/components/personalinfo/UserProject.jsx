@@ -60,20 +60,25 @@ function UserProject() {
 
       {/* 顯示當前頁面的專案 */}
       <div className="pproject">
-        {currentProjects.map((project, index) => (
-          <div key={index}>
-            <span>{project.completed_at}</span>
-            <span>{project.name}</span>
-            <span>案主：{project.name}</span>
-            {/* <div className="tag">
-              {project.tags.map((tag, idx) => (
-                <span key={idx}>{tag}</span>
+      {currentProjects.length > 0 ? (
+          currentProjects.map((project, index) => (
+            <div key={index}>
+              <span>{project.completed_at}</span>
+              <span>{project.name}</span>
+              <span>案主：{project.name}</span>
+              {/* <div className="tag">
+                  {project.tags.map((tag, idx) => (
+                  <span key={idx}>{tag}</span>
               ))}
-            </div> */}
-          </div>
-        ))}
+              </div> */}
+            </div>
+          ))
+        ) : (
+          <div id="pno-data">目前沒有專案資料</div>
+        )}
 
         {/* 換頁按鈕 */}
+        {currentProjects.length > 0 && (
         <div className="pchangeBtn">
           <button className='pbtn'
             onClick={() => handlePageChange(currentPage - 1)}
@@ -97,6 +102,7 @@ function UserProject() {
             &gt;
           </button>
         </div>
+        )}
       </div >
     </>
   )
