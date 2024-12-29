@@ -162,7 +162,7 @@ const StarHighestCard = ({ starHighest }) => {
                 <div className="imgGroup">
                     <img className="backImg" src={starHighest.profile_back_img ?? '/img/Person/Background.jpg'}
                         alt="user background img" />
-                    <img className="avatar" src={starHighest.profile_picture ?? '/img/Person/Avatar.png'}
+                    <img className="avatar" src={starHighest.headshot ?? '/img/Icon/Male User.png'}
                         alt="avatar" />
                 </div>
                 <div className="takerUserName">

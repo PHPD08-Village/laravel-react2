@@ -36,6 +36,38 @@ function SelectTaker() {
             });
     }, [selectedPid])
 
+    const assignTaker = (takerUid) => {
+        axios.post(`http://127.0.0.1:8000/api/assign-taker/${selectedPid}`, { taker_uid: takerUid })
+            .then(response => {
+                console.log('成功分配 taker', response.data.message);
+                // 顯示成功訊息或更新狀態 
+                alert(`已成功委託 ${response.data.username}`)
+            })
+            .catch(error => {
+                console.error('分配 taker 失敗', error);
+            });
+    };
+
+    const sendThanksNote = (applicantUid) => {
+        const thanksMessage = "感謝您的應徵！經考慮後認為足下之專長或設計風格非我司所需，謝謝您的應徵！";
+        const userConfirmed = window.confirm(`是否要發出感謝函: ${thanksMessage}`);
+        if (userConfirmed) {
+            axios.post(`http://127.0.0.1:8000/api/send-thanks-note/${selectedPid}`, {
+                applicant_uid: applicantUid,
+                message: thanksMessage
+            })
+                .then(response => {
+                    console.log('成功發送感謝函', response.data.message);
+                    alert(`已成功發送感謝函給 ${response.data.username}`);
+                    setApplicants(
+                        prevApplicants => prevApplicants.filter(applicant => applicant.uid !== applicantUid))
+                })
+                .catch(error => {
+                    console.error('發送感謝函失敗', error);
+                });
+        }
+    };
+
     const nextLatest = () => {
         if (currentIndex < latestCases.length - 3) {
             setCurrentIndex(currentIndex + 1);
@@ -62,7 +94,10 @@ function SelectTaker() {
                     <label htmlFor="">&gt;</label>
                     <a href="/casemng">案件管理</a>
                     <label htmlFor="">&gt;</label>
-                    <a href="#">{applicants[0].title}</a>
+                    {/* 確認 applicants 是否有資料後再讀取 title */}
+                    <a href="#">
+                        {applicants.length > 0 ? applicants[0].title : '載入中...'}
+                    </a>
                 </div>
             </div>
             {/* content */}
@@ -70,7 +105,15 @@ function SelectTaker() {
                 {/* {applicants.slice(currentIndex, currentIndex + 3).map(applicant => ( */}
                 {applicants.map(applicant => (
                     // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
-                    <CaseApplicants applicant={applicant} key={applicant.aid} />
+                    <CaseApplicants
+                        // 大括號內的 applicant 是來自 map 的參數，代表目前正在處理的物件
+                        applicant={applicant}
+                        key={applicant.aid}
+                        // 大括號內的 assignTaker 是 SelectTaker 元件裡的 assignTaker 函數
+                        assignTaker={assignTaker}
+                        // 大括號內的 sendThanksNote 是 SelectTaker 元件裡的 sendThanksNote 函數
+                        sendThanksNote={sendThanksNote}
+                    />
                 ))}
                 {/* {selectedPid && <CaseApplicants pid={selectedPid} />} */}
 
@@ -148,25 +191,9 @@ function SelectTaker() {
     )
 }
 
-const CaseApplicants = ({ applicant }) => {
-    // const [applicants, setApplicants] = useState([]);
+const CaseApplicants = ({ applicant, assignTaker, sendThanksNote }) => {
+    const [selectedPid, setSelectedPid] = useState(8);
 
-    // useEffect(() => {
-    //     console.log(`開始獲取 pid 為 ${pid} 的應徵者資料`)
-    //     axios.get(`http://127.0.0.1:8000/api/get-project-applicants/${pid}`)
-    //         .then(response => {
-    //             setApplicants(response.data);
-    //             console.log('成功獲取應徵者資料', response.data)
-    //         })
-    //         .catch(error => {
-    //             console.error('應徵者資料獲取失敗', error);
-    //         });
-    // }, [pid])
-
-    // // 紀錄 applicants 狀態變化 
-    // useEffect(() => {
-    //     console.log('applicants 狀態變化：', applicants);
-    // }, [applicants]);
 
 
     // 設置幾分鐘前更新
@@ -175,9 +202,9 @@ const CaseApplicants = ({ applicant }) => {
         const appliedAt = moment(timestamp);
         const diffInMinutes = now.diff(appliedAt, 'minutes');
 
-        // console.log(`現在時間: ${now.format()}`);
-        // console.log(`更新時間: ${appliedAt.format()}`);
-        // console.log(`相差分鐘數: ${diffInMinutes}`);
+        // console.log(`現在時間: ${ now.format() }`);
+        // console.log(`更新時間: ${ appliedAt.format() }`);
+        // console.log(`相差分鐘數: ${ diffInMinutes }`);
 
         if (diffInMinutes < 60) {
             return `${diffInMinutes} 分鐘前應徵`;
@@ -331,8 +358,8 @@ const CaseApplicants = ({ applicant }) => {
                     <div className="time">{timeDifference(applicant.applied_at)}</div>
                     <div className="content3btn">
                         {/* <a className="casechat" href="#">聊聊</a> */}
-                        <a className="takecase" href="#">委託</a>
-                        <a className="thanksCard" href="#">感謝函</a>
+                        <a className="takecase" onClick={() => assignTaker(applicant.uid)}>委託</a>
+                        <a className="thanksCard" onClick={() => sendThanksNote(applicant.uid)}>感謝函</a>
                     </div>
                     {/* <div style="flex: 0.7;"></div> */}
                 </div>

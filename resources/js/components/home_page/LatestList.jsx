@@ -367,7 +367,7 @@ const LatestCard = ({ latest }) => {
         <div className="cardSingle">
             <div className="cardHeader">
                 <div className="userInfo">
-                    <img src={latest.profile_picture} alt="avatar" />
+                    <img src={latest.headshot ?? '/img/Icon/Male User.png'} alt="avatar" />
                     <div className="userName">
                         <div className="userNameText">
                             <h4>{latest.username}</h4>

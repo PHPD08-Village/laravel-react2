@@ -13,7 +13,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PubForHomeCaseController;
 use App\Http\Controllers\FreelancerForHomeController;
 use App\Http\Controllers\PubForCaseMngController;
-use App\Models\Applicants;
+use App\Http\Controllers\AssignTakerController;
 
 // 將 API 路由置於開始處
 // 案件刊登表單
@@ -51,8 +51,11 @@ Route::get('/api/case/{caseId}', [PubForStarController::class, 'getCaseInfo']);
 Route::get('/api/get-latest-projects', [PubForHomeCaseController::class, 'getLatestProjects']);   // 新增首頁最新案件案件資訊 API
 Route::get('/api/get-clickhighest-projects', [PubForHomeCaseController::class, 'getCliHighestProjects']);   // 新增首頁點閱率最高案件資訊 API
 Route::get('/api/get-starhighest-taker', [FreelancerForHomeController::class, 'getStarHighestTaker']);   // 新增首頁點閱率最高案件資訊 API
-Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'getProjectApplicants']);
-Route::get('/api/get-project-title/{selectedPid}',[ApplicantsController::class,'getProjectTitle']);
+Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'getProjectApplicants']);   // 獲取選妃頁面的應徵者
+// Route::get('/api/get-project-title/{selectedPid}',[ApplicantsController::class,'getProjectTitle']);    // 獲取選妃頁面的當前案件的標題 
+Route::post('/api/assign-taker/{selectedPid}',[AssignTakerController::class, 'assignTaker']);   // 委託接案者
+Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);
+
 
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
