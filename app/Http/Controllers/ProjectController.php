@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function index()
     {
         try {
-            $projects = Projects::all();
+            $projects = Projects::with('userinfo')->get();
             return response()->json([
                 'success' => true,
                 'data' => $projects
@@ -30,7 +30,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         try {
-            $project = Projects::find($id);
+            $project = Projects::with('userinfo')->find($id);
             if (!$project) {
                 return response()->json([
                     'success' => false,

@@ -65,7 +65,7 @@ function UserProject() {
             <div key={index}>
               <span>{project.completed_at}</span>
               <span>{project.name}</span>
-              <span>案主：{project.name}</span>
+              <span>案主：{project.userinfo?.username|| '匿名案主'}</span>
               {/* <div className="tag">
                   {project.tags.map((tag, idx) => (
                   <span key={idx}>{tag}</span>
