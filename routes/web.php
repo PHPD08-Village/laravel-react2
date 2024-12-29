@@ -10,10 +10,11 @@ use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\ErrorLogController; // 添加新的控制器
 use App\Http\Controllers\SearchController; // 添加新的控制器
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\PubForStarController;
+// use App\Http\Controllers\PubForStarController;
 use App\Http\Controllers\PubForHomeCaseController;
 use App\Http\Controllers\FreelancerForHomeController;
 use App\Http\Controllers\PubForCaseMngController;
+use App\Http\Controllers\PersonalworksController;
 
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
@@ -55,11 +56,12 @@ Route::post('/api/userinfo', [UserInfoController::class, 'store']);
 Route::get('/api/get-userinfo-publish', [SearchController::class, 'getdata']);
 
 // 阿桂的記得放前面
-Route::get('/api/projects', [ProjectController::class, 'index']); // 取得所有作品
-Route::get('/api/projects/{id}', [ProjectController::class, 'show']); // 取得單一作品
-Route::post('/api/projects', [ProjectController::class, 'store']); // 新增作品
-Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更新作品
-Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除作品
+Route::get('/api/projects', [ProjectController::class, 'index']); // 取得所有專案
+Route::get('/api/projects/{id}', [ProjectController::class, 'show']); // 取得單一專案
+Route::post('/api/projects', [ProjectController::class, 'store']); // 新增專案
+Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更新專案
+Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
+Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
 
 // 戶長的
 // Route::post('/api/star', [StarController::class, 'store']);
