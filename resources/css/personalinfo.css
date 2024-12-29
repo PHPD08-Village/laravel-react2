@@ -333,7 +333,8 @@ body {
     color: #F0F0F0;
 }
 
-.pcontainer .pbtn:hover {
+.pcontainer .pbtn:hover,
+.pactive {
     background-color: #FFA50080;
     color: black;
 }

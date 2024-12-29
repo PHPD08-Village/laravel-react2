@@ -59,7 +59,7 @@ function UserProject() {
       {error && <p>錯誤：{error}</p>}
 
       {/* 顯示當前頁面的專案 */}
-      <div className="project">
+      <div className="pproject">
         {currentProjects.map((project, index) => (
           <div key={index}>
             <span>{project.completed_at}</span>
@@ -74,23 +74,23 @@ function UserProject() {
         ))}
 
         {/* 換頁按鈕 */}
-        <div className="changeBtn">
-          <button
+        <div className="pchangeBtn">
+          <button className='pbtn'
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
             &lt;
           </button>
           {Array.from({ length: totalPages }, (_, index) => (
-            <button
+            <button 
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? "active" : ""}
+              className={`pbtn ${currentPage === index + 1 ? "pactive" : ""}`} 
             >
               {index + 1}
             </button>
           ))}
-          <button
+          <button className='pbtn'
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
