@@ -15,6 +15,7 @@ use App\Http\Controllers\PubForHomeCaseController;
 use App\Http\Controllers\FreelancerForHomeController;
 use App\Http\Controllers\PubForCaseMngController;
 use App\Http\Controllers\PersonalworksController;
+use App\Http\Controllers\PersonalDataController;
 
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
@@ -62,6 +63,7 @@ Route::post('/api/projects', [ProjectController::class, 'store']); // 新增專�
 Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更新專案
 Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
 Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
+Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
 
 // 戶長的
 // Route::post('/api/star', [StarController::class, 'store']);
@@ -110,12 +112,8 @@ Route::post('/api/get-cases/{cid}/switch-case', [PubForCaseMngController::class,
 // });
 
 
-// 阿桂的
-Route::get('/api/projects', [ProjectController::class, 'index']); // 取得所有作品
-Route::get('/api/projects/{id}', [ProjectController::class, 'show']); // 取得單一作品
-Route::post('/api/projects', [ProjectController::class, 'store']);
-Route::put('/api/projects/{id}', [ProjectController::class, 'update']);
-Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']);
+
+
 
 // React 路由的配置應該在後面
 Route::get('/', function () {
