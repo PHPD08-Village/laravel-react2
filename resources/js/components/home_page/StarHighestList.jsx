@@ -167,7 +167,7 @@ const StarHighestCard = ({ starHighest }) => {
                 </div>
                 <div className="takerUserName">
                     <div className="userNameText">
-                        <h4> {starHighest.username} </h4>
+                        <h4> {starHighest.nickname} </h4>
                         <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         <img className="keep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
                     </div>

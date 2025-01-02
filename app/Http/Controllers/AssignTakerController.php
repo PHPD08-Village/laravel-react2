@@ -48,6 +48,7 @@ class AssignTakerController extends Controller
     {
         try {
             $applicantUid = $request->input('applicant_uid');
+            // 如果前端請求沒有提供 message 的值，會直接以下面這個內容(預設值) 送出
             $message = $request->input('message', '感謝您的應徵！經考慮後認為足下之專長或設計風格非我司所需，謝謝您的應徵！');
 
             // 確認應徵者是否存在 

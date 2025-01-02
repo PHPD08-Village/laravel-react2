@@ -6,6 +6,7 @@ import { IonIcon } from '@ionic/react';
 import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline } from 'ionicons/icons';
 
 const LatestList = () => {
+    const currentUser = { uid: 9 }   // 獲取當前登錄用戶的 uid
     const [latestCases, setLatestCases] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -18,6 +19,21 @@ const LatestList = () => {
                 console.error('最新案件獲取失敗', error);
             });
     }, []);
+
+
+
+    const handleApply = async (pid) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/apply-case', {
+                uid: currentUser.uid,
+                pid: pid
+            });
+            console.log(response.data.message);
+            alert('應徵送出成功！')
+        } catch (error) {
+            console.error('應徵送出失敗，請稍後再試', error);
+        }
+    };
 
     const nextLatest = () => {
         if (currentIndex < latestCases.length - 3) {
@@ -41,7 +57,7 @@ const LatestList = () => {
                     {/* 將 latestCases 陣列分割，並根據 currentIndex 取得當前顯示的三個案件 */}
                     {latestCases.slice(currentIndex, currentIndex + 3).map(latest => (
                         // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
-                        <LatestCard latest={latest} key={latest.pid} />
+                        <LatestCard latest={latest} key={latest.pid} handleApply={handleApply} />
                     ))}
                 </div>
                 <button id="latestCaseRight" onClick={nextLatest}>
@@ -54,7 +70,7 @@ const LatestList = () => {
 
 
 
-const LatestCard = ({ latest }) => {
+const LatestCard = ({ latest, handleApply }) => {
     // 設置幾分鐘前更新
     const timeDifference = (timestamp) => {
         const now = moment();
@@ -104,200 +120,6 @@ const LatestCard = ({ latest }) => {
 
     // 判斷星星數量
     // 這裡不需要解構賦值，因為不會有其他元件需要使用這個函式，故不需要大括號
-    // 我自己寫的
-    // const decideStar = (averating) => {
-    //     const starArray = [];
-    //     let starFilled = <ion-icon name="star" className="star-filled"></ion-icon>;
-    //     let starHalf = <ion-icon name="star-half" className="star-filled"></ion-icon>;
-    //     let starOutline = <ion-icon name="star-outline" className="star-outline"></ion-icon>;
-
-    //     if (4 < averating && averating < 5) {
-    //         for (let i = 0; i < 4; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         starArray.push(
-    //             <span className='star-wrapper' key={4}>
-    //                 {starOutline}
-    //                 {starHalf}
-    //             </span>
-    //         );
-    //         return <>{starArray}</>
-
-    //     } else if (3 < averating && averating < 4) {
-    //         for (let i = 0; i < 3; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         starArray.push(
-    //             <span className='star-wrapper' key={3}>
-    //                 {starOutline}
-    //                 {starHalf}
-    //             </span>
-    //         );
-    //         starArray.push(
-    //             <span className='star-wrapper' key={4}>
-    //                 {starOutline}
-    //             </span>
-    //         );
-    //         return <>{starArray}</>
-    //     } else if (2 < averating && averating < 3) {
-    //         for (let i = 0; i < 2; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         starArray.push(
-    //             <span className='star-wrapper' key={2}>
-    //                 {starOutline}
-    //                 {starHalf}
-    //             </span>
-    //         );
-    //         for (let i = 3; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else if (1 < averating && averating < 2) {
-    //         for (let i = 0; i < 1; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         starArray.push(
-    //             <span className='star-wrapper' key={1}>
-    //                 {starOutline}
-    //                 {starHalf}
-    //             </span>
-    //         );
-    //         for (let i = 2; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else if (0 < averating && averating < 1) {
-    //         starArray.push(
-    //             <span className='star-wrapper' key={0}>
-    //                 {starOutline}
-    //                 {starHalf}
-    //             </span>
-    //         );
-    //         for (let i = 1; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else if (averating == 5) {
-    //         for (let i = 0; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else if (averating == 4) {
-    //         for (let i = 0; i < 4; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         starArray.push(
-    //             <span className='star-wrapper' key={4}>
-    //                 {starOutline}
-    //             </span>
-    //         );
-    //         return <>{starArray}</>
-    //     } else if (averating == 3) {
-    //         for (let i = 0; i < 3; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         for (let i = 3; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else if (averating == 2) {
-    //         for (let i = 0; i < 2; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         for (let i = 2; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else if (averating == 1) {
-    //         for (let i = 0; i < 1; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                     {starFilled}
-    //                 </span>
-    //             );
-    //         }
-    //         for (let i = 1; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     } else {
-    //         for (let i = 0; i < 5; i++) {
-    //             starArray.push(
-    //                 <span className='star-wrapper' key={i}>
-    //                     {starOutline}
-    //                 </span>
-    //             );
-    //         }
-    //         return <>{starArray}</>
-    //     }
-    // };
-
     // AI 重構教的
     const decideStar = (averating) => {
         const starArray = [];
@@ -370,7 +192,7 @@ const LatestCard = ({ latest }) => {
                     <img src={latest.headshot ?? '/img/Icon/Male User.png'} alt="avatar" />
                     <div className="userName">
                         <div className="userNameText">
-                            <h4>{latest.username}</h4>
+                            <h4>{latest.nickname}</h4>
                             <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         </div>
                         <div className="userStar">
@@ -408,7 +230,9 @@ const LatestCard = ({ latest }) => {
             <div className="cardFooter">
                 <label>{timeDifference(new Date(latest.updated_at).toLocaleDateString())}</label>
                 <button id="talk1" name="talk1">聊聊</button>
-                <a href="#" id="catchCase1" name="catchCase1">接案</a>
+                {/* 用箭頭函式確保 按鈕被點擊時 handleApply 才被調用 */}
+                {/* <a onClick={() => handleApply(latest.uid, latest.pid)} id="catchCase1" name="catchCase1">接案</a> */}
+                <a onClick={() => handleApply(latest.pid)} id="catchCase1" name="catchCase1">接案</a>
             </div>
         </div>
     );

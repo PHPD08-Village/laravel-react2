@@ -176,7 +176,7 @@ const ClickHighestCard = ({ clickHighest }) => {
                     <img src={clickHighest.headshot ?? '/img/Icon/Male User.png'} alt="avatar" />
                     <div className="userName">
                         <div className="userNameText">
-                            <h4>{clickHighest.username}</h4>
+                            <h4>{clickHighest.nickname}</h4>
                             <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         </div>
                         <div className="userStar">

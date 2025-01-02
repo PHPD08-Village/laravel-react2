@@ -14,6 +14,8 @@ use App\Http\Controllers\PubForHomeCaseController;
 use App\Http\Controllers\FreelancerForHomeController;
 use App\Http\Controllers\PubForCaseMngController;
 use App\Http\Controllers\AssignTakerController;
+use App\Http\Controllers\ApplyController;
+
 
 // 將 API 路由置於開始處
 // 案件刊登表單
@@ -54,7 +56,8 @@ Route::get('/api/get-starhighest-taker', [FreelancerForHomeController::class, 'g
 Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'getProjectApplicants']);   // 獲取選妃頁面的應徵者
 // Route::get('/api/get-project-title/{selectedPid}',[ApplicantsController::class,'getProjectTitle']);    // 獲取選妃頁面的當前案件的標題 
 Route::post('/api/assign-taker/{selectedPid}',[AssignTakerController::class, 'assignTaker']);   // 委託接案者
-Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);
+Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);     // 發送感謝函
+Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
 
 
 // 案件管理(暫時把登入條件拿掉)

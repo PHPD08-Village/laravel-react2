@@ -23,7 +23,7 @@ class PubForHomeCaseController extends Controller
                 ->select(
                     'publish.*', 
                     'userinfo.headshot', 
-                    'userinfo.username', 
+                    'userinfo.nickname', 
                     DB::raw('COALESCE(star.averating, 0) as averating'), 
                     DB::raw('COALESCE(star.count, 0) as count'), 
                     )
@@ -65,7 +65,7 @@ class PubForHomeCaseController extends Controller
                 ->select(
                     'publish.*', 
                     'userinfo.headshot', 
-                    'userinfo.username', 
+                    'userinfo.nickname', 
                     DB::raw('COALESCE(star.averating, 0) as averating'), 
                     DB::raw('COALESCE(star.count, 0) as count'), 
                     )
