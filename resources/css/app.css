@@ -18,6 +18,11 @@ a {
     text-decoration: none;
 }
 
+.alink {
+    text-decoration: none;
+    color: inherit;
+}
+
 .nav {
     height: 100px;
     background-color: #F5F7FA;
@@ -235,4 +240,42 @@ div img.spacered {
     color: black;
     padding: 20px;
     font-size: 1rem;
+}
+
+
+/* 右側懸浮視窗 */
+/* 單個按鈕樣式 */
+.floating-btn {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    /* 背景白色 */
+    border: 1px solid #ddd;
+    /* 淺灰色邊框 */
+    border-radius: 50%;
+    /* 圓形 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 輕微陰影 */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 圖示大小 */
+.floating-btn img {
+    width: 60%;
+    /* 縮小圖片以適應按鈕 */
+    height: auto;
+}
+
+/* 懸停效果 */
+.floating-btn:hover {
+    background-color: #f0f0f0;
+    /* 背景變灰 */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    /* 陰影加深 */
+    transform: translateY(-3px);
+    /* 微微上移 */
 }

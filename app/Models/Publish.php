@@ -10,8 +10,10 @@ class Publish extends Model
     use HasFactory;
 
     protected $table = 'publish';
+    protected $primaryKey = 'cid';
 
     protected $fillable = [
+        'uid',
         'title',
         'contact_name',
         'completion_time',
@@ -21,10 +23,16 @@ class Publish extends Model
         'email',
         'details',
         'require_code',
+        'click_count',
         'updated_at',
     ];
 
     protected $hidden = [
         'created_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(UserInfo::class, 'uid', 'uid');
+    }
 }

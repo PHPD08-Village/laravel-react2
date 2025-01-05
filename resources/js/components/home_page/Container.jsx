@@ -2,14 +2,16 @@ import React from 'react';
 
 import Banner from './Banner'
 import Home from './Home'
-import Space from './Space'
+import Floatingbuttons from '../allpage/Floatingbuttons'
+
+
 
 const Homecontainer = () => (
     <>
         <Banner />
         <div className="container">
             <Home />
-            <Space />
+            <Floatingbuttons />
         </div>
     </>
 );

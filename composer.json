@@ -12,6 +12,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "pusher/pusher-php-server": "^7.2",
+        "socialiteproviders/line": "^4.1",
+        "socialiteproviders/manager": "^4.7",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
@@ -27,6 +29,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "App\\Helpers\\": "app/Helpers/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

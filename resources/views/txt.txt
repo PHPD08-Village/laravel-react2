@@ -1,6 +1,6 @@
 publish 資料表
     #		名稱	
-	1		pid：自增主鍵 
+	1		id：自增主鍵 
 	2		title：案件標題 
 	3		contact_name：聯絡人名稱 
 	4		completion_time：案件完成時間 
@@ -14,7 +14,7 @@ publish 資料表
 	12		updated_at：記錄更新時間
 
 userinfo 資料表		
-	uid: 自動遞增的唯一ID。
+	id: 自動遞增的唯一ID。
 
 	profile_picture: 儲存大頭照的URL，允許空值。
 
@@ -32,17 +32,17 @@ userinfo 資料表
 
 	phone_verified: 電話是否已認證，BOOLEAN類型，用於表示 true 或 false。
 
-	email: 使用者的電子信箱，這是一個必填欄位，設置為唯一，確保每個使用者的電子信箱都是獨一無二
+	email: 使用者的電子信箱，這是一個必填欄位。
 
 	email_verified: 電子信箱是否已認證，BOOLEAN類型，用於表示 true 或 false。
 
 	line_id: 使用者的 LINE ID，可以空值。
 
-	login_status: 使用者的登入狀態，使用 ENUM 類型限制只允許 online 或 offline。(目前不做)
+	login_status: 使用者的登入狀態，使用 ENUM 類型限制只允許 online 或 offline。
 
 	job_status: 使用者是否可接案，BOOLEAN類型，用於表示 true 或 false。
 
-	rating: 使用者的星數評價，使用 TINYINT 並加上 CHECK 條件限制範圍在1到5之間。
+	rating: 使用者的星數評價，使用 TINYINT 並加上 CHECK 條件限制範圍在1到5之間，可以空值。
 
 	preferred_location: 理想的接案地區，可以空值。
 
@@ -68,7 +68,16 @@ userinfo 資料表
 	 
 	 
 		 	
-		 	
+		 		
+		 		
+		 				
+
+
+需要麻煩再幫我檢查一下 這是我的laravel-react庫publish表的資料 欄位如下 
+
+
+
+
 
 
 
@@ -222,3 +231,48 @@ userinfo 資料表
 		};
 
 		export default Testfreelance;
+
+
+
+
+
+element 屬性在
+	React Router v5 Link 設置：<Link to={{ pathname: "/detail", state: { pid: item.pid } }} className='link'>
+
+	React Router v6 中使用，Link 傳遞 state 的方式不同。
+	Link 使用 useNavigate：在 DataList.jsx 中，你可以使用 useNavigate 來進行導航並傳遞 state。
+	<div className="fcontent2" onClick={() => navigate("/detail", { state: { pid: item.pid } })}>
+
+
+
+
+
+
+
+在一個典型的 Laravel 和 React 專案中，這些檔案應該放置在專案的 resources/js 資料夾中，
+以便與 Laravel 的其他資源檔案整合。以下是建議的路徑結構：
+	resources/
+	├── js/
+	│   ├── components/
+	│   │   ├── App.jsx        // 核心應用程式組件
+	│   │   ├── Header.jsx     // 頁首組件
+	│   │   ├── Footer.jsx     // 頁尾組件
+	│   │   ├── pages/         // 頁面組件
+	│   │   │   ├── HomePage.jsx
+	│   │   │   ├── LoginPage.jsx
+	│   │   │   ├── RegisterPage.jsx
+	│   │   │   └── ...
+	│   │   ├── auth/          // 認證相關組件
+	│   │   │   ├── ConfirmPassword.jsx
+	│   │   │   ├── ForgotPassword.jsx
+	│   │   │   ├── ResetPassword.jsx
+	│   │   │   └── ...
+	│   │   └── allpage/       // 共用組件
+	│   │       ├── ErrorBoundary.jsx
+	│   │       ├── TextInput.jsx
+	│   │       ├── Button.jsx
+	│   │       └── InputError.jsx
+	│   ├── index.jsx          // React 應用的入口檔案
+	│   └── bootstrap.js       // 引導檔案 (例如設置 Axios 基礎路徑)
+	└── css/
+		└── app.css            // 全局樣式檔案

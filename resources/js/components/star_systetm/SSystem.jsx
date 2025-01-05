@@ -1,5 +1,6 @@
 import React from 'react'
 
+// (測試用)
 const SSystem = () => {
     return (
         <div className="rating">

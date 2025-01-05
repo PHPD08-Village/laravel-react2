@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or jQuery/publish'; // 更新為你的文件路徑 
+import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or jQuery/floatingbuttons';
+import Floatingbuttons from '../allpage/Floatingbuttons'
 
 const Pcontainer = () => {
     const [formData, setFormData] = useState({
+        uid: '1',
         title: '',
         contact_name: '',
         completion_time: '',
@@ -47,7 +49,7 @@ const Pcontainer = () => {
 
     const fetchPublishes = async () => {
         try {
-            const response = await axios.get('/api/get-publishes');
+            const response = await axios.get('/get-publishes');
             setPublishes(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error('Error fetching publishes:', error);
@@ -56,10 +58,10 @@ const Pcontainer = () => {
         }
     };
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
+    const handleChange = (e) => { // e 作為參數傳遞給 handleChange 函數
+        setFormData({ // 更新 formData 狀態的函數
+            ...formData, // 創建 formData 狀態的副本，並將新的表單輸入值添加到其中
+            [e.target.name]: e.target.value  // [e.target.name] 是一個「計算屬性名」，它會根據表單元素的 name 屬性的值來設置對應的狀態變數，動態地設置屬性名稱
         });
     };
 
@@ -71,7 +73,7 @@ const Pcontainer = () => {
             await axios.get('/sanctum/csrf-cookie');
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            const response = await axios.post('/api/submit-publish', formData, {
+            const response = await axios.post('/submit-publish', formData, {
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
@@ -204,20 +206,7 @@ const Pcontainer = () => {
             <div id="overlay" className="hidden"></div>
 
             {/* 懸浮按鈕區域 */}
-            <div className="floating-buttons">
-                <button className="floating-btn" id="profile-btn" title="個人資料">
-                    <img src="/img/Icon/Male User.png" alt="個人資料" />
-                </button>
-                <button className="floating-btn" id="notification-btn" title="通知">
-                    <img src="/img/Icon/Alarm.png" alt="通知" />
-                </button>
-                <button className="floating-btn" id="chat-btn" title="聊天">
-                    <img src="/img/Icon/Chat Message.png" alt="聊天" />
-                </button>
-                <button className="floating-btn" id="scroll-top-btn" title="返回頂部">
-                    <img src="/img/Icon/Upward Arrow.png" alt="返回頂部" />
-                </button>
-            </div>
+            <Floatingbuttons />
         </>
     );
 };

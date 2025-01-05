@@ -14,13 +14,6 @@ class Star extends Model
     protected $table = 'star'; // 明確指定表名為 'star'
     protected $primaryKey = 'sid'; // 指定主鍵欄位
 
-    // 在表單驗證或模型中添加約束來確保存儲的值在 1 到 5 之間。例如，在 Laravel 的模型中，可以使用屬性訪問器來限制範圍
-    // public function setAveratingAttribute($value)
-    // {
-    //     $this->attributes['averating'] = max(1, min($value, 5));
-    // }
-
-
     // 在 Laravel Eloquent 模型中，$fillable 屬性用來指定允許批量賦值（mass assignment）的欄位。批量賦值是一個將數組資料直接分配給模型屬性的過程。例如，當你從請求中獲取資料並將其賦值給模型時，只有在 $fillable 列表中的欄位才會被賦值。
     // 只有在 $fillable 屬性中指定的欄位（uid、averating、count）會被賦值，其他欄位會被忽略。這樣可以防止批量賦值漏洞（mass assignment vulnerability），確保僅授權的欄位被填充。
     protected $fillable = [
@@ -32,4 +25,18 @@ class Star extends Model
 
     // 每當新增或更新模型實例時，Laravel 會自動更新 created_at 和 updated_at 欄位
     public $timestamps = true; // 確保時間戳記自動管理
+
+    
+    // 添加保存前的範圍驗證
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            // 確保 averating 值在 1 到 5 之間
+            if ($model->averating < 1 || $model->averating > 5) {
+                throw new \InvalidArgumentException('Rating must be between 1 and 5.');
+            }
+        });
+    }
 }

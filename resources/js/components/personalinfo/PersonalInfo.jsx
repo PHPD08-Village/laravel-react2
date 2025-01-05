@@ -1,6 +1,6 @@
 import React from 'react';
-// import MyLayout from '../layouts/MyLayout';
-// import '../../../css/personalinfo.css';
+import Floatingbuttons from '../allpage/Floatingbuttons';
+import UserProject from './UserProject'; // 引入 UserProject 組件
 
 function PersonalInfo() {
     return (
@@ -89,65 +89,8 @@ function PersonalInfo() {
                 </div>
             </div>
             {/* 已完成專案 */}
-            <h2>已完成專案</h2>
-            <div className="pproject">
-                <div>
-                    <span>2024/10/10</span>
-                    <span>XXX公司網頁設計</span>
-                    <span>案主：XXX有限公司</span>
-                    {/* 語言標籤 */}
-                    <div className="ptag">
-                        <span>CSS</span>
-                        <span>SQL</span>
-                        <span>JavaScript</span>
-                        <span>PHP</span>
-                    </div>
-                </div>
-                <div>
-                    <span>2024/10/10</span>
-                    <span>XXX公司網頁設計</span>
-                    <span>案主：XXX有限公司</span>
-                    {/* 語言標籤 */}
-                    <div className="ptag">
-                        <span>CSS</span>
-                        <span>SQL</span>
-                        <span>JavaScript</span>
-                        <span>PHP</span>
-                    </div>
-                </div>
-                <div>
-                    <span>2024/10/10</span>
-                    <span>XXX公司網頁設計</span>
-                    <span>案主：XXX有限公司</span>
-                    {/* 語言標籤 */}
-                    <div className="ptag">
-                        <span>CSS</span>
-                        <span>SQL</span>
-                        <span>JavaScript</span>
-                        <span>PHP</span>
-                    </div>
-                </div>
-                <div>
-                    <span>2024/10/10</span>
-                    <span>XXX公司網頁設計</span>
-                    <span>案主：XXX有限公司</span>
-                    {/* 語言標籤 */}
-                    <div className="ptag">
-                        <span>CSS</span>
-                        <span>SQL</span>
-                        <span>JavaScript</span>
-                        <span>PHP</span>
-                    </div>
-                </div>
-                {/* 換頁按鈕 */}
-                <div className="pchangeBtn">
-                    <button id="lastPage">&lt;</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button id="nextPage">&gt;</button>
-                </div>
-            </div>
+            <UserProject /> {/* 使用 UserProject 組件 */}
+            <Floatingbuttons />
         </div>
     );
 }

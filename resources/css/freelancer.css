@@ -1,3 +1,8 @@
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .fcontainer {
     padding: 0 10px;
     display: flex;
@@ -12,11 +17,12 @@
     border-radius: 15px;
 }
 
-.fcode {}
-
-.ffilter {}
-
-.fprice {}
+.ffilter a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    margin: 5px;
+}
 
 .fkeywords {
     display: flex;
@@ -38,6 +44,101 @@
     /* 文字居中 */
 }
 
+/* 評價篩選的星星樣式 */
+.star-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.star-filter div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.star-filter .stars {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transition: transform 0.2s;
+}
+
+.star-filter .stars.selected {
+    transform: scale(1.2);
+    color: gold;
+    /* 確保這裡設置了金色 */
+}
+
+.star-icon {
+    color: gold;
+    /* 設置星星的顏色為金色 */
+    font-size: 2rem;
+    margin-right: 0.1rem;
+    flex-shrink: 0;
+}
+
+.fprice {}
+
+/* 預算篩選器樣式 */
+.budget-filter {
+    margin: 20px 0;
+}
+
+.budget-filter p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.slider-container {
+    margin-bottom: 10px;
+    width: 100%;
+    /* 你可以根據需要調整寬度，例如 80%, 600px 等 */
+}
+
+.slider-container input {
+    width: 300px;
+    ;
+    /* 這裡可設定寬度 */
+    height: 5px;
+    background: #ddd;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.slider-container input:hover {
+    opacity: 1;
+}
+
+.slider-container input::-webkit-slider-thumb {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.slider-container input::-moz-range-thumb {
+    width: 100%;
+    height: 100%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.budget-filter div span {
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+
 .fmaincontainer {
     flex: 8;
     padding: 10px 20px 10px 0px;
@@ -45,10 +146,25 @@
 
 .fsearch {
     display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中，這需要容器有高度 */
 }
 
-.fsearch>div {
-    flex: 2;
+.fsearch input {
+    width: 300px;
+}
+
+.fsearch button {
+    border: none;
+    /* 移除按鈕邊框 */
+    background: none;
+    /* 移除按鈕背景 */
+}
+
+.fsearch img {
+    width: 40px;
 }
 
 .fsearch .fkeyword {
@@ -96,6 +212,14 @@
     color: #354052;
 }
 
+/* .fcontent.one {
+    background-color: #7fc5d280;
+    height: 300px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    display: flex;
+}
+
 .fcontentone {
     background-color: #7fc5d280;
     height: 300px;
@@ -110,6 +234,11 @@
     padding: 0;
     margin: 0;
     font: inherit;
+} */
+
+/* 定義第一個內容的背景顏色 */
+.fcontent.first-item-background {
+    background-color: #7fc5d280;
 }
 
 .fcontent {
@@ -180,12 +309,6 @@
 
 .fstar {
     flex: 6;
-}
-
-.fstar img {
-    margin: 0 5px;
-    display: flex;
-    justify-content: flex-start;
 }
 
 .fcontent2 {
@@ -332,23 +455,26 @@
     display: flex;
     margin: 10px;
     justify-content: center;
-    align-items: center;
 }
 
-.ftab a {
+.ftab>.current-page {
+    background-color: #FFA500;
+}
+
+.ftab button {
     color: white;
     background-color: #464646;
+    height: 100%;
     border-radius: 5px;
-    padding: 9px 20px;
-    margin: 0 2px;
-    justify-content: center;
-    /* 水平置中 */
-    align-items: center;
-    /* 垂直置中 */
+    padding: 10px 20px;
+    margin: 0 5px;
 }
 
 .ftab img {
     width: 20px;
+}
+
+.fleftnext {
     display: flex;
     justify-content: center;
     /* 水平置中 */
@@ -356,39 +482,48 @@
     /* 垂直置中 */
 }
 
-.ftab p {
-    padding: 0 5px;
-    margin: 0 15px 5px 15px;
-}
-
-.fLeftnext {
+.frightnext {
     display: flex;
-    height: 20px;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
 }
 
-.fRightnext {
-    display: flex;
-    height: 20px;
-}
 
-.fLeftnext img {
-    flex: 1;
+
+
+/* 以下是星星 */
+.fstar-wrapper {
+    position: relative;
+    display: inline-block;
     width: 20px;
-    display: flex;
-    justify-content: center;
-    /* 水平置中 */
-    align-items: center;
-    /* 垂直置中 */
+    /* 根據需要調整寬度 */
+    height: 20px;
+    /* 根據需要調整高度 */
+    margin: 0 2px;
 }
 
-.fRightnext img {
-    flex: 1;
+.fstar-outline {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 根據需要調整寬度 */
+    height: 100%;
+    /* 根據需要調整高度 */
+    z-index: 2;
 }
 
-.fLeftnext p {
-    flex: 3;
-}
-
-.fRightnext p {
-    flex: 3;
+.fstar-filled {
+    color: gold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 根據需要調整寬度 */
+    height: 100%;
+    /* 根據需要調整高度 */
+    z-index: 1;
 }
