@@ -77,15 +77,8 @@ class SearchController extends Controller
         return response()->json(['message' => '案件已成功接案']);
     }
 
-    // 取消接案
-
-    // 接案者查看已接案案件
-
-    // 接案者查看已完成案件
-
-    // 接案者查看已取消案件
-
-
+    
+    
     // 收藏接案者
     public function addFavorite(Request $request)
     {
@@ -98,23 +91,31 @@ class SearchController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
+        
         return response()->json(['message' => '案件已成功收藏']);
     }
-
+    
     // 我要委託
     public function assignment(Request $request)
     {
         $uid = $request->uid;
         $userId = $request->user()->id;
-
+        
         DB::table('assignment')->insert([
             'uid' => $uid,
             'user_id' => $userId,
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
+        
         return response()->json(['message' => '案件已成功接案']);
     }
 }
+
+// 取消接案
+
+// 接案者查看已接案案件
+
+// 接案者查看已完成案件
+
+// 接案者查看已取消案件
