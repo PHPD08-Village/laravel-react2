@@ -42,7 +42,26 @@ class SearchController extends Controller
         return response()->json(['message' => '瀏覽次數更新成功']);
     }
 
-    // 點擊我要接案
+
+    // 收藏案件
+    public function addCaseFavorite(Request $request)
+    {
+        $caseId = $request->pid;
+        // $uid = $request->$userinfo->uid;
+        $userId = $request->user()->id;
+
+        DB::table('favorite_case')->insert([
+            'pid' => $caseId,
+            // 'uid' => $uid,
+            'user_id' => $userId,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return response()->json(['message' => '案件已成功收藏']);
+    }
+
+    // 我要接案
     public function takeCase(Request $request)
     {
         $caseId = $request->pid;
@@ -66,21 +85,36 @@ class SearchController extends Controller
 
     // 接案者查看已取消案件
 
-    
-    // 已收藏案件
+
+    // 收藏接案者
     public function addFavorite(Request $request)
-{
-    $caseId = $request->pid;
-    $userId = $request->user()->id;
+    {
+        $uid = $request->uid;
+        $userId = $request->user()->id;
 
-    DB::table('favorites')->insert([
-        'pid' => $caseId,
-        'user_id' => $userId,
-        'created_at' => now(),
-        'updated_at' => now()
-    ]);
+        DB::table('favorite_freelancer')->insert([
+            'uid' => $uid,
+            'user_id' => $userId,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
-    return response()->json(['message' => '案件已成功收藏']);
-}
+        return response()->json(['message' => '案件已成功收藏']);
+    }
 
+    // 我要委託
+    public function assignment(Request $request)
+    {
+        $uid = $request->uid;
+        $userId = $request->user()->id;
+
+        DB::table('assignment')->insert([
+            'uid' => $uid,
+            'user_id' => $userId,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        return response()->json(['message' => '案件已成功接案']);
+    }
 }

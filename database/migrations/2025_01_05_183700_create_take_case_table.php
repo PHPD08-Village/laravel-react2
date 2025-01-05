@@ -21,7 +21,7 @@ class CreateTakeCaseTable extends Migration
             $table->foreign('pid')->references('pid')->on('publish')->onDelete('cascade');
 
             // 添加關聯
-            // user_id 與 users 表 id (無法關聯)
+            // user_id 與 users 表 id
             // pid 與 publish 表 pid
             // uid 與 userinfo 表 uid
         });

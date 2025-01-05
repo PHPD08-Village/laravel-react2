@@ -58,10 +58,14 @@ Route::post('/api/userinfo', [UserInfoController::class, 'store']);
 Route::get('/api/get-userinfo-publish', [SearchController::class, 'getdata']);
 // 更新瀏覽次數
 Route::post('/api/click-count', [SearchController::class, 'updateViewCount']);
+// 處理 "收藏案件" 請求
+Route::post('/api/add-casefavorite', [SearchController::class, 'addCaseFavorite']);
 // 處理 "接案" 請求
 Route::post('/api/take-case', [SearchController::class, 'takeCase']);
-// 處理 "收藏" 請求
+// 處理 "收藏接案者" 請求
 Route::post('/api/add-favorite', [SearchController::class, 'addFavorite']);
+// 處理 "委託" 請求
+Route::post('/api/assignment', [SearchController::class, 'assignment']);
 
 
 // 阿桂的記得放前面
