@@ -2,9 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PersonalDataController;
 
-use App\Http\Controllers\UserInfoController;
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
-Route::get('/userinfo', [UserInfoController::class, 'index']);
-Route::post('/userinfo', [UserInfoController::class, 'store']);
-
+Route::post('/store-user', [PersonalDataController::class, 'store']); 
