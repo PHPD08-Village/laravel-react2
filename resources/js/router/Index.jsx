@@ -17,12 +17,15 @@ import SeleTaker from '../pages/SeleTaker';
 
 import Testform from '../pageslab/TestForm';
 import Publish2 from '../pageslab/Publish2';
+import Testfreelance from '../pageslab/Testfreelance';
+import Testsearchbox from '../pageslab/Testsearchbox';
 import TastExtract from '../pageslab/TestExtract';
 import Testfree from '../pageslab/Testfree';
 import TestPusher from '../pageslab/TestPusher';
 import TestPostForm from '../pageslab/TestPostForm';
 import Testuser from '../pageslab/Testuser';
 import TestSystem from '../pageslab/TestSystem';
+import Info from '../pages/InfoData';
 
 const Index = () => {
     return (
@@ -51,6 +54,7 @@ const Index = () => {
             <Route path="/testpostform" element={<TestPostForm />} />
             <Route path="/testuser" element={<Testuser />} />
             <Route path="/testsystem" element={<TestSystem />} />
+            <Route path="/infodata" element={<Info/>} />
         </Routes>
     );
 };

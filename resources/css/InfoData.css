@@ -1,0 +1,264 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+.ifcontainer {
+    flex: 8;
+    padding: 0 35px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+/* 資料整體 */
+.ifcontainer>.data {
+    display: flex;
+    width: 95%;
+}
+/* 上方標題快捷列 */
+.infoTitle {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    gap: 10px;
+}
+
+/* 左側欄位 */
+.leftCol {
+    flex: 1;
+}
+
+/* 右側欄位 */
+.rightCol {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftColOne {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* 案主接案者樣式 */
+.leftColOne>button {
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+/* 被選到 */
+.leftColOne>button:hover,
+.leftColOne>button.active {
+    background-color: #C9F1F9;
+    border: 1px solid #81C7D480;
+}
+
+/* 側邊欄選項樣式 */
+.leftItem>a:hover,
+.leftItem:hover {
+    color: #0070c9;
+}
+.leftItem{
+    list-style: none;
+    padding: 0 0 0 20px;
+}
+.leftColTwo ul {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/* 圖片 */
+ul li>img {
+    width: 20px;
+    height: 20px;
+    margin-right: 1px;
+}
+
+.leftColOne>ul>li>a {
+    color: #686161;
+}
+
+/* 右側欄位上半部 */
+.rightColOne {
+    flex: 1;
+    display: flex;
+    margin: 45px 0 20px 0;
+    padding: 10px 20px;
+    border: 2px solid #F0F0C2;
+    border-radius: 10px;
+    background-color: #F8F8E6;
+    justify-content: space-between;
+    align-items: last baseline;
+    position: relative;
+}
+/* 刊登案件鈕 */
+.rightColOne a:nth-last-child(1) {
+    background-color: #FF0000;
+    color: white;
+    border: 1px solid #FF0000;
+    box-shadow: 4px 4px 4px 0px #00000040;
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+/* 案件鈕hover */
+.rightColOne a:nth-last-child(1):hover {
+    background-color: #0056b3;
+    color: white;
+    border: 1px solid #0056b3;
+    box-shadow: 4px 4px 4px 0px #00000040;
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+/* 大頭照 */
+.rightColOne img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+/* 大頭貼 */
+.rightColOne div:nth-child(1) {
+    margin: 5px 10px;
+}
+/* 按鈕icon */
+.rightColOne a:nth-last-child(1)>img {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+}
+
+.rightColOne div:nth-child(2) {
+    flex: 1;
+    /* 讓文字區域自動擴展 */
+    margin-left: 10px;
+    /* 與圖片間隔 */
+    color: #333;
+}
+
+.rightColOne div:nth-child(2) span {
+    flex: 1;
+    margin: 0 80px 0 0;
+    font-size: 16px;
+}
+
+.rightColOne div:nth-child(2)>span:first-child {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+/* 右側欄位下半部 */
+.rightColTwo {
+    flex: 8;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 0 80px 0;
+    border: 2px solid #9ECED7;
+    border-radius: 10px;
+    background-color: #C8EDF4;
+}
+
+.rightColThree {
+    flex: 2;
+}
+
+.section {
+    padding: 10px;
+
+}
+
+.section div {
+    border: 1px solid #817D7D;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+    height: 150px;
+}
+
+.section a {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* 左側欄位 */
+.leftColTwo {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px 50px 0;
+    padding: 10px 20px;
+    background-color: #F8F8E6;
+    border: 1px solid #68616180;
+    border-radius: 10px;
+}
+
+/* 對齊 */
+.feedback form {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+/* 問題回報說明文字 */
+.feedback p {
+    color: #686161;
+    font-size: 14px;
+}
+
+/* 問題回報框 */
+textarea {
+    resize: none;
+    border-radius: 10px;
+    width: 80%;
+    height: 110px;
+    padding: 7px 0 0 7px;
+    font-size: 16px;
+}
+
+/* 按鈕樣式 */
+.feedback button {
+    background-color: #FFA500B2;
+    box-shadow: 2px 2px 4px 0px #00000040;
+    color: white;
+    border: 1px solid #FFA500B2;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.feedback button:hover {
+    background-color: white;
+    box-shadow: 2px 2px 4px 0px #00000040;
+    color: #FFA500B2;
+    border: 1px solid #FFA500B2;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
