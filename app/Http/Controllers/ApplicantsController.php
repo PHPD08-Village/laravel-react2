@@ -30,7 +30,7 @@ class ApplicantsController extends Controller
                     DB::raw('COALESCE(star.count, 0) as count') // 若無資料則為0
                 )
                 ->where('applicants.pid', $projectId)
-                ->orderBy('applicants.applied_at', 'desc')
+                ->orderBy('applicants.created_at', 'desc')
                 ->get();
 
             // 將 blob 轉換為 Base64 URL，並返回給前端讓前端能順利拿到可用的 url

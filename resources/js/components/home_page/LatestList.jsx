@@ -72,19 +72,27 @@ const LatestList = () => {
 
 const LatestCard = ({ latest, handleApply }) => {
     // 設置幾分鐘前更新
+    // 設置幾分鐘前更新
     const timeDifference = (timestamp) => {
         const now = moment();
         const updatedAt = moment(timestamp);
         const diffInMinutes = now.diff(updatedAt, 'minutes');
-        const diffInHours = now.diff(updatedAt, 'hours');
-        const diffInDays = now.diff(updatedAt, 'days');
+
+        // console.log(`現在時間: ${now.format()}`);
+        // console.log(`更新時間: ${updatedAt.format()}`);
+        // console.log(`相差分鐘數: ${diffInMinutes}`);
 
         if (diffInMinutes < 60) {
-            return `${diffInMinutes} 分鐘前更新`;
-        } else if (diffInHours < 24) {
-            return `${diffInHours} 小時前更新`;
+            return `${diffInMinutes} 分鐘前新增`;
+        } else if (diffInMinutes < 1440) {
+            const diffInHours = Math.floor(diffInMinutes / 60)
+            return `${diffInHours} 小時前新增`;
+        } else if (diffInMinutes < 10080) {
+            // 小於 7 天會顯示幾天前更新
+            const diffInDays = Math.floor(diffInMinutes / 1440);
+            return `${diffInDays} 天前新增`;
         } else {
-            return `${diffInDays} 天前更新`;
+            return `${updatedAt.format('YYYY-MM-DD')} 新增`
         }
     };
 
@@ -228,7 +236,7 @@ const LatestCard = ({ latest, handleApply }) => {
             </div>
             {/* </Link> */}
             <div className="cardFooter">
-                <label>{timeDifference(new Date(latest.updated_at).toLocaleDateString())}</label>
+                <label>{timeDifference(new Date(latest.updated_at).toISOString())}</label>
                 <button id="talk1" name="talk1">聊聊</button>
                 {/* 用箭頭函式確保 按鈕被點擊時 handleApply 才被調用 */}
                 {/* <a onClick={() => handleApply(latest.uid, latest.pid)} id="catchCase1" name="catchCase1">接案</a> */}

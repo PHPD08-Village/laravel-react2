@@ -34,6 +34,7 @@ function SelectTaker() {
             .catch(error => {
                 console.error('應徵者資料獲取失敗', error);
             });
+        // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
     }, [selectedPid])
 
     const assignTaker = (takerUid) => {
@@ -87,8 +88,8 @@ function SelectTaker() {
     return (
         <div className="mainContent">
             {/* 路徑連結 */}
-            <div className="path">
-                <div className="pathLink">
+            <div className="seleTakerpath">
+                <div className="seleTakerpathLink">
                     <img src="/img/Icon/Start.png" alt="icon" />
                     <a href="#">我的案件</a>
                     <label htmlFor="">&gt;</label>
@@ -96,40 +97,44 @@ function SelectTaker() {
                     <label htmlFor="">&gt;</label>
                     {/* 確認 applicants 是否有資料後再讀取 title */}
                     <a href="#">
-                        {applicants.length > 0 ? applicants[0].title : '載入中...'}
+                        {applicants.length > 0 ? applicants[0].title : '無資料'}
                     </a>
                 </div>
             </div>
             {/* content */}
-            <div className="allTaker">
+            <div className="seleTakerallTaker">
                 {/* {applicants.slice(currentIndex, currentIndex + 3).map(applicant => ( */}
-                {applicants.map(applicant => (
-                    // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
-                    <CaseApplicants
-                        // 大括號內的 applicant 是來自 map 的參數，代表目前正在處理的物件
-                        applicant={applicant}
-                        key={applicant.aid}
-                        // 大括號內的 assignTaker 是 SelectTaker 元件裡的 assignTaker 函數
-                        assignTaker={assignTaker}
-                        // 大括號內的 sendThanksNote 是 SelectTaker 元件裡的 sendThanksNote 函數
-                        sendThanksNote={sendThanksNote}
-                    />
-                ))}
+                {applicants && applicants.length > 0 ? (
+                    applicants.map(applicant => (
+                        // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
+                        <CaseApplicants
+                            // 大括號內的 applicant 是來自 map 的參數，代表目前正在處理的物件
+                            applicant={applicant}
+                            key={applicant.aid}
+                            // 大括號內的 assignTaker 是 SelectTaker 元件裡的 assignTaker 函數
+                            assignTaker={assignTaker}
+                            // 大括號內的 sendThanksNote 是 SelectTaker 元件裡的 sendThanksNote 函數
+                            sendThanksNote={sendThanksNote}
+                        />
+                    ))
+                ) : (
+                    <div className="seleTakercontent" style={{ display: 'block', height: '100%', textAlign: 'center' }}>查無資料</div>
+                )}
                 {/* {selectedPid && <CaseApplicants pid={selectedPid} />} */}
 
                 {/* content1 */}
-                {/* <div className="content">
-                    <div className="content1">
+                {/* <div className="seleTakercontent">
+                    <div className="seleTakercontent1">
                         <div style={{ flex: '1' }}></div>
-                        <div className="companyphoto">
+                        <div className="seleTakercompanyphoto">
                             <img src="/img/company1.png" alt="" />
                         </div>
-                        <div className="companyname">
+                        <div className="seleTakercompanyname">
                             <h4 style={{ margin: '5px' }}>快樂狗勾有限公司</h4>
                             <img src="/img/Icon/Green_Circle.png" alt="online" />
                         </div>
-                        <div className="companystar">
-                            <div className="userStar">
+                        <div className="seleTakercompanystar">
+                            <div className="seleTakeruserStar">
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>
                                 <ion-icon name="star"></ion-icon>
@@ -140,16 +145,16 @@ function SelectTaker() {
                             </div>
                         </div>
                     </div>
-                    <div className="content2">
-                        <div className="title">
+                    <div className="seleTakercontent2">
+                        <div className="seleTakertitle">
                             <h2>案件報價：$20,000 - $50,000</h2>
                         </div>
-                        <div className="location">地區：台灣/台北市信義區區區</div>
-                        <div className="casecontent">
+                        <div className="seleTakerlocation">地區：台灣/台北市信義區區區</div>
+                        <div className="seleTakercasecontent">
                             快樂狗狗為一個新上市的品牌，需要設計一個具有品牌風格的網站，
                             專注於提供優質、健康、和有趣的狗狗用品和有趣的狗狗用品和有趣的狗狗用品和有趣的狗狗用品和有趣的狗狗用品和有趣的狗狗用品和有趣的狗狗用品...更多
                         </div>
-                        <div className="require">
+                        <div className="seleTakerrequire">
                             <p>需求語言：</p>
                             <div>
                                 <p>HTML</p>
@@ -160,12 +165,12 @@ function SelectTaker() {
                             </div>
                         </div>
                     </div>
-                    <div className="content3">
-                        <div className="time">3分鐘前應徵</div>
-                        <div className="content3btn">
-                            <a className="casechat" href="#">聊聊</a>
-                            <a className="takecase" href="#">委託</a>
-                            <a className="thanksCard" href="#">感謝函</a>
+                    <div className="seleTakercontent3">
+                        <div className="seleTakertime">3分鐘前應徵</div>
+                        <div className="seleTakercontent3btn">
+                            <a className="seleTakercasechat" href="#">聊聊</a>
+                            <a className="seleTakertakecase" href="#">委託</a>
+                            <a className="seleTakerthanksCard" href="#">感謝函</a>
                         </div> */}
                 {/* <div style="flex: 0.7;"></div> */}
                 {/* </div>
@@ -173,7 +178,7 @@ function SelectTaker() {
                 <hr /> */}
 
                 {/* tab */}
-                <div className="tab">
+                <div className="seleTakertab">
                     <a href="">(箭頭)最前頁</a>
                     <a href="">(箭頭)上一頁</a>
                     <a style={{ color: '#464646', backgroundColor: '#FFA500', border: '1px solid #000000' }} href="">1</a>
@@ -199,21 +204,24 @@ const CaseApplicants = ({ applicant, assignTaker, sendThanksNote }) => {
     // 設置幾分鐘前更新
     const timeDifference = (timestamp) => {
         const now = moment();
-        const appliedAt = moment(timestamp);
-        const diffInMinutes = now.diff(appliedAt, 'minutes');
+        const updatedAt = moment(timestamp);
+        const diffInMinutes = now.diff(updatedAt, 'minutes');
 
-        // console.log(`現在時間: ${ now.format() }`);
-        // console.log(`更新時間: ${ appliedAt.format() }`);
-        // console.log(`相差分鐘數: ${ diffInMinutes }`);
+        // console.log(`現在時間: ${now.format()}`);
+        // console.log(`更新時間: ${updatedAt.format()}`);
+        // console.log(`相差分鐘數: ${diffInMinutes}`);
 
         if (diffInMinutes < 60) {
-            return `${diffInMinutes} 分鐘前應徵`;
+            return `${diffInMinutes} 分鐘前更新`;
         } else if (diffInMinutes < 1440) {
             const diffInHours = Math.floor(diffInMinutes / 60)
-            return `${diffInHours} 小時前應徵`;
-        } else {
+            return `${diffInHours} 小時前更新`;
+        } else if (diffInMinutes < 10080) {
+            // 小於 7 天會顯示幾天前更新
             const diffInDays = Math.floor(diffInMinutes / 1440);
-            return `${diffInDays} 天前應徵`;
+            return `${diffInDays} 天前更新`;
+        } else {
+            return `${updatedAt.format('YYYY-MM-DD')} 更新`
         }
     };
 
@@ -315,35 +323,35 @@ const CaseApplicants = ({ applicant, assignTaker, sendThanksNote }) => {
 
     return (
         <>
-            <div className="content">
-                <div className="content1">
+            <div className="seleTakercontent">
+                <div className="seleTakercontent1">
                     <div style={{ flex: '1' }}></div>
-                    <div className="companyphoto">
+                    <div className="seleTakercompanyphoto">
                         <img src={applicant.headshot} alt="" />
                     </div>
-                    {/* <div className="companyname">
+                    {/* <div className="seleTakercompanyname">
                                         <h4 style={{ margin: '5px' }}>{applicant.username}</h4>
                                         <img src="/img/Icon/Green_Circle.png" alt="online" />
                                     </div> */}
-                    <div className="companystar">
-                        <div className="userStar">
+                    <div className="seleTakercompanystar">
+                        <div className="seleTakeruserStar">
                             {decideStar(averating)}
                             <label id="starValue">{averating}/5</label>
                             <label id="starValueTotal">({count})</label>
                         </div>
                     </div>
                 </div>
-                <div className="content2">
-                    <div className="title">
+                <div className="seleTakercontent2">
+                    <div className="seleTakertitle">
                         <h2>{applicant.username}</h2>
-                        <span className="location">
+                        <span className="seleTakerlocation">
                             地區：{applicant.location}
                         </span>
                     </div>
-                    <div className="userEmail">聯絡方式：{applicant.email}</div>
-                    {/* <div className="selectBudget">案件價格：{formattedBudget}</div> */}
-                    <div className="casecontent" dangerouslySetInnerHTML={createMarkup(applicant.introduction)} />
-                    <div className="require">
+                    <div className="seleTakeruserEmail">聯絡方式：{applicant.email}</div>
+                    {/* <div className="seleTakerselectBudget">案件價格：{formattedBudget}</div> */}
+                    <div className="seleTakercasecontent" dangerouslySetInnerHTML={createMarkup(applicant.introduction)} />
+                    <div className="seleTakerrequire">
                         <p>專長語言：</p>
                         <div>
                             <p>HTML</p>
@@ -354,12 +362,12 @@ const CaseApplicants = ({ applicant, assignTaker, sendThanksNote }) => {
                         </div>
                     </div>
                 </div>
-                <div className="content3">
-                    <div className="time">{timeDifference(applicant.applied_at)}</div>
-                    <div className="content3btn">
-                        {/* <a className="casechat" href="#">聊聊</a> */}
-                        <a className="takecase" onClick={() => assignTaker(applicant.uid)}>委託</a>
-                        <a className="thanksCard" onClick={() => sendThanksNote(applicant.uid)}>感謝函</a>
+                <div className="seleTakercontent3">
+                    <div className="seleTakertime">{timeDifference(applicant.created_at)}</div>
+                    <div className="seleTakercontent3btn">
+                        {/* <a className="seleTakercasechat" href="#">聊聊</a> */}
+                        <a className="seleTakertakecase" onClick={() => assignTaker(applicant.uid)}>委託</a>
+                        <a className="seleTakerthanksCard" onClick={() => sendThanksNote(applicant.uid)}>感謝函</a>
                     </div>
                     {/* <div style="flex: 0.7;"></div> */}
                 </div>

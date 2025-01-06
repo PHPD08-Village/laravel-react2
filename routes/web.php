@@ -63,9 +63,8 @@ Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
 Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);
-Route::post('/api/get-cases/{cid}/switch-case', [PubForCaseMngController::class, 'toggle']);
+Route::post('/api/get-cases/switch-case', [PubForCaseMngController::class, 'toggle']);    // 案件管理頁面
 // });
-
 
 
 // use App\Http\Controllers\DataController;

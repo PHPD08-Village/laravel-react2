@@ -63,18 +63,24 @@ const ClickHighestCard = ({ clickHighest }) => {
         const now = moment();
         const updatedAt = moment(timestamp);
         const diffInMinutes = now.diff(updatedAt, 'minutes');
-        const diffInHours = now.diff(updatedAt, 'hours');
-        const diffInDays = now.diff(updatedAt, 'days');
+
+        // console.log(`現在時間: ${now.format()}`);
+        // console.log(`更新時間: ${updatedAt.format()}`);
+        // console.log(`相差分鐘數: ${diffInMinutes}`);
 
         if (diffInMinutes < 60) {
             return `${diffInMinutes} 分鐘前更新`;
-        } else if (diffInHours < 24) {
+        } else if (diffInMinutes < 1440) {
+            const diffInHours = Math.floor(diffInMinutes / 60)
             return `${diffInHours} 小時前更新`;
-        } else {
+        } else if (diffInMinutes < 10080) {
+            // 小於 7 天會顯示幾天前更新
+            const diffInDays = Math.floor(diffInMinutes / 1440);
             return `${diffInDays} 天前更新`;
+        } else {
+            return `${updatedAt.format('YYYY-MM-DD')} 更新`
         }
     };
-
 
     // 格式化日期字串
     const formatDate = (dateString) => {
@@ -96,10 +102,10 @@ const ClickHighestCard = ({ clickHighest }) => {
 
     // 將金額加逗號
     const [budget, setBudget] = useState('0');
-    useEffect(()=>{
+    useEffect(() => {
         let dbbudget = Math.floor(Number(clickHighest.budget));
         setBudget(dbbudget.toLocaleString());
-    },[clickHighest.budget])
+    }, [clickHighest.budget])
 
 
     // 判斷星星數量
@@ -209,7 +215,7 @@ const ClickHighestCard = ({ clickHighest }) => {
                 <p dangerouslySetInnerHTML={createMarkup(clickHighest.details)} />
             </div>
             <div className="cardFooter">
-                <label>{timeDifference(new Date(clickHighest.updated_at).toLocaleDateString())}</label>
+                <label>{timeDifference(new Date(clickHighest.updated_at).toISOString())}</label>
                 <button id="talk1" name="talk1">聊聊</button>
                 <a href="#" id="catchCase1" name="catchCase1">接案</a>
             </div>
