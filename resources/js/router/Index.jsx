@@ -26,6 +26,10 @@ import TestPostForm from '../pageslab/TestPostForm';
 import Testuser from '../pageslab/Testuser';
 import TestSystem from '../pageslab/TestSystem';
 import Info from '../pages/InfoData';
+import InfoCasePub from '../pages/InfoCasePublish';
+import InCase from '../pages/InfoCase';
+import InfoCo from '../pages/InfoCollect';
+import InfoClose from '../pages/InfoCloseCase';
 
 const Index = () => {
     return (
@@ -55,6 +59,10 @@ const Index = () => {
             <Route path="/testuser" element={<Testuser />} />
             <Route path="/testsystem" element={<TestSystem />} />
             <Route path="/infodata" element={<Info/>} />
+            <Route path="/infocasepub" element={<InfoCasePub/>} />
+            <Route path="/infocase" element={<InCase/>} />
+            <Route path="/infocollect" element={<InfoCo/>} />
+            <Route path="/infoclosecase" element={<InfoClose/>} />
         </Routes>
     );
 };

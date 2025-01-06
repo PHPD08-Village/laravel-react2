@@ -1,5 +1,6 @@
-import React from 'react'
-import Floatingbuttons from '../allpage/Floatingbuttons'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Floatingbuttons from '../allpage/Floatingbuttons';
 
 function infoData() {
   return (
@@ -21,8 +22,8 @@ function infoData() {
         <div className="leftCol">
             <div className="leftColTwo">
                 <div className="leftColOne">
-                    <button className="infoBtn active">案主</button>
-                    <button className="infoBtn">接案者</button>
+                    <button className="infoBtn active"><Link to="/infodata" className="alink">案主</Link></button>
+                    <button className="infoBtn"><Link to="/personal_editor" className="alink">接案者</Link></button>
                 </div>
                 <div>
                     <h3>帳戶管理</h3>
@@ -33,15 +34,15 @@ function infoData() {
                     <h3>案件管理</h3>
                     <hr />
                     <ul>
-                        <li className="leftItem"><a href="./InfoCase.html">審核中</a></li>
-                        <li className="leftItem"><a href="./InfoCasePublish.html">刊登中</a></li>
+                        <li className="leftItem"><Link to="/infocase" className="alink">審核中</Link></li>
+                        <li className="leftItem"><Link to="/infocasepub" className="alink">刊登中</Link></li>
                     </ul>
-                    <span className="leftItem"><a href="./InfoCloseCase.html">已完成/已關閉案件</a></span>
+                    <span className="leftItem"><Link to="/infoclosecase" className="alink">已完成/已關閉案件</Link></span>
                 </div>
                 <div>
                     <h3>人才管理</h3>
                     <hr />
-                    <span className="leftItem"><a href="./InfoCollect.html">已收藏人才</a></span>
+                    <span className="leftItem"><Link to="/infocollect" className="alink">已收藏人才</Link></span>
                 </div>
             </div>
         </div>
@@ -62,8 +63,8 @@ function infoData() {
                     </a>
                 </div>
             </div>
-            <div className="rightColTwo">
-                <div className="section caseNotify">
+            <div className="irightColTwo">
+                <div className="isection icaseNotify">
                     <h3>案件訊息通知</h3>
                     <div>
                         <ul>
@@ -76,7 +77,7 @@ function infoData() {
                     </div>
 
                 </div>
-                <div className="section systemNotify">
+                <div className="isection isystemNotify">
                     <h3>系統通知</h3>
                     <div>
                         <ul>
@@ -84,7 +85,7 @@ function infoData() {
                         </ul>
                     </div>
                 </div>
-                <div className="section records">
+                <div className="isection irecords">
                     <h3>瀏覽紀錄</h3>
                     <div>
                         <ul>
@@ -97,7 +98,7 @@ function infoData() {
                     </div>
 
                 </div>
-                <div className="section feedback">
+                <div className="isection ifeedback">
                     <h3>問題回報</h3>
                     <p>您對我們所提供的服務還滿意嗎？歡迎您提出建議給我們。</p>
                     <form>
@@ -107,7 +108,7 @@ function infoData() {
 
                 </div>
             </div>
-            <div className="rightColThree"></div>
+            
         </div>
     </div>
     <Floatingbuttons />

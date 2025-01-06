@@ -8,19 +8,13 @@ a {
     text-decoration: none;
     color: black;
 }
-.ifcontainer {
-    flex: 8;
-    padding: 0 35px;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-}
 
 /* 資料整體 */
-.ifcontainer>.data {
+.data {
     display: flex;
     width: 95%;
 }
+
 /* 上方標題快捷列 */
 .infoTitle {
     display: flex;
@@ -65,7 +59,6 @@ a {
     background-color: #C9F1F9;
     border: 1px solid #81C7D480;
 }
-
 /* 側邊欄選項樣式 */
 .leftItem>a:hover,
 .leftItem:hover {
@@ -104,6 +97,7 @@ ul li>img {
     align-items: last baseline;
     position: relative;
 }
+
 /* 刊登案件鈕 */
 .rightColOne a:nth-last-child(1) {
     background-color: #FF0000;
@@ -120,6 +114,7 @@ ul li>img {
     display: flex;
     align-items: center;
 }
+
 /* 案件鈕hover */
 .rightColOne a:nth-last-child(1):hover {
     background-color: #0056b3;
@@ -150,6 +145,7 @@ ul li>img {
 .rightColOne div:nth-child(1) {
     margin: 5px 10px;
 }
+
 /* 按鈕icon */
 .rightColOne a:nth-last-child(1)>img {
     width: 20px;
@@ -177,37 +173,75 @@ ul li>img {
 }
 
 /* 右側欄位下半部 */
-.irightColTwo {
+.rightColThree {
     flex: 8;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     margin: 0 0 80px 0;
-    border: 2px solid #9ECED7;
+    padding: 20px;
+    border: 1px solid #68616180;
+    background-color: #F8F8E6;
     border-radius: 10px;
-    background-color: #C8EDF4;
+}
+.rightColThree hr {
+    color: #68616180;
+    margin: 0 0 20px 0;
 }
 
-.irightColThree {
-    flex: 2;
+/* 合併邊框 */
+.rightColThree table {
+    width: 100%;
+    border-collapse: collapse;
+    min-height: 300px; /* 最小高度 */
 }
 
-.isection {
-    padding: 10px;
-
+/* 案件標題區 */
+.caseTitle {
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #C9F1F9;
+    border: 1px solid #81C7D480;
+    border-radius: 5px;
 }
-
-.isection div {
-    border: 1px solid #817D7D;
-    border-radius: 10px;
+/* 案件項目區 */
+.caseItem {
+    font-size: 20px;
+    padding: 10px 20px;
     background-color: white;
-    position: relative;
-    height: 150px;
+    border: 1px solid #68616180;
+    border-radius: 5px;
+    height: 100%;
 }
-
-.isection a {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+.caseTitle th {
+    border-left: 1px solid #68616180;
+    text-align: center;
+    padding: 10px 20px;
+}
+/* 去掉第一個標題的右側線 */
+.caseTitle th:first-child {
+    border-left: none;
+    text-align: left;
+}
+/* 表格內容樣式 */
+.caseItem td {
+    padding: 10px;
+    border-bottom: 1px dashed #ccc;
+    text-align: center;
+}
+/* 第一行靠左 */
+.caseItem td:first-child {
+    text-align: left;
+}
+/* 案件狀態、刪除鈕樣式 */
+.caseItem .status,
+.caseItem .delete {
+   color: red;
+}
+/* 編輯鈕樣式 */
+.caseItem .edit {
+    color: #000080;
 }
 
 /* 左側欄位 */
@@ -221,31 +255,8 @@ ul li>img {
     border-radius: 10px;
 }
 
-/* 對齊 */
-.ifeedback form {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-}
-
-/* 問題回報說明文字 */
-.ifeedback p {
-    color: #686161;
-    font-size: 14px;
-}
-
-/* 問題回報框 */
-textarea {
-    resize: none;
-    border-radius: 10px;
-    width: 80%;
-    height: 110px;
-    padding: 7px 0 0 7px;
-    font-size: 16px;
-}
-
 /* 按鈕樣式 */
-.ifeedback button {
+.feedback button {
     background-color: #FFA500B2;
     box-shadow: 2px 2px 4px 0px #00000040;
     color: white;
@@ -254,11 +265,16 @@ textarea {
     padding: 5px 15px;
 }
 
-.ifeedback button:hover {
+.feedback button:hover {
     background-color: white;
     box-shadow: 2px 2px 4px 0px #00000040;
     color: #FFA500B2;
     border: 1px solid #FFA500B2;
     border-radius: 5px;
     padding: 5px 15px;
+}
+/* 此頁側欄標記 */
+.caseActive {
+    color: #FF0000;
+    font-weight: 600;
 }
