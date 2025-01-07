@@ -1,53 +1,87 @@
-import React from 'react';
-import Price from '../../../../public/img/price.png'
+import React, { useState } from 'react';
+import { IonIcon } from '@ionic/react';
+import { star } from 'ionicons/icons';
 
-const Options = () => (
-    // <!-- options -->
-    <div className="ooptions">
-        {/* <!-- code type --> */}
-        <div className="ocode">
-            <h3>篩選條件</h3>
+import BudgetFilter from './BudgetFilter'; // 確保路徑正確
+
+const Options = ({ onKeywordClick, onFilterChange, onBudgetChange }) => {
+    const [selectedKeyword, setSelectedKeyword] = useState('');
+    const [selectedStars, setSelectedStars] = useState([]);
+
+    const handleKeywordClick = (keyword) => {
+        setSelectedKeyword(keyword);
+        console.log(`Selected keyword: ${keyword}`);
+        if (onKeywordClick) {
+            onKeywordClick(keyword);
+        }
+    };
+
+    const handleStarClick = (rating) => {
+        const newSelectedStars = [...selectedStars];
+        const index = newSelectedStars.indexOf(rating);
+        if (index !== -1) {
+            newSelectedStars.splice(index, 1);
+        } else {
+            newSelectedStars.push(rating);
+        }
+        setSelectedStars(newSelectedStars);
+        onFilterChange(newSelectedStars);
+    };
+
+    const renderStars = (count) => {
+        return Array.from({ length: count }).map((_, index) => (
+            <IonIcon
+                key={index}
+                icon={star}
+                className="star-icon" // 使用 CSS 類來應用樣式
+            />
+        ));
+    };
+
+    return (
+        <div className="foptions">
+            <div>
+                <h2>篩選條件</h2>
+                <hr />
+                <h3>程式分類</h3>
+                <div className="fkeywords">
+                    <a href="#" onClick={() => handleKeywordClick('HTML')}>HTML</a>
+                    <a href="#" onClick={() => handleKeywordClick('C++')}>C++</a>
+                    <a href="#" onClick={() => handleKeywordClick('UI')}>UI</a>
+                    <a href="#" onClick={() => handleKeywordClick('UX')}>UX</a>
+                    <a href="#" onClick={() => handleKeywordClick('JavaScript')}>JavaScript</a>
+                    <a href="#" onClick={() => handleKeywordClick('Python')}>Python</a>
+                    <a href="#" onClick={() => handleKeywordClick('SQL')}>SQL</a>
+                    <a href="#" onClick={() => handleKeywordClick('Java')}>Java</a>
+                    <a href="#" onClick={() => handleKeywordClick('PHP')}>PHP</a>
+                </div>
+            </div>
             <hr />
-            <h3>程式分類</h3>
-            <p>全端工程師 Full Stack Engineer</p>
-            <p>前端工程師 Front-End Engineer</p>
-            <p>後端工程師 Back-End Engineer</p>
-            <p>行動應用開發工程師 Mobile App Developer</p>
-            <p>資料工程師 Data Engineer</p>
-            <p>遊戲開發工程師 Game Developer</p>
-            <p>安全工程師 Security Engineer</p>
-            <p>DevOps工程師 DevOps Engineer</p>
-            <p>嵌入式系統工程師 Embedded Systems Engineer</p>
+            <div className="ffilter">
+                <h3>評價</h3>
+                <div className="star-filter">
+                    {[1, 2, 3, 4, 5].map((rating) => (
+                        <div
+                            key={rating}
+                            onClick={() => handleStarClick(rating)}
+                            className="star-container"
+                        >
+                            <div className={`stars ${selectedStars.includes(rating) ? 'selected' : ''}`}>
+                                {renderStars(rating)}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <hr />
+            {/* 添加預算篩選器 */}
+            <div className="fprice">
+                <h3>案件預算
+                </h3>
+                <BudgetFilter onBudgetChange={onBudgetChange} />
+            </div>
         </div>
-        <hr />
-        {/* <!-- filter --> */}
-        <div className="ofilter">
-            <h3>接案者相關篩選</h3>
-            <p>評價</p>
-            <p>今日更新</p>
-            <p>24HR內回覆</p>
-        </div>
-        <hr />
-        {/* <!-- price --> */}
-        <div className="oprice">
-            <h3>案件價錢</h3>
-            <img src={Price} alt="" />
-        </div>
-        <hr />
-        {/* <!-- Keywords --> */}
-        <h3>關鍵字</h3>
-        <div className="okeywords">
-            <a href="#">HTML</a>
-            <a href="#">C++</a>
-            <a href="#">UI</a>
-            <a href="#">UX</a>
-            <a href="#">JavaScript</a>
-            <a href="#">Python</a>
-            <a href="#">SQL</a>
-            <a href="#">Java</a>
-            <a href="#">PHP</a>
-        </div>
-    </div>
-);
+    );
+};
 
 export default Options;

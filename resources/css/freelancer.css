@@ -24,8 +24,6 @@
     margin: 5px;
 }
 
-.fprice {}
-
 .fkeywords {
     display: flex;
     /* 使用彈性盒模型 */
@@ -45,6 +43,101 @@
     text-align: center;
     /* 文字居中 */
 }
+
+/* 評價篩選的星星樣式 */
+.star-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.star-filter div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.star-filter .stars {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transition: transform 0.2s;
+}
+
+.star-filter .stars.selected {
+    transform: scale(1.2);
+    color: gold;
+    /* 確保這裡設置了金色 */
+}
+
+.star-icon {
+    color: gold;
+    /* 設置星星的顏色為金色 */
+    font-size: 2rem;
+    margin-right: 0.1rem;
+    flex-shrink: 0;
+}
+
+.fprice {}
+
+/* 預算篩選器樣式 */
+.budget-filter {
+    margin: 20px 0;
+}
+
+.budget-filter p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.slider-container {
+    margin-bottom: 10px;
+    width: 100%;
+    /* 你可以根據需要調整寬度，例如 80%, 600px 等 */
+}
+
+.slider-container input {
+    width: 300px;
+    ;
+    /* 這裡可設定寬度 */
+    height: 5px;
+    background: #ddd;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.slider-container input:hover {
+    opacity: 1;
+}
+
+.slider-container input::-webkit-slider-thumb {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.slider-container input::-moz-range-thumb {
+    width: 100%;
+    height: 100%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.budget-filter div span {
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
 
 .fmaincontainer {
     flex: 8;
@@ -119,7 +212,7 @@
     color: #354052;
 }
 
-.fcontent.one {
+/* .fcontent.one {
     background-color: #7fc5d280;
     height: 300px;
     border-radius: 10px;
@@ -141,6 +234,11 @@
     padding: 0;
     margin: 0;
     font: inherit;
+} */
+
+/* 定義第一個內容的背景顏色 */
+.fcontent.first-item-background {
+    background-color: #7fc5d280;
 }
 
 .fcontent {
@@ -300,7 +398,7 @@
 .fcontent3btn>a {
     flex: 1.5;
     color: black;
-    background-color: #F5F5DC;
+    background-color: #81C7D4;
     width: 75px;
     border-radius: 50px;
     padding: 0;
@@ -399,8 +497,10 @@
 .fstar-wrapper {
     position: relative;
     display: inline-block;
-    width: 20px; /* 根據需要調整寬度 */
-    height: 20px; /* 根據需要調整高度 */
+    width: 20px;
+    /* 根據需要調整寬度 */
+    height: 20px;
+    /* 根據需要調整高度 */
     margin: 0 2px;
 }
 
@@ -409,8 +509,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* 根據需要調整寬度 */
-    height: 100%; /* 根據需要調整高度 */
+    width: 100%;
+    /* 根據需要調整寬度 */
+    height: 100%;
+    /* 根據需要調整高度 */
     z-index: 2;
 }
 
@@ -419,36 +521,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* 根據需要調整寬度 */
-    height: 100%; /* 根據需要調整高度 */
+    width: 100%;
+    /* 根據需要調整寬度 */
+    height: 100%;
+    /* 根據需要調整高度 */
     z-index: 1;
 }
-
-
-
-
-
-/* .fstar-wrapper {
-    position: relative;
-    display: inline-block;
-    font-size: 1rem;
-    margin-right: 15px;
-}
-
-.fstar-outline {
-    color: grey;
-    position: absolute;
-    top: -15.5px;
-    left: -1.5px;
-    z-index: 1;
-    font-size: 1rem;
-}
-
-.fstar-filled {
-    color: gold;
-    position: absolute;
-    top: -14px;
-    left: 0;
-    z-index: 2;
-    font-size: 0.82rem;
-} */

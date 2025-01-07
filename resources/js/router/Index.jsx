@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/HomePage';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import Forgot from '../pages/Forgot';
 import Freelancer from '../pages/Freelancer';
 import Owner from '../pages/Owner';
 import Detail from '../pages/Detail';
@@ -11,20 +12,13 @@ import PersonalInfo from '../pages/PersonalInfo';
 import Star from '../pages/StarPage';
 import Publish from '../pages/Publish';
 import Personal from '../pages/Personal_editor';
-import NotFound from '../pages/NotfoundPage';
 import CaseMng from '../pages/CaseManager';
 import SeleTaker from '../pages/SeleTaker';
+import NotFound from '../pages/NotfoundPage';
 
-import Testform from '../pageslab/TestForm';
-import Publish2 from '../pageslab/Publish2';
-import Testfreelance from '../pageslab/Testfreelance';
-import Testsearchbox from '../pageslab/Testsearchbox';
-import TastExtract from '../pageslab/TestExtract';
-import Testfree from '../pageslab/Testfree';
-import TestPusher from '../pageslab/TestPusher';
-import TestPostForm from '../pageslab/TestPostForm';
-import Testuser from '../pageslab/Testuser';
-import TestSystem from '../pageslab/TestSystem';
+import CheckUserStatus from '../components/auth/CheckUserStatus';
+import TestForm from '../pages/TestForm';
+import TestForm2 from '../pages/TestForm2';
 
 const Index = () => {
     return (
@@ -32,6 +26,7 @@ const Index = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot" element={<Forgot />} />
             <Route path="/freelancer" element={<Freelancer />} />
             <Route path="/owner" element={<Owner />} />
             <Route path="/detail" element={<Detail />} />
@@ -43,16 +38,9 @@ const Index = () => {
             <Route path="/personal_editor" element={<Personal />} />
             <Route path="/*" element={<NotFound />} />
 
-            <Route path="/form" element={<Testform />} />{/* TestForm 頁面 */}
-            <Route path="/publish2" element={<Publish2 />} />{/* TestForm 頁面 */}
-            <Route path="/extract" element={<TastExtract />} />
-            <Route path="/testfree" element={<Testfree />} />
-            <Route path="/testfreelance" element={<Testfreelance />} />
-            <Route path="/testsearchbox" element={<Testsearchbox />} />
-            <Route path="/testpusher" element={<TestPusher />} />
-            <Route path="/testpostform" element={<TestPostForm />} />
-            <Route path="/testuser" element={<Testuser />} />
-            <Route path="/testsystem" element={<TestSystem />} />
+            <Route path="/checkuserstatus" element={<CheckUserStatus />} />
+            <Route path="/testForm" element={<TestForm />} />
+            <Route path="/testForm2" element={<TestForm2 />} />
         </Routes>
     );
 };

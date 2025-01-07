@@ -1,17 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import '../../css/login.css';
 
 const Login = () => {
-    return (
-        <>
-            <div>我想要登入</div>
-            <br />
-            <p>帳號:</p>
-            <input type="text" />
-            <br />
-            <p>密碼:</p>
-            <input type="text" />
-        </>
-    )
-}
+    const [htmlContent, setHtmlContent] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-export default Login
+    useEffect(() => {
+        // Fetch the Blade template HTML content
+        fetch('/login', {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(error => {
+                        throw new Error(error.message);
+                    });
+                }
+                return response.text();
+            })
+            .then(html => {
+                setHtmlContent(html);
+            })
+            .catch(error => {
+                setErrorMessage(error.message);
+            });
+    }, []);
+
+    return (
+        <div>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        </div>
+    );
+};
+
+export default Login;

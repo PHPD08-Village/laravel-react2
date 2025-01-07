@@ -49,7 +49,7 @@ const Pcontainer = () => {
 
     const fetchPublishes = async () => {
         try {
-            const response = await axios.get('/api/get-publishes');
+            const response = await axios.get('/get-publishes');
             setPublishes(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error('Error fetching publishes:', error);
@@ -73,7 +73,7 @@ const Pcontainer = () => {
             await axios.get('/sanctum/csrf-cookie');
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            const response = await axios.post('/api/submit-publish', formData, {
+            const response = await axios.post('/submit-publish', formData, {
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

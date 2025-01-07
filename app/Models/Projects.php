@@ -14,6 +14,7 @@ class Projects extends Model
 
     // 指定可以批量賦值的欄位
     protected $fillable = [
+        'uid',
         'name',
         'collection_id',
         'image',
@@ -24,6 +25,6 @@ class Projects extends Model
     // 定義與 UserInfo 模型的關聯
     public function UserInfo()
     {
-        return $this->belongsTo(UserInfo::class);
+        return $this->belongsTo(UserInfo::class, 'uid');
     }
 }
