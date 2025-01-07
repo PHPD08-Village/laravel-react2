@@ -175,10 +175,11 @@ hr:last-of-type{
     margin: auto;
 }
 
-.seleTakercontent3btn>a {
+.seleTakercontent3btn>button {
     color: black;
     background-color: #F5F5DC;
     width: 75px;
+    border: 0;
     border-radius: 50px;
     font-size: 0.9rem;
     padding: 10px 10px;

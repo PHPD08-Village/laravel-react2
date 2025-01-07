@@ -7,22 +7,38 @@ import moment from 'moment';
 
 const CaseManager = () => {
     const [cases, setCases] = useState([]);
-    const userId = 4;   // 假設已登入的用戶 ID
+    const [userId, setUserId] = useState(4);
+    // const userId = 4;   // 假設已登入的用戶 ID
     // const pid= cases.pid;
 
+    // useEffect(() => {
+    //     fetchCases(userId);
+    // }, [userId]);
+
+    // 把登入註冊串起來後用這種方式不知道為啥抓不到資料
+    // const fetchCases = async (userId) => {
+    //     try {
+    //         const response = await axios.get(`http://localhost:8000/api/get-cases/${userId}`);
+    //         setCases(response.data);
+
+    //     } catch (error) {
+    //         console.error("案件獲取失敗：", error);
+    //     }
+    // }
+
+    // 獲取應徵者資料
     useEffect(() => {
-        fetchCases(userId);
-    }, [userId]);
-
-    const fetchCases = async (userId) => {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/get-cases/${userId}`);
-            setCases(response.data);
-
-        } catch (error) {
-            console.error("案件獲取失敗：", error);
-        }
-    }
+        console.log(`開始獲取 uid = ${userId} 的用戶的所有案件資料`)
+        axios.get(`http://127.0.0.1:8000/api/get-cases/${userId}`)
+            .then(response => {
+                setCases(response.data);
+                console.log('成功獲取案件資料', response.data)
+            })
+            .catch(error => {
+                console.error('案件資料獲取失敗', error);
+            });
+        // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
+    }, [userId])
 
     // 設定案件的開關按鈕(目前沒辦法用)
     const handleSwitch = async (pid) => {
@@ -90,7 +106,7 @@ const CaseManager = () => {
     const click_count = cases.click_count ?? 0;
 
     return (
-        <div className="mainContent">
+        <div className="mainContent caseMngMainContent">
             <div className="caseMngPath">
                 {/* 路徑連結 */}
                 <div className="caseMngPathLink">

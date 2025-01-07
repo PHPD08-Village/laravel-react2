@@ -9,7 +9,7 @@ function StarHighestList() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        axios.get('/api/get-starhighest-taker')
+        axios.get('/get-starhighest-taker')
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setFreelancers(response.data);
@@ -21,6 +21,19 @@ function StarHighestList() {
                 console.error('最高評價用戶獲取失敗', error);
             });
     }, []);
+
+    // 委託接案者
+    const assignTaker = (takerUid) => {
+        axios.post(`http://127.0.0.1:8000/api/assign-taker/${selectedPid}`, { taker_uid: takerUid })
+            .then(response => {
+                console.log('成功委託 taker', response.data.message);
+                // 顯示成功訊息或更新狀態 
+                alert(`已成功委託 ${response.data.username}`)
+            })
+            .catch(error => {
+                console.error('分配 taker 失敗', error);
+            });
+    };
 
     const nextFreelancer = () => {
         // 當 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動
@@ -37,12 +50,12 @@ function StarHighestList() {
     };
 
     return (
-        <div className="starHighestTaker">
+        <div className="homestarHighestTaker">
             {/* <!-- 左箭頭 --> */}
             <button id="starHighestTakerLeft" onClick={prevFreelancer}>
                 <IonIcon icon={chevronBackOutline} />
             </button>
-            <div className="card">
+            <div className="homecard">
                 {/* <!-- 每一個案件卡片 --> */}
                 {Array.isArray(freelancers) && freelancers.slice(currentIndex, currentIndex + 3).map(starHighest => (
                     // 使用 StarHighestCard 元件顯示每個案件，並傳遞 starHighest 資料和唯一的 key
@@ -164,22 +177,22 @@ const StarHighestCard = ({ starHighest }) => {
 
 
     return (
-        <div className="cardSingle">
-            <div className="cardHeader">
-                <div className="imgGroup">
-                    <img className="backImg" src={starHighest.profile_back_img ?? '/img/Person/Background.jpg'}
+        <div className="homecardSingle">
+            <div className="homecardHeader">
+                <div className="homeimgGroup">
+                    <img className="homebackImg" src={starHighest.profile_back_img ?? '/img/Person/Background.jpg'}
                         alt="user background img" />
-                    <img className="avatar" src={starHighest.headshot ?? '/img/Icon/Male User.png'}
+                    <img className="homeavatar" src={starHighest.headshot ?? '/img/Icon/Male User.png'}
                         alt="avatar" />
                 </div>
-                <div className="takerUserName">
-                    <div className="userNameText">
+                <div className="hometakerUserName">
+                    <div className="homeuserNameText">
                         <h4> {starHighest.nickname} </h4>
                         <img src="/img/Icon/Green_Circle.png" alt="上線中" />
-                        <img className="keep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
+                        <img className="homekeep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
                     </div>
                     <div className="homeUserStar">
-                        <div className="starDiv">
+                        <div className="homestarDiv">
                             {decideStar(averating)}
                         </div>
                         <label id="starValue">{averating}/5</label>
@@ -187,36 +200,37 @@ const StarHighestCard = ({ starHighest }) => {
                     </div>
                 </div>
             </div>
-            <div className="cardContent">
-                <div className="quantityInfo">
+            <div className="homecardContent">
+                <div className="homequantityInfo">
                     <div id="workNum">
                         <label>作品：</label>
-                        <a href="#">55</a>
+                        <a href="#">{starHighest.portfolio}</a>
                     </div>
                     <div id="successTimes">
                         <label>成交：</label>
-                        <a href="#">20</a>
+                        <a href="#">{starHighest.num_of_succeed}</a>
                     </div>
-                    <div className="location">
+                    <div className="homelocation">
                         <img src="/img/Icon/Location.png" alt="location icon" />
-                        <label>可遠端</label>
+                        <label>{starHighest.location}</label>
                     </div>
                 </div>
-                <div className="codeLang">
+                <div className="homecodeLang">
                     <label>擅長語言：</label>
-                    <div className="codeLangA">
-                        <a href="#">HTML</a>
-                        <a href="#">CSS</a>
-                        <a href="#">C++</a>
-                        <a href="#">Java</a>
-                        <a href="#">PHP</a>
+                    <div className="homecodeLangA">
+                        <label href="#">HTML</label>
+                        <label href="#">CSS</label>
+                        <label href="#">C++</label>
+                        <label href="#">Java</label>
+                        <label href="#">PHP</label>
                     </div>
                 </div>
             </div>
-            <div className="cardFooter">
-                <label>2024/12/12上線</label>
+            <div className="homecardFooter">
+                {/* 這裡可以的話要放上次上線時間 */}
+                <label></label>
                 <button id="talk1" name="talk1">聊聊</button>
-                <a href="#" id="entrust1" name="entrust1">委託</a>
+                <button href="#" id="entrust1" name="entrust1">委託</button>
             </div>
         </div>
     );

@@ -49,11 +49,11 @@ const LatestList = () => {
 
     return (
         <React.Fragment>
-            <div className="latestCase">
+            <div className="homelatestCase">
                 <button id="latestCaseLeft" onClick={prevLatest}>
                     <IonIcon icon={chevronBackOutline} />
                 </button>
-                <div className="card">
+                <div className="homecard">
                     {/* 將 latestCases 陣列分割，並根據 currentIndex 取得當前顯示的三個案件 */}
                     {latestCases.slice(currentIndex, currentIndex + 3).map(latest => (
                         // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
@@ -194,17 +194,17 @@ const LatestCard = ({ latest, handleApply }) => {
 
 
     return (
-        <div className="cardSingle">
-            <div className="cardHeader">
-                <div className="userInfo">
+        <div className="homecardSingle">
+            <div className="homecardHeader">
+                <div className="homeuserInfo">
                     <img src={latest.headshot ?? '/img/Icon/Male User.png'} alt="avatar" />
-                    <div className="userName">
-                        <div className="userNameText">
+                    <div className="homeuserName">
+                        <div className="homeuserNameText">
                             <h4>{latest.nickname}</h4>
                             <img src="/img/Icon/Green_Circle.png" alt="上線中" />
                         </div>
-                        <div className="userStar">
-                            <div className="starDiv">
+                        <div className="homeUserStar">
+                            <div className="homestarDiv">
                                 {decideStar(averating)}
                             </div>
                             <label id="starValue">{averating}/5</label>
@@ -216,18 +216,18 @@ const LatestCard = ({ latest, handleApply }) => {
             </div>
             {/* <Link to={`/detail/${latest.pid}`}> */}
             {/* <Link to={`/detail`}> */}
-            <div className="cardContent">
+            <div className="homecardContent">
                 <Link to={`/detail`}>{latest.title}</Link>
-                <ul className="caseInfo">
-                    <li className="row">
+                <ul className="homecaseInfo">
+                    <li className="homerow">
                         <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
                         <label>{budget}</label>
                     </li>
-                    <li className="row">
+                    <li className="homerow">
                         <img src="/img/Icon/Location.png" alt="location icon" />
                         <label>{latest.location}</label>
                     </li>
-                    <li className="row">
+                    <li className="homerow">
                         <img src="/img/Icon/Time.png" alt="time icon" />
                         <label>{formatDate(latest.completion_time)}</label>
                     </li>
@@ -235,12 +235,12 @@ const LatestCard = ({ latest, handleApply }) => {
                 <p dangerouslySetInnerHTML={createMarkup(latest.details)} />
             </div>
             {/* </Link> */}
-            <div className="cardFooter">
+            <div className="homecardFooter">
                 <label>{timeDifference(new Date(latest.updated_at).toISOString())}</label>
                 <button id="talk1" name="talk1">聊聊</button>
                 {/* 用箭頭函式確保 按鈕被點擊時 handleApply 才被調用 */}
                 {/* <a onClick={() => handleApply(latest.uid, latest.pid)} id="catchCase1" name="catchCase1">接案</a> */}
-                <a onClick={() => handleApply(latest.pid)} id="catchCase1" name="catchCase1">接案</a>
+                <button onClick={() => handleApply(latest.pid)} id="catchCase1" name="catchCase1">接案</button>
             </div>
         </div>
     );

@@ -86,7 +86,7 @@
     flex-shrink: 0;
 }
 
-.fprice {}
+/* .fprice {} */
 
 /* 預算篩選器樣式 */
 .budget-filter {
@@ -425,9 +425,9 @@
     align-items: center;
 }
 
-.fcollect {}
+/* .fcollect {} */
 
-.ftakecase {}
+/* .ftakecase {} */
 
 .fpeople {
     flex: 1;

@@ -37,10 +37,11 @@ function SelectTaker() {
         // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
     }, [selectedPid])
 
+    // 委託接案者
     const assignTaker = (takerUid) => {
         axios.post(`http://127.0.0.1:8000/api/assign-taker/${selectedPid}`, { taker_uid: takerUid })
             .then(response => {
-                console.log('成功分配 taker', response.data.message);
+                console.log('成功委託 taker', response.data.message);
                 // 顯示成功訊息或更新狀態 
                 alert(`已成功委託 ${response.data.username}`)
             })
@@ -49,8 +50,9 @@ function SelectTaker() {
             });
     };
 
+    // 發送感謝函
     const sendThanksNote = (applicantUid) => {
-        const thanksMessage = "感謝您的應徵！經考慮後認為足下之專長或設計風格非我司所需，謝謝您的應徵！";
+        const thanksMessage = "經考慮後認為您之專長或設計風格非我司所需，感謝您的應徵！";
         const userConfirmed = window.confirm(`是否要發出感謝函: ${thanksMessage}`);
         if (userConfirmed) {
             axios.post(`http://127.0.0.1:8000/api/send-thanks-note/${selectedPid}`, {
@@ -366,8 +368,8 @@ const CaseApplicants = ({ applicant, assignTaker, sendThanksNote }) => {
                     <div className="seleTakertime">{timeDifference(applicant.created_at)}</div>
                     <div className="seleTakercontent3btn">
                         {/* <a className="seleTakercasechat" href="#">聊聊</a> */}
-                        <a className="seleTakertakecase" onClick={() => assignTaker(applicant.uid)}>委託</a>
-                        <a className="seleTakerthanksCard" onClick={() => sendThanksNote(applicant.uid)}>感謝函</a>
+                        <button className="seleTakertakecase" onClick={() => assignTaker(applicant.uid)}>委託</button>
+                        <button className="seleTakerthanksCard" onClick={() => sendThanksNote(applicant.uid)}>感謝函</button>
                     </div>
                     {/* <div style="flex: 0.7;"></div> */}
                 </div>
