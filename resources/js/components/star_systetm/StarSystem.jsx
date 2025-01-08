@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // const StarSystem = ({ userId }) => {
 const StarSystem = ({ userId, caseId }) => {
@@ -68,9 +69,11 @@ const StarSystem = ({ userId, caseId }) => {
         <div className="mainContent">
             <div className="pathLink">
                 <img src="/img/Icon/Start.png" alt="icon" />
-                <a href="#">我的案件</a>
+                <Link to="/personal_editor">我的案件</Link>
                 <label htmlFor=""> &gt; </label>
-                <a href="#">評價回饋</a>
+                <Link to="/case_manager">案件管理</Link>
+                <label htmlFor=""> &gt; </label>
+                <Link to="/star">評價回饋</Link>
             </div>
 
             <form onSubmit={handleSubmit} className="ratingSystem">

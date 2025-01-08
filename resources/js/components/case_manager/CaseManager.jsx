@@ -111,9 +111,9 @@ const CaseManager = () => {
                 {/* 路徑連結 */}
                 <div className="caseMngPathLink">
                     <img src="../img/Icon/Start.png" alt="icon" />
-                    <a href="#">我的案件</a>
+                    <Link to="/personal_editor">我的案件</Link>
                     <label htmlFor="">&gt;</label>
-                    <a href="#">案件管理</a>
+                    <Link to="/case_manager">案件管理</Link>
                 </div>
             </div>
             {/* content */}

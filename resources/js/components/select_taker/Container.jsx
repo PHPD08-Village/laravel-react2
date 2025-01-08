@@ -1,13 +1,13 @@
 import React from 'react';
 
 import SelectTaker from './SelectTaker'
-import Space from './Space'
+import Floatingbuttons from '../allpage/Floatingbuttons';
 
 const SeleTakercontainer = () => (
     <>
         <div className="container">
             <SelectTaker />
-            <Space />
+            <Floatingbuttons />
         </div>
     </>
 );
