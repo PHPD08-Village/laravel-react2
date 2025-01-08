@@ -17,16 +17,6 @@ import SeleTaker from '../pages/SeleTaker';
 
 import NotFound from '../pages/NotfoundPage';
 
-import Testform from '../pageslab/TestForm';
-import Publish2 from '../pageslab/Publish2';
-import Testfreelance from '../pageslab/Testfreelance';
-import Testsearchbox from '../pageslab/Testsearchbox';
-import TastExtract from '../pageslab/TestExtract';
-import Testfree from '../pageslab/Testfree';
-import TestPusher from '../pageslab/TestPusher';
-import TestPostForm from '../pageslab/TestPostForm';
-import Testuser from '../pageslab/Testuser';
-import TestSystem from '../pageslab/TestSystem';
 import Info from '../pages/InfoData';
 import InfoCasePub from '../pages/InfoCasePublish';
 import InCase from '../pages/InfoCase';
@@ -51,16 +41,6 @@ const Index = () => {
             <Route path="/personal_editor" element={<Personal />} />
             <Route path="/*" element={<NotFound />} />
 
-            <Route path="/form" element={<Testform />} />{/* TestForm 頁面 */}
-            <Route path="/publish2" element={<Publish2 />} />{/* TestForm 頁面 */}
-            <Route path="/extract" element={<TastExtract />} />
-            <Route path="/testfree" element={<Testfree />} />
-            <Route path="/testfreelance" element={<Testfreelance />} />
-            <Route path="/testsearchbox" element={<Testsearchbox />} />
-            <Route path="/testpusher" element={<TestPusher />} />
-            <Route path="/testpostform" element={<TestPostForm />} />
-            <Route path="/testuser" element={<Testuser />} />
-            <Route path="/testsystem" element={<TestSystem />} />
             <Route path="/infodata" element={<Info/>} /> {/* 案主頁面 */}
             <Route path="/infocasepub" element={<InfoCasePub/>} /> {/* 案主刊登案件 */}
             <Route path="/infocase" element={<InCase/>} /> {/* 案主案件審核 */}
