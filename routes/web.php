@@ -1,22 +1,28 @@
 <?php
 
-use App\Http\Controllers\PubForStarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublishController;
-use App\Http\Controllers\StarController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\ErrorLogController; // 添加新的控制器
 use App\Http\Controllers\SearchController; // 添加新的控制器
 use App\Http\Controllers\ProjectController;
 // use App\Http\Controllers\PubForStarController;
+use App\Http\Controllers\PersonalworksController;
+use App\Http\Controllers\PersonalDataController;
+use Illuminate\Foundation\Application;
+
+// 以下是戶長的
+use App\Http\Controllers\ApplicantsController;
+use App\Http\Controllers\PubForStarController;
+use App\Http\Controllers\StarController;
 use App\Http\Controllers\PubForHomeCaseController;
 use App\Http\Controllers\FreelancerForHomeController;
 use App\Http\Controllers\PubForCaseMngController;
-use App\Http\Controllers\PersonalworksController;
-use App\Http\Controllers\PersonalDataController;
+use App\Http\Controllers\AssignTakerController;
+use App\Http\Controllers\ApplyController;
+// 以上是戶長的
 
-use Illuminate\Foundation\Application;
 // 以下是 柯基 的
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -83,24 +89,28 @@ Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 
 Route::post('/api/log-error', [ErrorLogController::class, 'logError']);
 
 
-// React 路由配置應該在後面
 // 戶長的
 Route::post('/api/star', [StarController::class, 'store']);
-// Route::get('/api/get-star', [StarController::class, 'getAllstar']);
-// Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
+Route::get('/api/get-star', [StarController::class, 'getAllstar']);
+Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
 Route::get('/api/case/{caseId}', [PubForStarController::class, 'getCaseInfo']);
 // Route::get('/api/get-latest-projectsUser', [PubForHomeLatestController::class, 'getLatestProjUser']);   // 新增首頁最新案件發案人資訊 API
 Route::get('/api/get-latest-projects', [PubForHomeCaseController::class, 'getLatestProjects']);   // 新增首頁最新案件案件資訊 API
 Route::get('/api/get-clickhighest-projects', [PubForHomeCaseController::class, 'getCliHighestProjects']);   // 新增首頁點閱率最高案件資訊 API
 Route::get('/api/get-starhighest-taker', [FreelancerForHomeController::class, 'getStarHighestTaker']);   // 新增首頁點閱率最高案件資訊 API
+Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'getProjectApplicants']);   // 獲取選妃頁面的應徵者
+// Route::get('/api/get-project-title/{selectedPid}',[ApplicantsController::class,'getProjectTitle']);    // 獲取選妃頁面的當前案件的標題 
+Route::post('/api/assign-taker/{selectedPid}',[AssignTakerController::class, 'assignTaker']);   // 委託接案者
+Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);     // 發送感謝函
+Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
+
 
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
 Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);
-Route::post('/api/get-cases/{cid}/switch-case', [PubForCaseMngController::class, 'toggle']);
+Route::post('/api/get-cases/switch-case', [PubForCaseMngController::class, 'toggle']);    // 案件管理頁面
 // });
-
-
+    
 
 
 

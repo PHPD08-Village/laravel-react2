@@ -17,12 +17,12 @@ class PubForStarController extends Controller
         try {
             // 這裡的 'user' 是 Publish Model 的 user() 方法
             // $cases = Publish::with('user')->where('uid', $caseId)->first();
-            // $cases = Publish::where('cid', $caseId)->first();    //使用cid作為主鍵
+            // $cases = Publish::where('pid', $caseId)->first();    //使用pid作為主鍵
 
             $cases = DB::table('publish')
                 ->leftJoin('userinfo', 'publish.uid', '=', 'userinfo.uid')
-                ->select('publish.*', 'userinfo.username', 'userinfo.profile_picture')
-                ->where('cid', $caseId)
+                ->select('publish.*', 'userinfo.username', 'userinfo.headshot')
+                ->where('pid', $caseId)
                 ->first();
 
             
@@ -30,8 +30,8 @@ class PubForStarController extends Controller
                 return response()->json(['message' => '案件不存在'], 404);
             }
 
-            if ($cases->profile_picture) {
-                $cases->profile_picture = 'data:image/jpeg;base64,' . base64_encode($cases->profile_picture);
+            if ($cases->headshot) {
+                $cases->headshot = 'data:image/jpeg;base64,' . base64_encode($cases->headshot);
             }
 
             // return response()->json($cases);
@@ -39,7 +39,7 @@ class PubForStarController extends Controller
                 'title' => $cases->title,
                 'publisher_uid' => $cases->uid,
                 'username' => $cases->username,
-                'profile_picture' => $cases->profile_picture,
+                'headshot' => $cases->headshot,
                 // \Carbon\Carbon 把 created_at 字段解析成一個 Carbon 物件，然後用 format('Y/m/d') 來格式化它，使日期以「年/月/日」的格式輸出。
                 'publish_date' => \Carbon\Carbon::parse($cases->created_at)->format('Y/m/d'),
             ]);

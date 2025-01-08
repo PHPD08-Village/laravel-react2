@@ -35,14 +35,30 @@ class PubForCaseMngController extends Controller
         }
     }
 
-    public function toggle($cid)
+    public function toggle(Request $request)
     {
-        try {
-            $case = Publish::find($cid);
-            $case->is_open = !$case->is_open;
-            $case->save();
+        $request->validate([
+            'pid' => 'required|integer',
+        ]);
 
-            return response()->json($case);
+        try {
+            // 獲取當前 is_open 的值
+            $currentStatus = DB::table('publish')
+                ->where('pid', $request->pid)
+                ->value('is_open');
+
+            $newStatus = !$currentStatus;
+
+            // 更新 is_open 的值
+            DB::table('publish')
+                ->where('pid', $request->pid)
+                ->update(['is_open' => $newStatus]);
+
+            $updatedCase = DB::table('publish')
+                ->where('pid', $request->pid)
+                ->first();
+
+            return response()->json($updatedCase);
         } catch (\Exception $e) {
             log::error('toggle: ' . $e->getMessage());
             return response()->json(['message' => '無法切換案件狀態，請稍後再試', 'error' => $e->getMessage()]);

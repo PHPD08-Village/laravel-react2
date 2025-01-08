@@ -28,7 +28,7 @@ class StarController extends Controller
             }
 
             // 確認案件是否存在
-            $caseExist = Publish::where('cid', $request->caseId)->exists();
+            $caseExist = Publish::where('pid', $request->caseId)->exists();
             if (!$caseExist) {
                 log::error('案件不存在', ['caseId' => $request->caseId]);
                 return response()->json(['message' => '案件不存在'], 404);
@@ -61,6 +61,7 @@ class StarController extends Controller
                 $rating->updated_at = now();
             }
 
+            $rating->save();
             $rating->save();
 
             // Log::info('評價已成功提交', ['rating' => $rating]);

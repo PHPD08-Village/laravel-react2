@@ -22,8 +22,8 @@ class PubForHomeCaseController extends Controller
                 // ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
                 ->select(
                     'publish.*', 
-                    'userinfo.profile_picture', 
-                    'userinfo.username', 
+                    'userinfo.headshot', 
+                    'userinfo.nickname', 
                     DB::raw('COALESCE(star.averating, 0) as averating'), 
                     DB::raw('COALESCE(star.count, 0) as count'), 
                     )
@@ -33,9 +33,9 @@ class PubForHomeCaseController extends Controller
 
             // 將 blob 轉換為 Base64 URL，並返回給前端讓前端能順利拿到可用的 url
             foreach ($projects as $project) {
-                // if ($project->user && $project->user->profile_picture) {
-                if ($project->profile_picture) {
-                    $project->profile_picture = 'data:image/jpeg;base64,' . base64_encode($project->profile_picture);
+                // if ($project->user && $project->user->headshot) {
+                if ($project->headshot) {
+                    $project->headshot = 'data:image/jpeg;base64,' . base64_encode($project->headshot);
                 }
             }
             // foreach ($projects as $project) {
@@ -64,8 +64,8 @@ class PubForHomeCaseController extends Controller
                 // ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
                 ->select(
                     'publish.*', 
-                    'userinfo.profile_picture', 
-                    'userinfo.username', 
+                    'userinfo.headshot', 
+                    'userinfo.nickname', 
                     DB::raw('COALESCE(star.averating, 0) as averating'), 
                     DB::raw('COALESCE(star.count, 0) as count'), 
                     )
@@ -75,15 +75,15 @@ class PubForHomeCaseController extends Controller
 
             // 將 blob 轉換為 Base64 URL，並返回給前端讓前端能順利拿到可用的 url
             foreach ($projects as $project) {
-                // if ($project->user && $project->user->profile_picture) {
-                if ($project->profile_picture) {
-                    $project->profile_picture = 'data:image/jpeg;base64,' . base64_encode($project->profile_picture);
+                // if ($project->user && $project->user->headshot) {
+                if ($project->headshot) {
+                    $project->headshot = 'data:image/jpeg;base64,' . base64_encode($project->headshot);
                 }
             }
             
             // foreach ($projects as $project) {
-            //     if ($project->profile_picture) {
-            //         $project->profile_picture = 'data:image/jpeg;base64,' . base64_encode($project->user->profile_picture);
+            //     if ($project->headshot) {
+            //         $project->headshot = 'data:image/jpeg;base64,' . base64_encode($project->user->headshot);
             //     }
             // }
             // foreach ($projects as $project) {
