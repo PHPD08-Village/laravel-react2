@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect, useCallback, useImperativeHandle } from 'react';
 import axios from 'axios';
 
-export const AppContext = createContext();
+export const AppfreelancerContext = createContext();
 
 const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false); // 新增加載狀態
@@ -150,13 +150,13 @@ const AppProvider = ({ children }) => {
     
 
     return (
-        <AppContext.Provider value={{
+        <AppfreelancerContext.Provider value={{
             filteredResults, keywords, buttonKeywords, setKeywords, setButtonKeywords,
             sortingCriteria, setSortingCriteria, itemsPerPage, setItemsPerPage, 
             currentPage, setCurrentPage, totalPages, removeKeyword, removeButtonKeyword, filterData, isLoading, error, totalResultsCount
         }}>
             {children}
-        </AppContext.Provider>
+        </AppfreelancerContext.Provider>
     );
 };
 

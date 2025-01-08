@@ -1,9 +1,9 @@
 // freelancer2/components/filters/LanguageFilter.jsx
 import React, { useContext } from 'react';
-import { AppContext } from '../../AppProvider';
+import { AppfreelancerContext } from '../../AppProvider';
 
 const LanguageFilter = () => {
-    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(AppContext);
+    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(AppfreelancerContext);
 
     const handleLanguageClick = (language) => {
         const newButtonKeywords = buttonKeywords.includes(language)
