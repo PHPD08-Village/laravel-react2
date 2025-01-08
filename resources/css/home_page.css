@@ -349,6 +349,10 @@
     white-space: normal;
 }
 
+.cardContent>p{
+
+}
+
 /* 卡片的 Footer */
 .homecardFooter {
     margin: 20px 18px 0px;
