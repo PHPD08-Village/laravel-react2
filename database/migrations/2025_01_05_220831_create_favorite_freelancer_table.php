@@ -14,7 +14,7 @@ class CreateFavoriteFreelancerTable extends Migration
     {
         Schema::create('favorite_freelancer', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('uid'); // 接案者的用戶ID
+            $table->unsignedBigInteger('taker_id'); // 接案者的用戶ID
             $table->unsignedBigInteger('user_id');     // 收藏者的用戶ID
             $table->timestamps();
 

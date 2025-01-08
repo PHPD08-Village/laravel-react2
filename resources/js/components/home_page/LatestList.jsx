@@ -4,11 +4,13 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { IonIcon } from '@ionic/react';
 import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline } from 'ionicons/icons';
+import { useAuth } from '../auth/AuthContext';
 
 const LatestList = () => {
     const currentUser = { uid: 9 }   // 獲取當前登錄用戶的 uid
     const [latestCases, setLatestCases] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/get-latest-projects')
@@ -20,18 +22,37 @@ const LatestList = () => {
             });
     }, []);
 
+    const handleAddFavorite = async (pid) => {
+        if (!user) {
+            alert('請先登入才能收藏案件。');
+            return;
+        }
 
+        try {
+            const response = await axios.post('/add-casefavorite', { pid });
+            // console.log('Add favorite response:', response.data.message);
+            // 這裡可以添加一些提示或通知用戶已經成功收藏
+            alert(`${response.data.message}`)
+        } catch (error) {
+            console.error('Error adding favorite:', error);
+        }
+    };
 
     const handleApply = async (pid) => {
+        if (!user) {
+            alert('請先登入才能進行接案。');
+            return;
+        }
+
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/apply-case', {
                 uid: currentUser.uid,
                 pid: pid
             });
-            console.log(response.data.message);
-            alert('應徵送出成功！')
+            // console.log(response.data.message);
+            alert('接案意願送出成功！')
         } catch (error) {
-            console.error('應徵送出失敗，請稍後再試', error);
+            console.error('接案意願送出失敗，請稍後再試', error);
         }
     };
 
@@ -57,7 +78,7 @@ const LatestList = () => {
                     {/* 將 latestCases 陣列分割，並根據 currentIndex 取得當前顯示的三個案件 */}
                     {latestCases.slice(currentIndex, currentIndex + 3).map(latest => (
                         // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
-                        <LatestCard latest={latest} key={latest.pid} handleApply={handleApply} />
+                        <LatestCard latest={latest} key={latest.pid} handleApply={handleApply} handleAddFavorite={handleAddFavorite} />
                     ))}
                 </div>
                 <button id="latestCaseRight" onClick={nextLatest}>
@@ -70,8 +91,27 @@ const LatestList = () => {
 
 
 
-const LatestCard = ({ latest, handleApply }) => {
-    // 設置幾分鐘前更新
+const LatestCard = ({ latest, handleApply, handleAddFavorite }) => {
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    // 檢查收藏狀態 
+    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
+    useEffect(() => {
+        if (!user) {
+            return;
+        }
+
+        const checkFavoriteStatus = async () => {
+            try {
+                const response = await axios.post('/check-favorite', { uid: latest.uid });
+                setIsFavorite(response.data.isFavorite);
+            } catch (error) {
+                console.error('Error checking favorite status:', error);
+            }
+        }
+        checkFavoriteStatus();
+    }, [latest.uid]);
+
     // 設置幾分鐘前更新
     const timeDifference = (timestamp) => {
         const now = moment();
@@ -188,7 +228,7 @@ const LatestCard = ({ latest, handleApply }) => {
         } else {
             createStarElements(0, false, 5);
         }
-        console.log(starArray);
+        // console.log(starArray);
         return <>{starArray}</>;
     };
 
@@ -237,7 +277,7 @@ const LatestCard = ({ latest, handleApply }) => {
             {/* </Link> */}
             <div className="homecardFooter">
                 <label>{timeDifference(new Date(latest.updated_at).toISOString())}</label>
-                <button id="talk1" name="talk1">聊聊</button>
+                <button id="talk1" name="talk1" onClick={() => handleAddFavorite(latest.pid)}>收藏</button>
                 {/* 用箭頭函式確保 按鈕被點擊時 handleApply 才被調用 */}
                 {/* <a onClick={() => handleApply(latest.uid, latest.pid)} id="catchCase1" name="catchCase1">接案</a> */}
                 <button onClick={() => handleApply(latest.pid)} id="catchCase1" name="catchCase1">接案</button>
