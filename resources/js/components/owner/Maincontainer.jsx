@@ -1,7 +1,6 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import moment from 'moment';
 
-import { fetchData } from '../../JS or jQuery/fetchdata'
 import DataList from './DataList';
 
 const Maincontainer = forwardRef(({ selectedStars }, ref) => {
@@ -25,7 +24,25 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
     }));
 
     useEffect(() => {
-        fetchData(setIsLoading, setData, setFilteredData, setError);
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const response = await axios.get('/get-userinfo-publish');
+                let data = response.data; // response.data 從後端獲取的資料
+
+                // 確認資料結構
+                // console.log("Fetched Data:", data);
+
+                setData(data); // 初始化時顯示所有數據
+                setFilteredData(data); // 初始化時顯示所有數據
+            } catch (error) {
+                setError('Error fetching data');
+                console.error('Error fetching data', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        fetchData();
     }, []);
 
     const handleAddKeyword = () => {
@@ -111,8 +128,8 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
     const goToPreviousPage = () => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
     const goToNextPage = () => setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages);
     const goToLastPage = () => setCurrentPage(totalPages);
-    
-    
+
+
     return (
         <div className="fmaincontainer">
             <div className="fsearch">
