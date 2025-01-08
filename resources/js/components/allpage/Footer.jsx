@@ -6,7 +6,7 @@ const Footer = () => (
         <div className="icons">
             <div className="logo">
                 <a href="#">
-                    <img className="LanceDom" src="https://github.com/PHPD08-Village/PHPD08-Team/blob/main/img/Icon/LOGO.png?raw=true" alt="logo" />
+                    <img className="LanceDom" src="/img/Icon/LOGO.png" alt="logo" />
                 </a>
                 <a href="#">LanceDom</a>
             </div>

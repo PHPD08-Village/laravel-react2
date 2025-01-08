@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -35,6 +36,11 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
+// 驗證登入狀態
+Route::middleware('auth:sanctum')->get('/api/user', function (Request $request) {
+    return response()->json(['user' => $request->user()]);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
@@ -53,7 +59,10 @@ Route::middleware('auth')->group(function () {
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
-
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
 });
+
+// 登出
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/api/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
+

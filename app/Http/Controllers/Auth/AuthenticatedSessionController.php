@@ -7,21 +7,26 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Inertia\Response;
+use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
-    public function create(): Response
+    public function create(Request $request)
     {
-        return Inertia::render('Auth/Login', [
-            'canResetPassword' => Route::has('password.request'),
-            'status' => session('status'),
-        ]);
+        if (Auth::check() && !Auth::user()->hasVerifiedEmail()) {
+            if ($request->ajax()) {
+                return response()->json(['message' => 'Your email address is not verified.'], 403);
+            }
+            return redirect()->route('verification.notice');
+        }
+
+        if ($request->ajax()) {
+            return response()->view('auth.login', [], 200)->header('Content-Type', 'text/html');
+        }
+        return view('auth.login');
     }
 
     /**
@@ -39,7 +44,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
 
@@ -47,6 +52,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        if ($request->ajax()) {
+            return response()->json(['message' => 'Successfully logged out']);
+        }
+
+        return redirect('/'); // 瀏覽器請求跳轉到首頁
     }
 }

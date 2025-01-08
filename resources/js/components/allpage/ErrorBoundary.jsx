@@ -13,7 +13,7 @@ class ErrorBoundary extends Component {
 
     componentDidCatch(error, errorInfo) {
         // 將錯誤日誌發送到後端伺服器
-        fetch('/api/log-error', {
+        fetch('/log-error', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
