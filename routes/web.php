@@ -68,7 +68,7 @@ Route::post('/api/projects', [ProjectController::class, 'store']); // 新增專�
 Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更新專案
 Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
 Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
-Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
+// Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
 
 
 

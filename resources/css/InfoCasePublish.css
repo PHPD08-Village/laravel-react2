@@ -213,6 +213,7 @@ ul li>img {
     height: 100%;
 }
 .caseTitle th {
+    background-color: #C9F1F9;
     border-left: 1px solid #68616180;
     text-align: center;
     padding: 10px 20px;

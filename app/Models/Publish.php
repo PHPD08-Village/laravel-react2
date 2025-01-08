@@ -10,7 +10,7 @@ class Publish extends Model
     use HasFactory;
 
     protected $table = 'publish';
-    protected $primaryKey = 'cid';
+    protected $primaryKey = 'pid';
 
     protected $fillable = [
         'uid',
