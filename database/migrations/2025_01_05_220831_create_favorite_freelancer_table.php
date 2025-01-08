@@ -14,12 +14,12 @@ class CreateFavoriteFreelancerTable extends Migration
     {
         Schema::create('favorite_freelancer', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('uid'); // 接案者的用戶ID
+            $table->unsignedBigInteger('taker_id'); // 接案者的用戶ID
             $table->unsignedBigInteger('user_id');     // 收藏者的用戶ID
             $table->timestamps();
 
             // 添加外鍵約束
-            $table->foreign('uid')->references('uid')->on('userinfo')->onDelete('cascade');
+            $table->foreign('taker_id')->references('uid')->on('userinfo')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

@@ -224,12 +224,8 @@
     color: #354052;
 }
 
-.ocontentone {
+.ocontent.first-item-background {
     background-color: #7fc5d280;
-    height: 300px;
-    border-radius: 10px;
-    margin: 20px 10px;
-    display: flex;
 }
 
 .ocontentone a {

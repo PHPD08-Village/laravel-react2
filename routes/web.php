@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PubForStarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,20 +17,13 @@ use App\Http\Controllers\PersonalworksController;
 use App\Http\Controllers\PersonalDataController;
 
 use Illuminate\Foundation\Application;
-use Inertia\Inertia;
-
-// Breeze 提供的驗證路由
-Route::get('/', function () {
-    return Inertia::render('index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// 以下是 柯基 的
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\LineController;
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -39,6 +31,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Google 登入的重定向路由
+Route::get('login/google', [GoogleController::class, 'redirectToGoogle'])->name('login.google');
+// Google 登入後的回調路由
+Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+// Line 的路由
+Route::get('login/line', [LineController::class, 'redirectToProvider'])->name('login.line');;
+Route::get('login/line/callback', [LineController::class, 'handleProviderCallback']);
+require __DIR__ . '/auth.php'; // 載入 auth.php 中的路由
+
+
+
 
 // 將現有的 API 路由置於開始處
 // 案件刊登表單
@@ -64,22 +69,6 @@ Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更�
 Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
 Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
 Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
-
-// 戶長的
-// Route::post('/api/star', [StarController::class, 'store']);
-// Route::get('/api/get-star', [StarController::class, 'getAllstar']);
-// Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
-// Route::get('/api/case/{caseId}', [PubForStarController::class, 'getCaseInfo']);
-// Route::get('/api/get-latest-projectsUser', [PubForHomeLatestController::class, 'getLatestProjUser']);   // 新增首頁最新案件發案人資訊 API
-// Route::get('/api/get-latest-projects', [PubForHomeCaseController::class, 'getLatestProjects']);   // 新增首頁最新案件案件資訊 API
-// Route::get('/api/get-clickhighest-projects', [PubForHomeCaseController::class, 'getCliHighestProjects']);   // 新增首頁點閱率最高案件資訊 API
-// Route::get('/api/get-starhighest-taker', [FreelancerForHomeController::class, 'getStarHighestTaker']);   // 新增首頁點閱率最高案件資訊 API
-
-// 案件管理(暫時把登入條件拿掉)
-// Route::middleware('auth')->group(function () {
-    // Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);
-    // Route::post('/api/get-cases/{cid}/switch-case', [PubForCaseMngController::class, 'toggle']);
-    // });
 
 
 
@@ -120,13 +109,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/{any}', function(){
+Route::get('/{any}', function () {
     return view('index');
 })->where('any', ".*");
 
 // use App\Http\Controllers\DataController;
 
 // Route::post('/api/submit-data', [DataController::class, 'mydata']);
-
-
-

@@ -28,7 +28,7 @@ const Searchbox = forwardRef((props, ref) => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get('/api/get-userinfo-publish');
+                const response = await axios.get('/get-userinfo-publish');
                 setData(Array.isArray(response.data) ? response.data : []);
                 setFilteredData(Array.isArray(response.data) ? response.data : []);
             } catch (error) {

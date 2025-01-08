@@ -1,23 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import '../../css/signup.css';
 
 const Signup = () => {
-    return (
-        <>
-            <div>我想要註冊</div>
-            <br />
-            <p>帳號:</p>
-            <input type="text" />
-            <br />
-            <p>密碼:</p>
-            <input type="text" />
-            <br />
-            <p>確認密碼:</p>
-            <input type="text" />
-            <br />
-            <p>E-mail:</p>
-            <input type="text" />
-        </>
-    )
-}
+    const [htmlContent, setHtmlContent] = useState('');
 
-export default Signup
+    useEffect(() => {
+        // Fetch the Blade template HTML content
+        fetch('/register', {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(response => response.text())
+            .then(html => {
+                setHtmlContent(html);
+            });
+    }, []);
+
+    return (
+        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    );
+};
+
+export default Signup;
