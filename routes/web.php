@@ -2,15 +2,25 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+// 以下是 柯基 的
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\LineController;
+// 以上是 柯基 的
+
+// 以下是村民的
 use App\Http\Controllers\PublishController;
 use App\Http\Controllers\UserInfoController;
-use App\Http\Controllers\ErrorLogController; // 添加新的控制器
-use App\Http\Controllers\SearchController; // 添加新的控制器
+use App\Http\Controllers\ErrorLogController;
+use App\Http\Controllers\SearchController;
+// 以上是村民的
+
+// 以下是的阿桂的
 use App\Http\Controllers\ProjectController;
-// use App\Http\Controllers\PubForStarController;
 use App\Http\Controllers\PersonalworksController;
 use App\Http\Controllers\PersonalDataController;
-use Illuminate\Foundation\Application;
+// 以上是的阿桂的
 
 // 以下是戶長的
 use App\Http\Controllers\ApplicantsController;
@@ -23,11 +33,10 @@ use App\Http\Controllers\AssignTakerController;
 use App\Http\Controllers\ApplyController;
 // 以上是戶長的
 
-// 以下是 柯基 的
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\Auth\LineController;
 
+// 將現有的 API 路由置於開始處
+
+// 以下是 柯基 的 登入註冊
 Route::get('/dashboard', function () {
     return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -47,49 +56,45 @@ Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallb
 Route::get('login/line', [LineController::class, 'redirectToProvider'])->name('login.line');;
 Route::get('login/line/callback', [LineController::class, 'handleProviderCallback']);
 require __DIR__ . '/auth.php'; // 載入 auth.php 中的路由
+// 以上是 柯基 的
 
 
 
-
-// 將現有的 API 路由置於開始處
+// 以下是村民的
 // 案件刊登表單
 Route::post('/api/submit-publish', [PublishController::class, 'publish']);
 Route::get('/api/get-publishes', [PublishController::class, 'getAllPublishes']);
-
-// 評價表單
-Route::post('/api/star', [StarController::class, 'store']);
-// Route::get('/api/get-star', [StarController::class, 'getAllstar']);
-
-
 // 使用者資訊表單
 Route::post('/api/userinfo', [UserInfoController::class, 'store']);
-
 // 案件搜尋頁面
 Route::get('/api/get-userinfo-publish', [SearchController::class, 'getdata']);
+// 更新瀏覽次數
+Route::post('/api/click-count', [SearchController::class, 'updateViewCount']);
+// 處理 "收藏案件" 請求
+Route::post('/api/add-casefavorite', [SearchController::class, 'addCaseFavorite']);
+// 處理 "接案" 請求
+Route::post('/api/take-case', [SearchController::class, 'takeCase']);
+// 處理 "收藏接案者" 請求
+Route::post('/api/add-favorite', [SearchController::class, 'addFavorite']);
+// 處理 "委託" 請求
+Route::post('/api/assignment', [SearchController::class, 'assignment']);
+// 以上是村民的
 
-// 阿桂的記得放前面
+
+
+// 以下是的阿桂的記得放前面
 Route::get('/api/projects', [ProjectController::class, 'index']); // 取得所有專案
 Route::get('/api/projects/{id}', [ProjectController::class, 'show']); // 取得單一專案
 Route::post('/api/projects', [ProjectController::class, 'store']); // 新增專案
 Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更新專案
 Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
 Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
-// Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
+Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
+// 以上是的阿桂
 
 
 
-// 登入登出功能
-// Route::middleware(['auth'])->group(function () {
-//     // 使用者資訊表單
-//     Route::post('/api/userinfo', [UserInfoController::class, 'store']);
-//     Route::get('/api/userinfo', [UserInfoController::class, 'index']);
-// });
-
-// 添加錯誤日誌的路由
-Route::post('/api/log-error', [ErrorLogController::class, 'logError']);
-
-
-// 戶長的
+// 以下是戶長的
 Route::post('/api/star', [StarController::class, 'store']);
 Route::get('/api/get-star', [StarController::class, 'getAllstar']);
 Route::get('/api/star/{uid}', [StarController::class, 'getUserInfo']);
@@ -103,26 +108,23 @@ Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'get
 Route::post('/api/assign-taker/{selectedPid}',[AssignTakerController::class, 'assignTaker']);   // 委託接案者
 Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);     // 發送感謝函
 Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
-
-
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
 Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);
 Route::post('/api/get-cases/switch-case', [PubForCaseMngController::class, 'toggle']);    // 案件管理頁面
 // });
-    
+// 以上是戶長的
 
 
+// 添加錯誤日誌的路由
+Route::post('/api/log-error', [ErrorLogController::class, 'logError']);
 
 // React 路由的配置應該在後面
 Route::get('/', function () {
     return view('index');
 });
 
+// NotFond 頁面 
 Route::get('/{any}', function () {
     return view('index');
 })->where('any', ".*");
-
-// use App\Http\Controllers\DataController;
-
-// Route::post('/api/submit-data', [DataController::class, 'mydata']);
