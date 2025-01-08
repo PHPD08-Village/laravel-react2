@@ -58,11 +58,11 @@ const Index = () => {
             <Route path="/testpostform" element={<TestPostForm />} />
             <Route path="/testuser" element={<Testuser />} />
             <Route path="/testsystem" element={<TestSystem />} />
-            <Route path="/infodata" element={<Info/>} />
-            <Route path="/infocasepub" element={<InfoCasePub/>} />
-            <Route path="/infocase" element={<InCase/>} />
-            <Route path="/infocollect" element={<InfoCo/>} />
-            <Route path="/infoclosecase" element={<InfoClose/>} />
+            <Route path="/infodata" element={<Info/>} /> {/* 案主頁面 */}
+            <Route path="/infocasepub" element={<InfoCasePub/>} /> {/* 案主刊登案件 */}
+            <Route path="/infocase" element={<InCase/>} /> {/* 案主案件審核 */}
+            <Route path="/infocollect" element={<InfoCo/>} /> {/* 案主收藏 */}
+            <Route path="/infoclosecase" element={<InfoClose/>} /> {/* 案主關閉 */}
         </Routes>
     );
 };

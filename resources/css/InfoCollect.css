@@ -81,7 +81,7 @@ ul li>img {
 }
 
 /* 右側欄位上半部 */
-.corightColOne {
+.rightColOne {
     flex: 1;
     display: flex;
     margin: 45px 0 20px 0;
@@ -95,7 +95,7 @@ ul li>img {
 }
 
 /* 刊登案件鈕 */
-.corightColOne a:nth-last-child(1) {
+.rightColOne a:nth-last-child(1) {
     background-color: #FF0000;
     color: white;
     border: 1px solid #FF0000;
@@ -112,7 +112,7 @@ ul li>img {
 }
 
 /* 案件鈕hover */
-.corightColOne a:nth-last-child(1):hover {
+.rightColOne a:nth-last-child(1):hover {
     background-color: #0056b3;
     color: white;
     border: 1px solid #0056b3;
@@ -129,7 +129,7 @@ ul li>img {
 }
 
 /* 大頭照 */
-.corightColOne img {
+.rightColOne img {
     object-fit: cover;
     width: 80px;
     height: 80px;
@@ -138,18 +138,18 @@ ul li>img {
 }
 
 /* 大頭貼 */
-.corightColOne div:nth-child(1) {
+.rightColOne div:nth-child(1) {
     margin: 5px 10px;
 }
 
 /* 按鈕icon */
-.corightColOne a:nth-last-child(1)>img {
+.rightColOne a:nth-last-child(1)>img {
     width: 20px;
     height: 20px;
     margin-right: 2px;
 }
 
-.corightColOne div:nth-child(2) {
+.rightColOne div:nth-child(2) {
     flex: 1;
     /* 讓文字區域自動擴展 */
     margin-left: 10px;
@@ -157,13 +157,13 @@ ul li>img {
     color: #333;
 }
 
-.corightColOne div:nth-child(2) span {
+.rightColOne div:nth-child(2) span {
     flex: 1;
     margin: 0 80px 0 0;
     font-size: 16px;
 }
 
-.corightColOne div:nth-child(2)>span:first-child {
+.rightColOne div:nth-child(2)>span:first-child {
     font-weight: 600;
     font-size: 22px;
 }
@@ -230,6 +230,7 @@ ul li>img {
 }
 .cocaseTitle th {
     border-left: 1px solid #68616180;
+    background-color: #C9F1F9;
     text-align: center;
     padding: 10px 20px;
 }

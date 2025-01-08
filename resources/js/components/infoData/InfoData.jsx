@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Floatingbuttons from '../allpage/Floatingbuttons';
+import InfoSideBar from './InfoSideBar';
+import InfoBar from './InfoBar';
 
 function infoData() {
   return (
@@ -19,7 +21,7 @@ function infoData() {
     {/* <!-- 資料框框 --> */}
     <div className="data">
         {/* <!--左側欄位  --> */}
-        <div className="leftCol">
+        {/* <div className="leftCol">
             <div className="leftColTwo">
                 <div className="leftColOne">
                     <button className="infoBtn active"><Link to="/infodata" className="alink">案主</Link></button>
@@ -45,10 +47,11 @@ function infoData() {
                     <span className="leftItem"><Link to="/infocollect" className="alink">已收藏人才</Link></span>
                 </div>
             </div>
-        </div>
+        </div> */}
+        <InfoSideBar />
         {/* <!-- 右側欄位 --> */}
         <div className="rightCol">
-            <div className="rightColOne">
+            {/* <div className="rightColOne">
                 <div>
                     <img src="./imgs/bird.png" alt="使用者大頭照" />
                 </div>
@@ -62,7 +65,8 @@ function infoData() {
                         <span>刊登新案件</span>
                     </a>
                 </div>
-            </div>
+            </div> */}
+            <InfoBar/>
             <div className="irightColTwo">
                 <div className="isection icaseNotify">
                     <h3>案件訊息通知</h3>
