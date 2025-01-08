@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import Floating from './Floating';
+// import Floating from './Floating';
 import { initializePersonalEditor } from '../../JS or jQuery/Personal_editor'; // 引入 JavaScript 文件
 import { contentMapping } from '../../JS or jQuery/contentMapping'; // 引入 contentMapping
+import { Link } from 'react-router-dom';
 
 // 個人資訊編輯頁面
 const Personal_editor = () => {
@@ -27,7 +28,7 @@ const Personal_editor = () => {
                 <div className="sidebar">
                     {/* <!-- 切換按鈕 --> */}
                     <div className="switcher">
-                        <button id="client-btn" className="switch-btn">案主</button>
+                    <button id="client-btn" className="switch-btn"><Link to="/infodata" className="alink">案主</Link></button>
                         <button id="freelancer-btn" className="switch-btn active">接案者</button>
                     </div>
                     <div className="menu">
@@ -76,7 +77,7 @@ const Personal_editor = () => {
                     </div>
                 </div>
             </div>
-            <Floating />
+            {/* <Floating /> */}
         </>
     );
 }
