@@ -27,8 +27,8 @@ class FreelancerForHomeController extends Controller
 
             // 將 blob 轉換為 Base64 URL，並返回給前端讓前端能順利拿到可用的 url
             foreach ($freelancers as $freelancer) {
-                if ($freelancer->profile_picture) {
-                    $freelancer->profile_picture = 'data:image/jpeg;base64,' . base64_encode($freelancer->profile_picture);
+                if ($freelancer->headshot) {
+                    $freelancer->headshot = 'data:image/jpeg;base64,' . base64_encode($freelancer->headshot);
                 }
                 if ($freelancer->profile_back_img) {
                     $freelancer->profile_back_img = 'data:image/jpeg;base64,' . base64_encode($freelancer->profile_back_img);

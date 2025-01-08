@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Floating from './Floating';
 
-// import '../../JS or jQuery/Personal_editor'
+import '../../JS or jQuery/personal_editor'
 
 // 個人資訊編輯頁面(測試中)
 const Personal_editor = () => {
@@ -13,25 +13,25 @@ const Personal_editor = () => {
         // 更新右側內容
         function refreshContent(itemName) {
             const topBarHTML = `
-            <div class="top-bar">
-                <div class="avatar-info">
-                    <div class="avatar-upload">
+            <div className="top-bar">
+                <div className="avatar-info">
+                    <div className="avatar-upload">
                         <input type="file" id="avatarInput" accept="image/*" hidden>
-                        <label for="avatarInput" class="avatar-box">
-                            <img src="./img/Person/avatar.jpg" alt="大頭貼" class="avatar-img">
+                        <label htmlFor="avatarInput" className="avatar-box">
+                            <img src="./img/Person/avatar.jpg" alt="大頭貼" className="avatar-img">
                         </label>
                     </div>
-                    <div class="avatar-details">
+                    <div className="avatar-details">
                         <span>你好！XXXX</span>
                         <span>會員編號：XXXX</span>
                     </div>
                 </div>
-                <button class="top-bar-button">刊登新服務</button>
+                <button className="top-bar-button">刊登新服務</button>
             </div>
         `;
 
             rowsContainer.innerHTML = topBarHTML + (contentMapping[itemName] || `
-            <div class="info-box">
+            <div className="info-box">
                 <h3>${itemName}</h3>
                 <hr>
                 <p>暫無內容。</p>
