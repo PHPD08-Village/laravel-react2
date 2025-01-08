@@ -17,12 +17,12 @@ class PubForStarController extends Controller
         try {
             // 這裡的 'user' 是 Publish Model 的 user() 方法
             // $cases = Publish::with('user')->where('uid', $caseId)->first();
-            // $cases = Publish::where('cid', $caseId)->first();    //使用cid作為主鍵
+            // $cases = Publish::where('pid', $caseId)->first();    //使用pid作為主鍵
 
             $cases = DB::table('publish')
                 ->leftJoin('userinfo', 'publish.uid', '=', 'userinfo.uid')
                 ->select('publish.*', 'userinfo.username', 'userinfo.profile_picture')
-                ->where('cid', $caseId)
+                ->where('pid', $caseId)
                 ->first();
 
             

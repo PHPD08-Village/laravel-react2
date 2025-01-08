@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { IonIcon } from '@ionic/react';
+import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline } from 'ionicons/icons';
 
 const LatestList = () => {
     const [latestCases, setLatestCases] = useState([]);
@@ -33,17 +35,17 @@ const LatestList = () => {
         <React.Fragment>
             <div className="latestCase">
                 <button id="latestCaseLeft" onClick={prevLatest}>
-                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <IonIcon icon={chevronBackOutline} />
                 </button>
                 <div className="card">
                     {/* 將 latestCases 陣列分割，並根據 currentIndex 取得當前顯示的三個案件 */}
                     {latestCases.slice(currentIndex, currentIndex + 3).map(latest => (
                         // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
-                        <LatestCard latest={latest} key={latest.cid} />
+                        <LatestCard latest={latest} key={latest.pid} />
                     ))}
                 </div>
                 <button id="latestCaseRight" onClick={nextLatest}>
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    <IonIcon icon={chevronForwardOutline} />
                 </button>
             </div>
         </React.Fragment>
@@ -77,11 +79,18 @@ const LatestCard = ({ latest }) => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    // 偵測到資料庫中的文字換行時就換行
+    // 這邊設置一個函式，return 的東西需要放在標籤中，並使用 dangerouslySetInnerHTML 屬性
+    const createMarkup = (text) => {
+        return { __html: text.replace(/\n/g, '<br>') };
+    };
+
     // 獲取評價資料，若不存在則設置為 0
     // 這邊的 user 源頭是 Publish Model 的 user() 方法，所以這邊的 user 是 User Model 的資料，而 star 是 User Model 的 star() 方法，所以這邊的 star 是 Star Model 的資料
     // const averatingRaw = latest.user.star?.averating ?? 0;
     const averatingRaw = latest.averating ?? 0;
     const count = latest.count ?? 0;
+    const click_count = latest.click_count ?? 0;
     // 將評價資料轉換為浮點數，並取小數點後一位
     const averating = parseFloat(averatingRaw).toFixed(1);
 
@@ -284,15 +293,15 @@ const LatestCard = ({ latest }) => {
     // AI 重構教的
     const decideStar = (averating) => {
         const starArray = [];
-        const starFilled = <ion-icon name="star" className="star-filled"></ion-icon>;
-        const starHalf = <ion-icon name="star-half" className="star-filled"></ion-icon>;
-        const starOutline = <ion-icon name="star-outline" className="star-outline"></ion-icon>;
+        const starFilled = <IonIcon icon={star} className="star-filled" />;
+        const starHalfIcon = <IonIcon icon={starHalf} className="star-filled" />;
+        const starOutlineIcon = <IonIcon icon={starOutline} className="star-outline" />;
 
         const createStarElements = (filled, half, outline) => {
             for (let i = 0; i < filled; i++) {
                 starArray.push(
                     <span className="star-wrapper" key={i}>
-                        {starOutline}
+                        {starOutlineIcon}
                         {starFilled}
                     </span>
                 );
@@ -300,8 +309,8 @@ const LatestCard = ({ latest }) => {
             if (half) {
                 starArray.push(
                     <span className="star-wrapper" key={filled}>
-                        {starOutline}
-                        {starHalf}
+                        {starOutlineIcon}
+                        {starHalfIcon}
                     </span>
                 );
                 filled++;
@@ -309,7 +318,7 @@ const LatestCard = ({ latest }) => {
             for (let i = filled; i < 5; i++) {
                 starArray.push(
                     <span className="star-wrapper" key={i}>
-                        {starOutline}
+                        {starOutlineIcon}
                     </span>
                 );
             }
@@ -365,28 +374,28 @@ const LatestCard = ({ latest }) => {
                         </div>
                     </div>
                 </div>
-                <label id="clickCount">{latest.click_count}點閱率</label>
+                <label id="clickCount">{click_count}點閱率</label>
             </div>
-            {/* <Link to={`/detail/${latest.cid}`}> */}
+            {/* <Link to={`/detail/${latest.pid}`}> */}
             {/* <Link to={`/detail`}> */}
-                <div className="cardContent">
-                    <Link to={`/detail`}>{latest.title}</Link>
-                    <ul className="caseInfo">
-                        <li className="row">
-                            <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
-                            <label>{Math.floor(latest.budget)}</label>
-                        </li>
-                        <li className="row">
-                            <img src="/img/Icon/Location.png" alt="location icon" />
-                            <label>{latest.location}</label>
-                        </li>
-                        <li className="row">
-                            <img src="/img/Icon/Time.png" alt="time icon" />
-                            <label>{formatDate(latest.completion_time)}</label>
-                        </li>
-                    </ul>
-                    <p>{latest.details}</p>
-                </div>
+            <div className="cardContent">
+                <Link to={`/detail`}>{latest.title}</Link>
+                <ul className="caseInfo">
+                    <li className="row">
+                        <img src="/img/Icon/Us Dollar Circled.png" alt="dolar icon" />
+                        <label>{Math.floor(latest.budget)}</label>
+                    </li>
+                    <li className="row">
+                        <img src="/img/Icon/Location.png" alt="location icon" />
+                        <label>{latest.location}</label>
+                    </li>
+                    <li className="row">
+                        <img src="/img/Icon/Time.png" alt="time icon" />
+                        <label>{formatDate(latest.completion_time)}</label>
+                    </li>
+                </ul>
+                <p dangerouslySetInnerHTML={createMarkup(latest.details)} />
+            </div>
             {/* </Link> */}
             <div className="cardFooter">
                 <label>{timeDifference(new Date(latest.updated_at).toLocaleDateString())}</label>

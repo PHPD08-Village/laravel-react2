@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { IonIcon } from '@ionic/react'
+import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline } from 'ionicons/icons';
+
 
 const ClickHighestList = () => {
     const [cliHighestCases, setCliHighestCases] = useState([]);
@@ -34,18 +37,18 @@ const ClickHighestList = () => {
             <div className="clickHighestCase">
                 {/* <!-- 左箭頭 --> */}
                 <button id="clickHighestCaseLeft" onClick={prevClickHigh}>
-                    <ion-icon name="chevron-back-outline"></ion-icon>
+                    <IonIcon icon={chevronBackOutline} />
                 </button>
                 <div className="card">
                     {/* 將 cliHighestCases 陣列分割，並根據 currentIndex 取得當前顯示的三個案件 */}
                     {cliHighestCases.slice(currentIndex, currentIndex + 3).map(clickHighest => (
                         // 使用 ClickHighestCard 元件顯示每個案件，並傳遞 clickHighest 資料和唯一的 key
-                        <ClickHighestCard clickHighest={clickHighest} key={clickHighest.cid} />
+                        <ClickHighestCard clickHighest={clickHighest} key={clickHighest.pid} />
                     ))}
                 </div>
                 {/* <!-- 右箭頭 --> */}
                 <button id="clickHighestCaseRight" onClick={nextClickHigh}>
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    <IonIcon icon={chevronForwardOutline} />
                 </button>
             </div>
         </React.Fragment>
@@ -79,6 +82,12 @@ const ClickHighestCard = ({ clickHighest }) => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    // 偵測到資料庫中的文字換行時就換行
+    // 這邊設置一個函式，return 的東西需要放在標籤中，並使用 dangerouslySetInnerHTML 屬性
+    const createMarkup = (text) => {
+        return { __html: text.replace(/\n/g, '<br>') };
+    };
+
     // 獲取評價資料，若不存在則設置為 0
     const averatingRaw = clickHighest.averating ?? 0;
     const count = clickHighest.count ?? 0;
@@ -90,15 +99,15 @@ const ClickHighestCard = ({ clickHighest }) => {
     // AI 重構教的
     const decideStar = (averating) => {
         const starArray = [];
-        const starFilled = <ion-icon name="star" className="star-filled"></ion-icon>;
-        const starHalf = <ion-icon name="star-half" className="star-filled"></ion-icon>;
-        const starOutline = <ion-icon name="star-outline" className="star-outline"></ion-icon>;
+        const starFilled = <IonIcon icon={star} className="star-filled" />;
+        const starHalfIcon = <IonIcon icon={starHalf} className="star-filled" />;
+        const starOutlineIcon = <IonIcon icon={starOutline} className="star-outline" />;
 
         const createStarElements = (filled, half, outline) => {
             for (let i = 0; i < filled; i++) {
                 starArray.push(
                     <span className="star-wrapper" key={i}>
-                        {starOutline}
+                        {starOutlineIcon}
                         {starFilled}
                     </span>
                 );
@@ -106,8 +115,8 @@ const ClickHighestCard = ({ clickHighest }) => {
             if (half) {
                 starArray.push(
                     <span className="star-wrapper" key={filled}>
-                        {starOutline}
-                        {starHalf}
+                        {starOutlineIcon}
+                        {starHalfIcon}
                     </span>
                 );
                 filled++;
@@ -115,27 +124,39 @@ const ClickHighestCard = ({ clickHighest }) => {
             for (let i = filled; i < 5; i++) {
                 starArray.push(
                     <span className="star-wrapper" key={i}>
-                        {starOutline}
+                        {starOutlineIcon}
                     </span>
                 );
             }
         };
 
-        if (averating >= 4.5 && averating < 5) {
+        // 四捨五入至小數點後第一位，以確保這個參數的數字只到小數點後第一位
+        const roundedAverating = Math.round(averating * 10) / 10;
+
+        if (roundedAverating > 4 && roundedAverating < 5) {
             createStarElements(4, true, 0);
-        } else if (averating >= 3.5 && averating < 4.5) {
+        } else if (roundedAverating > 3 && roundedAverating < 4) {
             createStarElements(3, true, 1);
-        } else if (averating >= 2.5 && averating < 3.5) {
+        } else if (roundedAverating > 2 && roundedAverating < 3) {
             createStarElements(2, true, 2);
-        } else if (averating >= 1.5 && averating < 2.5) {
+        } else if (roundedAverating > 1 && roundedAverating < 2) {
             createStarElements(1, true, 3);
-        } else if (averating >= 0.5 && averating < 1.5) {
+        } else if (roundedAverating > 0 && roundedAverating < 1) {
             createStarElements(0, true, 4);
-        } else if (averating === 5) {
+        } else if (roundedAverating === 5) {
             createStarElements(5, false, 0);
+        } else if (roundedAverating === 4) {
+            createStarElements(4, false, 1);
+        } else if (roundedAverating === 3) {
+            createStarElements(3, false, 2);
+        } else if (roundedAverating === 2) {
+            createStarElements(2, false, 3);
+        } else if (roundedAverating === 1) {
+            createStarElements(1, false, 4);
         } else {
             createStarElements(0, false, 5);
         }
+        console.log(starArray);
         return <>{starArray}</>;
     };
 
@@ -177,7 +198,7 @@ const ClickHighestCard = ({ clickHighest }) => {
                         <label>{formatDate(clickHighest.completion_time)}</label>
                     </li>
                 </ul>
-                <p>{clickHighest.details}</p>
+                <p dangerouslySetInnerHTML={createMarkup(clickHighest.details)} />
             </div>
             <div className="cardFooter">
                 <label>{timeDifference(new Date(clickHighest.updated_at).toLocaleDateString())}</label>
@@ -189,11 +210,3 @@ const ClickHighestCard = ({ clickHighest }) => {
 }
 
 export default ClickHighestList;
-
-
-
-
-
-{/* <ion-icon name="star-outline"></ion-icon>
-<ion-icon name="star"></ion-icon>
-<ion-icon name="star-half"></ion-icon> */}

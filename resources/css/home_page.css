@@ -284,6 +284,8 @@
 /* 卡片的內容 */
 .cardContent {
     margin: 15px;
+    height: 55%;
+    overflow: hidden;
 }
 
 .cardContent>a {
@@ -309,17 +311,21 @@
 }
 
 .cardContent>.caseInfo>li:nth-child(1) {
-    width: 70%;
+    width: 60%;
     font-size: 1.25rem;
     color: #FF0004;
 }
 
 .cardContent>.caseInfo>li:nth-child(2) {
-    width: 30%;
+    width: 40%;
 }
 
 .cardContent>.caseInfo>li>label {
     margin-left: 5px;
+}
+
+.cardContent>p{
+
 }
 
 /* 卡片的 Footer */
