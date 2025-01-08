@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import StarSystem from './StarSystem'
-import Space from './Space'
+
 
 const StarPage = () => {
     return (
