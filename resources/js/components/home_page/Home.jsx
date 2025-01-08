@@ -13,7 +13,7 @@ const Home = () => {
   return (
     // <!-- 案件頁面-- >
     <React.Fragment>
-      <div className="mainContent">
+      <div className="mainContent homemainContent">
         <h1>最新案件</h1>
         <LatestList />
         {/* <div className="latestCase"> */}

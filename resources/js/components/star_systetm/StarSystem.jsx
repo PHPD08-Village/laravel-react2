@@ -94,7 +94,7 @@ const StarSystem = ({ userId, caseId }) => {
                 <hr />
                 {caseInfo && (
                     <div className="staruserInfo">
-                        <img src={caseInfo.profile_picture} alt="avatar" />
+                        <img src={caseInfo.headshot} alt="avatar" />
                         <div className="staruserInfoText">
                             <h3 id="caseName" name="caseName">{caseInfo.title}</h3>
                             <p id="userName" name="userName">{caseInfo.username}</p>
