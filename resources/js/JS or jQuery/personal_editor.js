@@ -45,6 +45,7 @@ export const initializePersonalEditor = () => {
                 </div>
             </div>
         `,
+
         "作品專區": `
         <div id="portfolio-content" class="info-box">
             <h3>作品專區</h3>
@@ -69,7 +70,8 @@ export const initializePersonalEditor = () => {
                     <button class="page-btn">3</button>
                 </div>
             </div>
-        </div>`,
+        </div>
+        `,
 
         "我的刊登服務": `
     <div id="services-content" class="info-box">
@@ -118,8 +120,8 @@ export const initializePersonalEditor = () => {
             </tbody>
         </table>
     </div>
-`
-        ,
+        `,
+
         "已收藏案件": `
     <div id="saved-jobs-content" class="info-box">
         <h3>
@@ -158,7 +160,8 @@ export const initializePersonalEditor = () => {
             </tbody>
         </table>
     </div>
-`,
+        `,
+
         "編輯個人資料": `
         <div id="profile-edit-content" class="info-box">
     <h3>基本資料<span class="required-hint">*為必填項目</span></h3>
@@ -307,7 +310,7 @@ export const initializePersonalEditor = () => {
                     </div>
                 </form>
             </div>
-    `
+        `,
     };
 
     // 更新右側內容
