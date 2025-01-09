@@ -58,15 +58,27 @@ const ClickHighestList = () => {
     };
 
     const nextClickHigh = () => {
-        if (currentIndex < cliHighestCases.length - 3) {
+        // 當 currentIndex 小於 clickHighestCases 陣列的長度減 3 時，才能往下一個滑動
+        // 這邊的 currentIndex 是指目前顯示的第一個案件的索引，所以當 currentIndex 小於 freelancers 陣列的長度減 3 時，代表還有案件可以顯示
+        // 如果 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動 
+        if (currentIndex + 3 < cliHighestCases.length) {
+            // 檢查如果當前顯示的是第7,8,9筆資料，則只增加一筆資料 
+            if (currentIndex >= cliHighestCases.length - 4 && currentIndex < cliHighestCases.length - 1) {
+                setCurrentIndex(currentIndex + 1);
+            } else {
+                setCurrentIndex(currentIndex + 3);
+            }
+        } else if (currentIndex + 1 < cliHighestCases.length) {
             setCurrentIndex(currentIndex + 1);
+        }
+
+        if (currentIndex >= cliHighestCases.length - 3) {
+            setCurrentIndex(cliHighestCases.length - 3); // 停留在第8、9、10筆資料顯示的狀態 
         }
     };
 
     const prevClickHigh = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-        }
+        if (currentIndex - 3 >= 0) { setCurrentIndex(currentIndex - 3); } else { setCurrentIndex(0); }
     }
 
     return (
