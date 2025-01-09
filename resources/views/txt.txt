@@ -231,3 +231,48 @@ userinfo 資料表
 		};
 
 		export default Testfreelance;
+
+
+
+
+
+element 屬性在
+	React Router v5 Link 設置：<Link to={{ pathname: "/detail", state: { pid: item.pid } }} className='link'>
+
+	React Router v6 中使用，Link 傳遞 state 的方式不同。
+	Link 使用 useNavigate：在 DataList.jsx 中，你可以使用 useNavigate 來進行導航並傳遞 state。
+	<div className="fcontent2" onClick={() => navigate("/detail", { state: { pid: item.pid } })}>
+
+
+
+
+
+
+
+在一個典型的 Laravel 和 React 專案中，這些檔案應該放置在專案的 resources/js 資料夾中，
+以便與 Laravel 的其他資源檔案整合。以下是建議的路徑結構：
+	resources/
+	├── js/
+	│   ├── components/
+	│   │   ├── App.jsx        // 核心應用程式組件
+	│   │   ├── Header.jsx     // 頁首組件
+	│   │   ├── Footer.jsx     // 頁尾組件
+	│   │   ├── pages/         // 頁面組件
+	│   │   │   ├── HomePage.jsx
+	│   │   │   ├── LoginPage.jsx
+	│   │   │   ├── RegisterPage.jsx
+	│   │   │   └── ...
+	│   │   ├── auth/          // 認證相關組件
+	│   │   │   ├── ConfirmPassword.jsx
+	│   │   │   ├── ForgotPassword.jsx
+	│   │   │   ├── ResetPassword.jsx
+	│   │   │   └── ...
+	│   │   └── allpage/       // 共用組件
+	│   │       ├── ErrorBoundary.jsx
+	│   │       ├── TextInput.jsx
+	│   │       ├── Button.jsx
+	│   │       └── InputError.jsx
+	│   ├── index.jsx          // React 應用的入口檔案
+	│   └── bootstrap.js       // 引導檔案 (例如設置 Axios 基礎路徑)
+	└── css/
+		└── app.css            // 全局樣式檔案

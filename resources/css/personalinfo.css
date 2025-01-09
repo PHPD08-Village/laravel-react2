@@ -333,7 +333,16 @@ body {
     color: #F0F0F0;
 }
 
-.pcontainer .pbtn:hover {
+.pcontainer .pbtn:hover,
+.pcontainer .pactive {
     background-color: #FFA50080;
     color: black;
+}
+#pno-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 60px;
 }

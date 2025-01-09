@@ -1,18 +1,26 @@
-.path {
+hr{
+    border: 1px solid rgb(195, 195, 195);
+}
+
+hr:last-of-type{
+    display: none;
+}
+
+.seleTakerpath {
     margin: 30px 0;
 }
 
-.pathLink {
+.seleTakerpathLink {
     display: flex;
     align-items: center;
     font-size: 1.4rem;
 }
 
-.pathLink>a {
+.seleTakerpathLink>a {
     color: black;
 }
 
-.allTaker {
+.seleTakerallTaker {
     background-color: #D9D9D9;
     border-radius: 10px;
     margin: 40px 0px;
@@ -21,7 +29,7 @@
     display: block !important;
 }
 
-.contentone {
+.seleTakercontentone {
     background-color: #7fc5d280;
     height: 300px;
     border-radius: 10px;
@@ -29,14 +37,14 @@
     display: flex;
 }
 
-.content {
+.seleTakercontent {
     height: 300px;
     border-radius: 10px;
     margin: 0 20px;
     display: flex;
 }
 
-.content1 {
+.seleTakercontent1 {
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -44,7 +52,7 @@
     align-items: center;
 }
 
-.companyphoto {
+.seleTakercompanyphoto {
     /* flex: 8; */
     height: 120px;
     width: 120px;
@@ -56,7 +64,7 @@
     align-items: center;
 }
 
-.companyphoto img {
+.seleTakercompanyphoto img {
     border-radius: 50%;
     max-width: 100%;
     /* 確保圖片不超出父容器 */
@@ -66,7 +74,7 @@
     object-fit: cover;
 }
 
-.companyname {
+.seleTakercompanyname {
     flex: 2;
     display: flex;
     text-align: center;
@@ -74,69 +82,69 @@
     align-items: center;
 }
 
-.companyname>h4 {
+.seleTakercompanyname>h4 {
     display: inline;
 }
 
-.companystar {
+.seleTakercompanystar {
     flex: 2;
     text-align: center;
     margin: 5px;
 }
 
-.userStar {
+.seleTakeruserStar {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.userStar>label {
+.seleTakeruserStar>label {
     font-size: 0.7rem;
     margin-left: 10px;
 }
 
-.content2 {
+.seleTakercontent2 {
     flex: 7;
     display: flex;
     flex-direction: column;
     margin: 0 20px;
 }
 
-.title {
+.seleTakertitle {
     margin: 10px 0 0;
 }
 
-.title>h2 {
+.seleTakertitle>h2 {
     margin-top: 0;
     text-shadow: 0 4px 4px #00000040;
 }
 
-.location {
+.seleTakerlocation {
     margin: 0 0 20px;
     font-size: 0.9rem;
 }
 
-.casecontent {
+.seleTakercasecontent {
     margin: auto 0;
     text-align: justify;
     font-size: 0.9rem;
 }
 
-.require {
+.seleTakerrequire {
     display: flex;
     align-items: center;
     margin-top: auto;
 }
 
-.require>p {
+.seleTakerrequire>p {
     margin-left: 0;
 }
 
-.require div {
+.seleTakerrequire div {
     display: flex;
 }
 
-.require div p {
+.seleTakerrequire div p {
     background-color: #F0F0F0;
     border-radius: 20px;
     padding: 4px 15px;
@@ -146,7 +154,7 @@
     align-items: center;
 }
 
-.content3 {
+.seleTakercontent3 {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -154,23 +162,24 @@
     margin: 0 20px 20px;
 }
 
-.time {
+.seleTakertime {
     font-weight: 700;
     margin: 20px 0;
     height: fit-content;
     font-size: 0.9rem;
 }
 
-.content3btn {
+.seleTakercontent3btn {
     display: flex;
     flex-direction: column;
     margin: auto;
 }
 
-.content3btn>a {
+.seleTakercontent3btn>button {
     color: black;
     background-color: #F5F5DC;
     width: 75px;
+    border: 0;
     border-radius: 50px;
     font-size: 0.9rem;
     padding: 10px 10px;
@@ -187,7 +196,7 @@ hr {
 }
 
 
-.tab {
+.seleTakertab {
     height: 40px;
     display: flex;
     margin: 50px 0 30px;
@@ -195,7 +204,7 @@ hr {
     align-items: center;
 }
 
-.tab a {
+.seleTakertab a {
     color: white;
     background-color: #464646;
     border-radius: 5px;
@@ -207,13 +216,13 @@ hr {
     /* 垂直置中 */
 }
 
-.footer {
+.seleTakerfooter {
     display: flex;
     height: 125px;
     background-color: #D3D3D3;
 }
 
-.icons {
+.seleTakericons {
     flex: 4;
     display: flex;
     justify-content: center;
@@ -222,7 +231,7 @@ hr {
     /* 垂直置中 */
 }
 
-.icons>a {
+.seleTakericons>a {
     text-align: center;
     padding: 10px;
     /* 添加內邊距以提高可點擊區域 */
@@ -236,21 +245,21 @@ hr {
     /* 添加過渡效果 */
 }
 
-.icons a:hover {
+.seleTakericons a:hover {
     background-color: gray;
     /* 鼠標懸停時改變背景色 */
     color: white;
     /* 鼠標懸停時改變文字顏色 */
 }
 
-.copyright {
+.seleTakercopyright {
     flex: 4;
     text-align: center;
     margin: 25px 10px;
 }
 
-.copyright a,
-.copyright>div+div {
+.seleTakercopyright a,
+.seleTakercopyright>div+div {
     color: black;
     padding: 20px;
 }

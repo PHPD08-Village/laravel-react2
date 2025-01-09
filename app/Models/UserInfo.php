@@ -50,4 +50,8 @@ class UserInfo extends Model
     {
         return $this->hasOne(Star::class, 'uid', 'uid');
     }
+    public function projects()
+    {
+        return $this->hasMany(Projects::class, 'uid');
+    }
 }

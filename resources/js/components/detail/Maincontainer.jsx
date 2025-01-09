@@ -1,43 +1,42 @@
-import React from 'react'
+import React from 'react';
+import moment from 'moment';
 
-const Maincontainer = () => {
+const Maincontainer = ({ item, timeDifference }) => {
     return (
         <div className='detail'>
             <div className='detailtab'>
-                <h3>首頁&ensp; &gt; &ensp;我要接案&ensp; &gt; &ensp;獨立品牌網頁製作</h3>
+                <h3>首頁&ensp; &gt; &ensp;我要接案&ensp; &gt; &ensp;{item.title}</h3>
             </div>
             <div className='casedetail'>
                 <div className='descrip'>
                     <div className='casedescrip'>
                         <div className='title'>
-                            <h1>獨立品牌網頁製作</h1>
-                            <p>2024.10.10更新</p>
+                            <h1>{item.title}</h1>
+                            <p>{timeDifference(item.updated_at)}</p>
+                            <p>{moment(item.updated_at).format('YYYY.MM.DD')}更新</p>
                         </div>
                         <hr />
                         <div className='regulation'>
-                            <p>預算金額：$1000 ~ $50,000</p>
-                            <p>執行地點：可遠端</p>
-                            <p>預計完成日：無指定時間</p>
+                            <p>預算金額：${Math.floor(item.budget)}</p>
+                            <p>執行地點：{item.location}</p>
+                            <p>預計完成日：{item.completion_time ? moment(item.completion_time).format('YYYY-MM-DD') : '無指定時間'}</p>
                         </div>
                         <hr />
                         <div className='description'>
                             <h4>案件說明：</h4>
-                            <p>1.完成期限：before 12/13 </p>
-                            <p>2.功能需求：開發兩到三個按鈕進行計算 </p>
-                            <p>3.需具備技術：Javascript </p>
-                            <p>4.細節說明：詳談</p>
+                            <p>{item.details}</p>
                         </div>
                     </div>
                     <div className="information">
                         <h3>案主資訊</h3>
                         <hr />
                         <div>
-                            <img src="" alt="" />
-                            <p>陳先生</p>
+                            <img src={item.headshot} alt={`${item.username}'s Headshot`} />
+                            <p>{item.username}</p>
                         </div>
-                        <p>XXXXXXX@gmail.com</p>
-                        <p>回覆率：90%</p>
-                        <p>最後上線時間：2小時前</p>
+                        <p>{item.email}</p>
+                        <p>回覆率：??%</p> {/* {item.reply_rate} */}
+                        <p>最後上線時間：??前</p>
                         <div className="detailbtn">
                             <div><a href="#">接案</a></div>
                             <div><a href="#">聊聊</a></div>
@@ -54,4 +53,4 @@ const Maincontainer = () => {
     )
 }
 
-export default Maincontainer
+export default Maincontainer;

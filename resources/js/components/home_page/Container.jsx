@@ -9,7 +9,7 @@ import Floatingbuttons from '../allpage/Floatingbuttons'
 const Homecontainer = () => (
     <>
         <Banner />
-        <div className="container">
+        <div className="container homeContainer">
             <Home />
             <Floatingbuttons />
         </div>
