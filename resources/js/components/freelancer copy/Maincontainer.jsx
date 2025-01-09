@@ -1,6 +1,7 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import moment from 'moment';
 
+import { fetchData } from '../../JS or jQuery/fetchdata'
 import DataList from './DataList';
 
 const Maincontainer = forwardRef(({ selectedStars }, ref) => {
@@ -24,25 +25,7 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
     }));
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            try {
-                const response = await axios.get('/get-userinfo-publish');
-                let data = response.data; // response.data 從後端獲取的資料
-
-                // 確認資料結構
-                // console.log("Fetched Data:", data);
-
-                setData(data); // 初始化時顯示所有數據
-                setFilteredData(data); // 初始化時顯示所有數據
-            } catch (error) {
-                setError('Error fetching data');
-                console.error('Error fetching data', error);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-        fetchData();
+        fetchData(setIsLoading, setData, setFilteredData, setError);
     }, []);
 
     const handleAddKeyword = () => {
@@ -128,8 +111,8 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
     const goToPreviousPage = () => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
     const goToNextPage = () => setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages);
     const goToLastPage = () => setCurrentPage(totalPages);
-
-
+    
+    
     return (
         <div className="fmaincontainer">
             <div className="fsearch">
@@ -145,13 +128,6 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
                         <button onClick={() => handleRemoveKeyword(keyword)} style={{ marginLeft: '10px' }}>X</button>
                     </div>
                 ))}
-            <div>
-                {keywords.map((keyword, index) => (
-                    <div key={index} style={{ display: 'inline-block', margin: '5px', padding: '5px', border: '1px solid #ccc', borderRadius: '5px' }}>
-                        {keyword}
-                        <button onClick={() => handleRemoveKeyword(keyword)} style={{ marginLeft: '10px' }}>X</button>
-                    </div>
-                ))}
             </div>
             <div className="forder">
                 <p style={{ flex: 5 }}>目前查詢到 {filteredData.length} 筆資料</p>
@@ -166,61 +142,7 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
                         <option value={20}>顯示20筆資料</option>
                     </select>
                 </p>
-            <div className="forder">
-                <p style={{ flex: 5 }}>目前查詢到 {filteredData.length} 筆資料</p>
-                <button onClick={handleSortToggle}>{sortOrder === 'asc' ? '更新時間' : '更新時間'}</button>
-                <a href="#">點閱率最高</a>
-                <a href="#">企業評價最高</a>
-                <a href="#">應徵人數</a>
-                <p>
-                    <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
-                        <option value={5}>顯示5筆資料</option>
-                        <option value={10}>顯示10筆資料</option>
-                        <option value={20}>顯示20筆資料</option>
-                    </select>
-                </p>
             </div>
-            {isLoading ? (
-                <div>加載中...</div>
-            ) : (
-                currentItems.map((item, index) => (
-                    <DataList
-                        item={item}
-                        timeDifference={timeDifference}
-                        key={item.pid}
-                        className={`${index === 0 ? 'first-item-background' : ''}`}  // 根據條件動態添加 className
-                    />
-                ))
-            )}
-            <div className="ftab">
-                <button onClick={goToFirstPage} disabled={currentPage === 1}>
-                    <img src="/img/left.png" alt="First Page" />
-                </button>
-                <button className="fleftnext" onClick={goToPreviousPage} disabled={currentPage === 1}>
-                    <img src="/img/leftnext.png" alt="Previous Page" />
-                    <span>上一頁</span>
-                </button>
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index + 1}
-                        onClick={() => setCurrentPage(index + 1)}
-                        disabled={currentPage === index + 1}
-                        className={currentPage === index + 1 ? 'current-page' : ''}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
-                <button className="frightnext" onClick={goToNextPage} disabled={currentPage === totalPages}>
-                    <span>下一頁</span>
-                    <img src="/img/rightnext.png" alt="Next Page" />
-                </button>
-                <button onClick={goToLastPage} disabled={currentPage === totalPages}>
-                    <img src="/img/right.png" alt="Last Page" />
-                </button>
-            </div>
-        </div>
-    );
-});
             {isLoading ? (
                 <div>加載中...</div>
             ) : (

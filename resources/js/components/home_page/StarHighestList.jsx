@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { IonIcon } from '@ionic/react';
-import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline } from 'ionicons/icons';
+import { chevronBackOutline, chevronForwardOutline, heart, heartOutline, star, starHalf, starOutline } from 'ionicons/icons';
 import moment from 'moment';
+import { useAuth } from '../auth/AuthContext'; // 引入 useAuth 鉤子
 
 function StarHighestList() {
     const [freelancers, setFreelancers] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
+
 
     useEffect(() => {
         axios.get('/get-starhighest-taker')
@@ -23,31 +26,70 @@ function StarHighestList() {
     }, []);
 
     // 委託接案者
-    const assignTaker = (takerUid) => {
-        axios.post(`http://127.0.0.1:8000/api/assign-taker/${selectedPid}`, { taker_uid: takerUid })
+    const assignTaker = async(takerUid) => {
+        if (!user) {
+            alert('請先登入才能進行委託。');
+            return;
+        }
+
+        axios.post(`http://127.0.0.1:8000/api/assignment`, { uid: takerUid })   // 這裡的 uid 是接案者的 uid
             .then(response => {
-                console.log('成功委託 taker', response.data.message);
+                // console.log('成功委託 taker', response.data.message);
                 // 顯示成功訊息或更新狀態 
-                alert(`已成功委託 ${response.data.username}`)
+                alert(`${response.data.message}`)
             })
             .catch(error => {
-                console.error('分配 taker 失敗', error);
+                alert('委託失敗，請稍後再試');
+                console.error('委託失敗', error);
             });
     };
+
+    // 收藏接案者
+    const handleFavorite = async (uid, setFavoriteState) => {
+        if (!user) {
+            alert('請先登入才能收藏用戶。');
+            return;
+        }
+
+        try {
+            const response = await axios.post('/toggle-favorite', { uid });
+            // console.log('Toggle favorite response:', response.data.message);
+            alert(response.data.message);
+
+            if (response.data.action === 'added') {
+                setFavoriteState(true);
+            } else if (response.data.action === 'removed') {
+                setFavoriteState(false);
+            }
+        } catch (error) {
+            alert('用戶收藏/取消收藏失敗，請稍後再試');
+            console.error('Error toggling favorite:', error);
+        }
+    }
 
     const nextFreelancer = () => {
         // 當 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動
         // 這邊的 currentIndex 是指目前顯示的第一個案件的索引，所以當 currentIndex 小於 freelancers 陣列的長度減 3 時，代表還有案件可以顯示
-        if (currentIndex < freelancers.length - 3) {
+        // 如果 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動 
+        if (currentIndex + 3 < freelancers.length) {
+            // 檢查如果當前顯示的是第7,8,9筆資料，則只增加一筆資料 
+            if (currentIndex >= freelancers.length - 4 && currentIndex < freelancers.length - 1) {
+                setCurrentIndex(currentIndex + 1);
+            } else {
+                setCurrentIndex(currentIndex + 3);
+            }
+        } else if (currentIndex + 1 < freelancers.length) {
             setCurrentIndex(currentIndex + 1);
+        }
+
+        if (currentIndex >= freelancers.length - 3) {
+            setCurrentIndex(freelancers.length - 3); // 停留在第8、9、10筆資料顯示的狀態 
         }
     };
 
     const prevFreelancer = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-        }
-    };
+        if (currentIndex - 3 >= 0) { setCurrentIndex(currentIndex - 3); } else { setCurrentIndex(0); }
+    }
 
     return (
         <div className="homestarHighestTaker">
@@ -59,7 +101,7 @@ function StarHighestList() {
                 {/* <!-- 每一個案件卡片 --> */}
                 {Array.isArray(freelancers) && freelancers.slice(currentIndex, currentIndex + 3).map(starHighest => (
                     // 使用 StarHighestCard 元件顯示每個案件，並傳遞 starHighest 資料和唯一的 key
-                    <StarHighestCard starHighest={starHighest} key={starHighest.uid} />
+                    <StarHighestCard starHighest={starHighest} key={starHighest.uid} assignTaker={assignTaker} handleFavorite={handleFavorite} />
                 ))}
             </div>
             {/* <!-- 右箭頭 --> */}
@@ -70,7 +112,27 @@ function StarHighestList() {
     );
 }
 
-const StarHighestCard = ({ starHighest }) => {
+const StarHighestCard = ({ starHighest, assignTaker, handleFavorite }) => {
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    // 檢查收藏狀態 
+    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
+    useEffect(() => {
+        if (!user) {
+            return;
+        }
+
+        const checkFavoriteStatus = async () => {
+            try {
+                const response = await axios.post('/check-favorite', { uid: starHighest.uid });
+                setIsFavorite(response.data.isFavorite);
+            } catch (error) {
+                console.error('Error checking favorite status:', error);
+            }
+        }
+        checkFavoriteStatus();
+    }, [starHighest.uid]);
+
     // 設置幾分鐘前更新
     const timeDifference = (timestamp) => {
         const now = moment();
@@ -100,6 +162,20 @@ const StarHighestCard = ({ starHighest }) => {
         const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
+
+    // 設置收藏愛心的變數及樣式
+    const favoriteHeart = isFavorite ? (
+        <IonIcon icon={heart}
+            className="homekeep"
+            style={{ color: 'red' }}
+            onClick={() => handleFavorite(starHighest.uid, setIsFavorite)} />
+    ) : (
+        <IonIcon icon={heartOutline}
+            className="homekeep"
+            style={{ color: 'white' }}
+            onClick={() => handleFavorite(starHighest.uid, setIsFavorite)} />
+    );
+
 
     // 獲取評價資料，若不存在則設置為 0
     // 因為在後端的查詢中已經將 averating 及 count 屬性直接選擇出來並包含在每個 starHighest 物件中，所以不是使用 starHighest.star?.averating 的方式取得
@@ -171,7 +247,7 @@ const StarHighestCard = ({ starHighest }) => {
         } else {
             createStarElements(0, false, 5);
         }
-        console.log(starArray);
+        // console.log(starArray);
         return <>{starArray}</>;
     };
 
@@ -189,7 +265,14 @@ const StarHighestCard = ({ starHighest }) => {
                     <div className="homeuserNameText">
                         <h4> {starHighest.nickname} </h4>
                         <img src="/img/Icon/Green_Circle.png" alt="上線中" />
-                        <img className="homekeep" id="nokeep" src="/img/Icon/未收藏.png" alt="空心" />
+                        {/* <img className="homekeep" id="nokeep" onClick={() => handleFavorite(starHighest.uid)} src="/img/Icon/未收藏.png" alt="空心" /> */}
+                        {favoriteHeart}
+                        {/* <img
+                            className="homekeep"
+                            id="nokeep"
+                            onClick={() => handleFavorite(starHighest.uid, setIsFavorite)}
+                            src={isFavorite ? "/img/Icon/已收藏.png" : "/img/Icon/未收藏.png"}
+                            alt="收藏狀態" /> */}
                     </div>
                     <div className="homeUserStar">
                         <div className="homestarDiv">
@@ -229,8 +312,11 @@ const StarHighestCard = ({ starHighest }) => {
             <div className="homecardFooter">
                 {/* 這裡可以的話要放上次上線時間 */}
                 <label></label>
-                <button id="talk1" name="talk1">聊聊</button>
-                <button href="#" id="entrust1" name="entrust1">委託</button>
+                {/* <button id="talk1" name="talk1">聊聊</button> */}
+                <button id="entrust1" name="entrust1"
+                    onClick={() => assignTaker(starHighest.uid)}>
+                    委託
+                </button>
             </div>
         </div>
     );

@@ -1,0 +1,684 @@
+/* 個人資料頁面-接案者-menu-item */
+.sidebar {
+    position: relative; /* 設為相對定位，提供基準 */
+    flex: 0 0 250px; /* 固定寬度 */
+    height: 500px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px 10px; /* 留出內邊距，控制內容距邊 */
+    overflow: hidden; /* 防止內容溢出 */
+}
+
+.switcher {
+    position: absolute; /* 絕對定位 */
+    top: 0;
+    left: 10px;
+    right: 10px; 
+    display: flex;
+    gap: 10px;
+    background-color: #f5f5f5;
+    padding: 10px 0; 
+    border-bottom: 2px solid #fff; 
+}
+
+.switch-btn,
+.switch-btn.active {
+    flex: 1; /* 按鈕平分 switcher 寬度 */
+    padding: 10px 0; /* 按鈕上下內邊距 */
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 8px;
+    color: #333; /* 預設字體顏色 */
+}
+
+.switch-btn:hover,
+.switch-btn.active {
+    background-color: #007bff; 
+    color: white;
+}
+
+/* 主要選項 */
+.menu {
+    margin-top: 70px; /* 留出空間給 switcher */
+}
+
+.menu-item {
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.menu-item > p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.menu-item ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+/* 預設樣式 */
+.menu-item ul li {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+
+/* 滑過的樣式 */
+.menu-item ul li:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+/* 選中樣式 */
+.menu ul li.active {
+    font-weight: bold;
+    color: red;
+}
+
+
+
+/* 右邊刷新主要內容 */
+
+/* 頂部長條框樣式 */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 80px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* 按鈕樣式 */
+.top-bar-button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.top-bar-button:hover {
+    background-color: #0056b3;
+    /* 按鈕滑過時變化 */
+}
+
+/* 頭貼上傳框 */
+.avatar-upload {
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+
+.avatar-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 20%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+.avatar-box:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 隱藏上傳按鈕*/
+#avatarInput {
+    display: none;
+}
+
+.avatar-info {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 大頭貼與文字之間的間距 */
+}
+
+.avatar-details {
+    display: flex;
+    justify-content: space-between; /* 兩邊對齊 */
+    align-items: center; /* 垂直置中 */
+    font-size: 14px; /* 字體大小 */
+    color: #333; /* 字體顏色 */
+    line-height: 1.8; /* 增加文字行間距 */
+    gap: 30px;
+}
+
+.avatar-details span {
+    margin: 0;
+}
+
+.avatar-details span:last-child {
+    text-align: right; /* 右側文字靠右對齊 */
+}
+
+
+/* 全局樣式 */
+.content-wrapper {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* 每行區塊排列 */
+.top-row,
+.bottom-row {
+    display: flex;
+    flex-wrap: wrap; /* 啟用換行，當空間不足時將項目換行 */
+    gap: 20px;
+}
+
+/* 右側內容區 */
+.rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    width: calc(100% - 40px); /* 留出左右內邊距 */
+    margin: 0 auto; /* 內容居中 */
+}
+
+
+/* 通用樣式 */
+.info-box,
+.feedback-box {
+    flex: 1;
+    background-color: #eaf9ff;
+    border: 1px solid #aacde6;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+    max-width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+/* 標題樣式 */
+.info-box h3,
+.feedback-box h3 {
+    font-size: 18px;
+    color: #004a80;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 列表樣式 */
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-box ul li {
+    margin: 5px 0;
+}
+
+.info-box ul li a {
+    text-decoration: none;
+    color: #0070c9;
+}
+
+.info-box ul li a:hover {
+    text-decoration: underline;
+}
+
+/* 更多連結樣式 */
+.more-link {
+    display: block;
+    text-align: right;
+    margin-top: 10spx;
+    font-size: 14px;
+    color: #0056a6;
+    text-decoration: none;
+}
+
+.more-link:hover {
+    text-decoration: underline;
+}
+
+/* 問題回報區 */
+.feedback-box p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.feedback-box textarea {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+.feedback-box .submit-btn {
+    margin-top: 10px;
+    background-color: #0070c9;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.feedback-box .submit-btn:hover {
+    background-color: #0056a6;
+}
+
+/* 編輯個人資料-區域的全局樣式 */
+
+/* 表單分組樣式 */
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+/* form-group label 的 select 和 radio 間距調整 */
+.form-group label select,
+.form-group label input,
+.form-group label input[type="radio"] {
+    margin-left: 10px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+/* 統一 form-group 的布局 */
+.form-group.form-inline {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 控制標籤和輸入框之間的間距 */
+    margin-bottom: 20px; /* 控制每個項目的間距 */
+}
+
+/* 接案身份布局与接案状态保持一致 */
+.radio-group-inline {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.radio-group-inline label {
+    display: flex;
+    gap: 5px; /* 控制文字与单选框的距离 */
+}
+
+/* 選項換行排列 */
+.radio-group-stacked {
+    display: flex;
+    flex-direction: column; /* 選項垂直排列 */
+    gap: 5px; /* 控制選項之間的間距 */
+}
+
+.radio-group-stacked label,
+.radio-group-inline label {
+    display: flex;
+    align-items: center; /* 單選框與文字垂直居中 */
+    gap: 5px; /* 控制單選框與文字之間的距離 */
+}
+
+/* 控制輸入框的寬度 */
+.form-group input,
+.form-group select {
+    width: 50%; /* 縮短輸入框的長度 */
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left; /* 輸入內容靠左 */
+}
+
+/* 表單元素通用樣式 */
+#profile-edit-content input,
+#profile-edit-content select {
+    width: 40%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#profile-edit-content input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+#profile-edit-content input:focus,
+#profile-edit-content select:focus {
+    outline: none;
+    border-color: rgb(89, 183, 183);
+    box-shadow: 0 0 5px rgba(89, 183, 183, 0.5);
+}
+
+/* 提交按鈕 */
+#profile-edit-content .submit-btn {
+    background-color: rgb(89, 183, 183);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#profile-edit-content .submit-btn:hover {
+    background-color: rgb(68, 150, 150);
+}
+
+/* 接案經歷的 select 與接案經驗一並排 */
+#case-experience-form .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 接案經歷表單字體不換行 */
+#case-experience-form {
+    white-space: nowrap;
+}
+
+/* 必填提示文字样式 */
+.required-hint {
+    color: red;
+    font-size: 0.85rem;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+/* 已收藏案件样式 */
+
+/* 标题样式 */
+#saved-jobs-content h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem; /* 标题字体稍微缩小 */
+    margin-bottom: 10px;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem; /* 调整按钮字体大小 */
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+/* 表格样式 */
+.saved-jobs-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 0.85rem; /* 表格字体整体缩小 */
+}
+
+.saved-jobs-table th, .saved-jobs-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px; /* 减少单元格间距 */
+    font-size: 0.85rem; /* 统一表格字体 */
+}
+
+.saved-jobs-table th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+.saved-jobs-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.saved-jobs-table input[type="checkbox"] {
+    cursor: pointer;
+}
+
+/* 我的刊登服務 - 樣式 */
+
+/* 表格樣式 */
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.services-table th, .services-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+.services-table th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+.services-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.services-table input[type="checkbox"] {
+    cursor: pointer;
+}
+
+/* 圓點開關樣式 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* 統一開關按鈕樣式 */
+.toggle-all-btn {
+    background-color: #e6f7ff; /* 淺藍色背景 */
+    color: #007bff; /* 深藍字體 */
+    border: 1px solid #007bff; /* 深藍邊框 */
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right; /* 靠右對齊 */
+    margin-bottom: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-all-btn:hover {
+    background-color: #cceeff; /* 更亮的藍色 */
+    color: #0056b3; /* 更深的字體顏色 */
+}
+
+/* 作品專區 */
+
+.portfolio-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 1px solid #ddd; /* 表格的整體外框 */
+}
+
+.portfolio-table th, .portfolio-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; /* 確保內容置中 */
+    vertical-align: middle;
+}
+
+.portfolio-table th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+.icon-preview {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn, .save-btn, .page-btn {
+    background-color: #4caf50; /* 綠色按鈕 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:hover, .save-btn:hover, .page-btn:hover {
+    background-color: #45a049; /* 深綠色 */
+}
+
+.delete-btn {
+    background-color: #f44336; /* 紅色按鈕 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f; /* 深紅色 */
+}
+
+/* 儲存與刪除按鈕置中 */
+.portfolio-actions-cell {
+    display: flex;
+    flex-direction: column; /* 垂直排列按鈕 */
+    gap: 5px; /* 按鈕之間的間距 */
+    justify-content: center; /* 垂直置中 */
+    align-items: center; /* 水平置中 */
+    height: 203px;
+}
+
+/* 新增作品按鈕與表格框架的間距 */
+.portfolio-actions {
+    margin-top: 20px; /* 與表格之間的間距 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+}

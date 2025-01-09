@@ -258,7 +258,7 @@
     /* font-weight: 500; */
 }
 
-.homehomeUserStar {
+.homeuserName>.homeUserStar {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -274,12 +274,14 @@
     font-size: 0.7rem;
     font-weight: 400;
     margin-bottom: 0;
+    margin-left: 5px;
 }
 
 #starValueTotal {
     font-size: 0.7rem;
     font-weight: 500;
     margin-bottom: 0;
+    margin-left: 5px;
 }
 
 .homecardHeader>#clickCount {
@@ -347,10 +349,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-}
-
-.cardContent>p{
-
 }
 
 /* 卡片的 Footer */
@@ -455,6 +453,8 @@
 
 .hometakerUserName>.homeuserNameText>.homekeep {
     margin-left: auto;
+    width: 40px;
+    height: 40px;
 }
 
 .hometakerUserName>.homeuserNameText>.homekeep:hover {
@@ -542,7 +542,7 @@
     margin: 0 10px 10px 0;
     font-size: 0.7rem;
     font-weight: 400;
-    color: #686161;
+    color: #4f4f4f;
     background-color: #F0F0F0;
     border-radius: 62px;
 }

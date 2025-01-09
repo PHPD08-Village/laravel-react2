@@ -1,5 +1,6 @@
 .container>.mainContent {
     margin-left: 40px;
+    flex: 8;
 }
 
 .container>.caseMngMainContent{
@@ -7,18 +8,23 @@
 }
 
 /* 以下是主要內容 */
-.caseMngPath {
-    margin: 30px 0;
-}
-
 .caseMngPathLink {
     display: flex;
     align-items: center;
+    vertical-align: middle;
     font-size: 1.4rem;
 }
 
-.caseMngPathLink>a {
+.caseMngPathLink>img,
+.caseMngPathLink>a,
+.caseMngPathLink>label {
+    display: flex;
+    vertical-align: middle;
+    font-size: 1.4rem;
     color: black;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-left: 5px;
 }
 
 .caseMngAllCase {

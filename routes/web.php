@@ -108,6 +108,28 @@ Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'get
 Route::post('/api/assign-taker/{selectedPid}',[AssignTakerController::class, 'assignTaker']);   // 委託接案者
 Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);     // 發送感謝函
 Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
+// 新增首頁最新案件案件資訊 API
+Route::get('/api/get-latest-projects', [PubForHomeCaseController::class, 'getLatestProjects']);   
+// 新增首頁點閱率最高案件資訊 API
+Route::get('/api/get-clickhighest-projects', [PubForHomeCaseController::class, 'getCliHighestProjects']);   
+// 新增首頁點閱率最高案件資訊 API
+Route::get('/api/get-starhighest-taker', [FreelancerForHomeController::class, 'getStarHighestTaker']);   
+// 獲取選妃頁面的應徵者
+Route::get('/api/get-project-applicants/{pid}',[ApplicantsController::class,'getProjectApplicants']);   
+// 獲取選妃頁面的當前案件的標題 
+// Route::get('/api/get-project-title/{selectedPid}',[ApplicantsController::class,'getProjectTitle']);    
+// 委託接案者
+Route::post('/api/assignment/',[SearchController::class, 'assignment']);   
+// "確認"委託接案者(在選妃頁面用的)
+Route::post('/api/assign-taker/{selectedPid}',[AssignTakerController::class, 'assignTaker']);   
+// 發送感謝函
+Route::post('/api/send-thanks-note/{selectedPid}',[AssignTakerController::class,'sendThanksNote']);     
+// 應徵案件
+Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
+// 收藏或取消收藏接案者
+Route::post('/api/toggle-favorite', [SearchController::class, 'toggleFavorite']);
+// 確認收藏狀態
+Route::post('/api/check-favorite', [SearchController::class, 'checkFavorite']);
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
 Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);

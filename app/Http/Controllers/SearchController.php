@@ -50,15 +50,33 @@ class SearchController extends Controller
         // $uid = $request->$userinfo->uid;
         $userId = $request->user()->id;
 
-        DB::table('favorite_case')->insert([
-            'pid' => $caseId,
-            // 'uid' => $uid,
-            'user_id' => $userId,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('favorite_case')->insert([
+        //     'pid' => $caseId,
+        //     // 'uid' => $uid,
+        //     'user_id' => $userId,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
-        return response()->json(['message' => '案件已成功收藏']);
+        // 檢查是否已經存在這個收藏
+        $favorite = DB::table('favorite_case')
+            ->where('pid', $caseId)
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($favorite) {
+            // 如果已經存在，僅返回訊息"案件已收藏"
+            return response()->json(['message' => '案件已收藏，若需取消收藏請至個人資訊頁面']);
+        } else {
+            // 如果不存在，則新增
+            DB::table('favorite_case')->insert([
+                'pid' => $caseId,
+                'user_id' => $userId,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return response()->json(['message' => '成功收藏案件', 'action' => 'added']);
+        }
     }
 
     // 我要接案
@@ -67,7 +85,6 @@ class SearchController extends Controller
         $caseId = $request->pid;
         $userId = $request->user()->id;
 
-        // 插入 take_case 表
         DB::table('take_case')->insert([
             'pid' => $caseId,
             'user_id' => $userId,
@@ -75,23 +92,19 @@ class SearchController extends Controller
             'updated_at' => now()
         ]);
 
-        // 更新 publish 表中的 apply_count 欄位
-        DB::table('publish')->where('pid', $caseId)->increment('apply_count');
-
         return response()->json(['message' => '案件已成功接案']);
     }
-
 
 
 
     // 收藏接案者
     public function addFavorite(Request $request)
     {
-        $uid = $request->uid;
+        $takerId = $request->uid;
         $userId = $request->user()->id;
 
         DB::table('favorite_freelancer')->insert([
-            'uid' => $uid,
+            'taker_id' => $takerId,
             'user_id' => $userId,
             'created_at' => now(),
             'updated_at' => now()
@@ -100,20 +113,90 @@ class SearchController extends Controller
         return response()->json(['message' => '案件已成功收藏']);
     }
 
+    // 收藏及移除接案者
+    public function toggleFavorite(Request $request)
+    {
+        $takerId = $request->uid;
+        $userId = $request->user()->id;
+
+        // 檢查是否已經存在這個收藏
+        $favorite = DB::table('favorite_freelancer')
+            ->where('taker_id', $takerId)
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($favorite) {
+            // 如果已經存在，則刪除
+            DB::table('favorite_freelancer')
+                ->where('id', $favorite->id)
+                ->delete();
+            return response()->json(['message' => '案件已成功取消收藏', 'action' => 'removed']);
+        } else {
+            // 如果不存在，則新增
+            DB::table('favorite_freelancer')->insert([
+                'taker_id' => $takerId,
+                'user_id' => $userId,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return response()->json(['message' => '案件已成功收藏', 'action' => 'added']);
+        }
+    }
+
+    public function checkFavorite(Request $request)
+    {
+        $takerId = $request->uid;
+        $userId = $request->user()->id;
+
+        // 檢查是否已經存在這個收藏
+        $favorite = DB::table('favorite_freelancer')
+            ->where('taker_id', $takerId)
+            ->where('user_id', $userId)
+            ->first();
+
+        // 返回收藏狀態
+        if ($favorite) {
+            return response()->json(['isFavorite' => true]);
+        } else {
+            return response()->json(['isFavorite' => false]);
+        }
+    }
+
+
     // 我要委託
     public function assignment(Request $request)
     {
-        $uid = $request->uid;
+        $takerId = $request->uid;
         $userId = $request->user()->id;
 
-        DB::table('assignment')->insert([
-            'uid' => $uid,
-            'user_id' => $userId,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // DB::table('assignment')->insert([
+        //     'taker_id' => $takerId,
+        //     'user_id' => $userId,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
 
-        return response()->json(['message' => '案件已成功接案']);
+        // return response()->json(['message' => '案件已成功接案']);
+
+        // 檢查是否已經存在這個收藏
+        $hire = DB::table('assignment')
+            ->where('taker_id', $takerId)
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($hire) {
+            // 如果已經存在，僅回傳已存在的訊息
+            return response()->json(['message' => '已進行委託，若需取消委託請至個人資訊頁面']);
+        } else {
+            // 如果不存在，則新增
+            DB::table('assignment')->insert([
+                'taker_id' => $takerId,
+                'user_id' => $userId,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return response()->json(['message' => '委託意願送出成功！', 'action' => 'added']);
+        }
     }
 }
 
