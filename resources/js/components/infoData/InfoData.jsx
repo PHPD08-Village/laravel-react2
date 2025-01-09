@@ -72,12 +72,12 @@ function infoData() {
                     <h3>案件訊息通知</h3>
                     <div>
                         <ul>
-                            <li>獨立品牌網頁設計</li>
-                            <li>獨立品牌網頁設計</li>
-                            <li>獨立品牌網頁設計</li>
-                            <li>獨立品牌網頁設計</li>
+                            <li>拉拉漢堡官網設計，有人應徵囉</li>
+                            <li>拉拉漢堡官網設計，有人應徵囉</li>
+                            <li>拉拉漢堡手機APP製作，有人應徵囉</li>
+                            <li>拉拉漢堡手機APP製作，有人應徵囉</li>
                         </ul>
-                        <a href="#">...更多</a>
+                        <a href="#" style={{color:'blue'}}>...更多</a>
                     </div>
 
                 </div>
@@ -93,12 +93,12 @@ function infoData() {
                     <h3>瀏覽紀錄</h3>
                     <div>
                         <ul>
-                            <li>陳曉明</li>
+                            <li>陳曉美</li>
                             <li>王小白</li>
-                            <li>李兔兔</li>
-                            <li>快樂修狗</li>
+                            <li>李玉兔</li>
+                            <li>林修狗</li>
                         </ul>
-                        <a href="#">...更多</a>
+                        <a href="#" style={{color:'blue'}}>...更多</a>
                     </div>
 
                 </div>

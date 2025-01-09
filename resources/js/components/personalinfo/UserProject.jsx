@@ -18,14 +18,16 @@ function UserProject() {
       try {
         const response = await fetch(url)
         if (!response.ok) {
-          throw new Error('Oops! 發生錯誤!')
+          // throw new Error('Oops! 發生錯誤!')
+          console.log(new Error('Oops! 發生錯誤!'))
         }
         const data = await response.json()
         if (data && data.data) {
           setProjects(data.data)
           console.log('Fetched projects:', data.data)
         } else {
-          throw new Error('資料格式不正確')
+          // throw new Error('資料格式不正確')
+          console.log(new Error('資料格式不正確'))
         }
         setLoading(false)
       } catch (error) {

@@ -90,6 +90,7 @@ Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更�
 Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
 Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
 Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
+Route::get('/api/userdata/{uid}', [PersonalDataController::class, 'show']); // 取得單一使用者
 // 以上是的阿桂
 
 

@@ -41,7 +41,7 @@ function Personalworks() {
       <h2>作品集</h2>
       <p>累積設計經驗：2-3年</p>
       {/* <!-- 作品標籤 --> */}
-      <div class="workTag">
+      <div class="pworkTag">
         <a href="">All</a>
         <a href="">UI/UX</a>
         <a href="">網頁設計</a>
@@ -54,33 +54,18 @@ function Personalworks() {
       {/* 顯示錯誤訊息 */}
       {error && <p>錯誤：{error}</p>}
       
-      <div class="work">
+      <div class="pwork">
         {/* <!-- 作品卡片 --> */}
-        <div class="workCard">
-          {/* <img src="../public/imgs/VALTWArcane06.jpg" alt="" /> */}
-          <img src={works[0].work_image} alt="" />
-          <div>
-            <span>{works[0].work_category}</span>
-            <span>{works[0].completion_date}</span>
-          </div>
-          <p>{works[0].work_title}</p>
-        </div>
-        <div class="workCard">
-          <img src={works[1].work_image} alt="" />
-          <div>
-            <span>{works[1].work_category}</span>
-            <span>{works[1].completion_date}</span>
-          </div>
-          <p>{works[1].work_title}</p>
-        </div>
-        <div class="workCard">
-          <img src={works[2].work_image} alt="" />
-          <div>
-            <span>{works[2].work_category}</span>
-            <span>{works[2].completion_date}</span>
-          </div>
-          <p>{works[2].work_title}</p>
-        </div>
+        {works.slice(0, 3).map((work, index) => (
+            <div class="pworkCard" key={index}>
+              <img src={works.length > index ? work.work_image : '載入中...'} alt="" />
+              <div>
+                <span>{works.length > index ? work.work_category : '載入中...'}</span>
+                <span>{works.length > index ? work.completion_date : '載入中...'}</span>
+              </div>
+              <p>{works.length > index ? work.work_title : '載入中...'}</p>
+            </div>
+          ))}
       </div>
     </>
   )
