@@ -14,6 +14,7 @@ class Publish extends Model
 
     protected $fillable = [
         'uid',
+        'uid',
         'title',
         'contact_name',
         'completion_time',
@@ -23,6 +24,7 @@ class Publish extends Model
         'email',
         'details',
         'require_code',
+        'click_count',
         'click_count',
         'updated_at',
     ];
@@ -35,4 +37,5 @@ class Publish extends Model
     {
         return $this->belongsTo(UserInfo::class, 'uid', 'uid');
     }
+
 }

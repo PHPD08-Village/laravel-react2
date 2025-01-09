@@ -200,6 +200,5 @@ const Maincontainer = forwardRef(({ selectedStars }, ref) => {
             </div>
         </div>
     );
-});
-
+})
 export default Maincontainer;

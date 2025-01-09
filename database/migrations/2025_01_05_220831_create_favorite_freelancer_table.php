@@ -19,7 +19,7 @@ class CreateFavoriteFreelancerTable extends Migration
             $table->timestamps();
 
             // 添加外鍵約束
-            $table->foreign('taker_id')->references('uid')->on('userinfo')->onDelete('cascade');
+            $table->foreign('uid')->references('uid')->on('userinfo')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

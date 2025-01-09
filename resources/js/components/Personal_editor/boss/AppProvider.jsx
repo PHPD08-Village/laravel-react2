@@ -1,5 +1,5 @@
 // Personal_editor/AppProvider.jsx
-import React, { createContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext } from 'react';
 import axios from 'axios';
 
 export const AppContext = createContext();

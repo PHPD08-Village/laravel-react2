@@ -1,7 +1,6 @@
 import React from 'react';
 
 import CaseManager from './CaseManager'
-import Space from './Space'
 import Floatingbuttons from '../allpage/Floatingbuttons';
 
 const CaseMngcontainer = () => (

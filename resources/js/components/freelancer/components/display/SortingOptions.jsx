@@ -1,11 +1,11 @@
 // freelancer2/components/SortingOptions.jsx
 import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../AppProvider';
+import { AppfreelancerContext } from '../../AppProvider';
 import { arrowUpOutline, arrowDownOutline } from 'ionicons/icons';
 import { IonIcon } from '@ionic/react';
 
 const SortingOptions = () => {
-    const { setSortingCriteria, setItemsPerPage, setKeywords, setButtonKeywords, setCurrentPage, totalResultsCount } = useContext(AppContext);
+    const { setSortingCriteria, setItemsPerPage, setKeywords, setButtonKeywords, setCurrentPage, totalResultsCount } = useContext(AppfreelancerContext);
     const [order, setOrder] = useState('asc');
     const [activeSort, setActiveSort] = useState(null);
 

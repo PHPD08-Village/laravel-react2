@@ -414,6 +414,7 @@
     flex: 1.5;
     color: black;
     background-color: #81C7D4;
+    background-color: #81C7D4;
     width: 75px;
     border-radius: 50px;
     padding: 5px;
@@ -440,9 +441,9 @@
     align-items: center;
 }
 
-.fcollect {}
+/* .fcollect {} */
 
-.ftakecase {}
+/* .ftakecase {} */
 
 .fpeople {
     flex: 1;
@@ -517,6 +518,10 @@
     /* 根據需要調整寬度 */
     height: 20px;
     /* 根據需要調整高度 */
+    width: 20px;
+    /* 根據需要調整寬度 */
+    height: 20px;
+    /* 根據需要調整高度 */
     margin: 0 2px;
 }
 
@@ -529,6 +534,10 @@
     /* 根據需要調整寬度 */
     height: 100%;
     /* 根據需要調整高度 */
+    width: 100%;
+    /* 根據需要調整寬度 */
+    height: 100%;
+    /* 根據需要調整高度 */
     z-index: 2;
 }
 
@@ -537,6 +546,10 @@
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    /* 根據需要調整寬度 */
+    height: 100%;
+    /* 根據需要調整高度 */
     width: 100%;
     /* 根據需要調整寬度 */
     height: 100%;

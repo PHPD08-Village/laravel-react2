@@ -93,14 +93,14 @@ function SelectTaker() {
             <div className="seleTakerpath">
                 <div className="seleTakerpathLink">
                     <img src="/img/Icon/Start.png" alt="icon" />
-                    <a href="#">我的案件</a>
+                    <Link to="/personal_editor">個人資訊</Link>
                     <label htmlFor="">&gt;</label>
-                    <a href="/casemng">案件管理</a>
+                    <Link to="/casemng">案件管理</Link>
                     <label htmlFor="">&gt;</label>
                     {/* 確認 applicants 是否有資料後再讀取 title */}
-                    <a href="#">
+                    <Link to="/detail">
                         {applicants.length > 0 ? applicants[0].title : '無資料'}
-                    </a>
+                    </Link>
                 </div>
             </div>
             {/* content */}

@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { AppContext } from '../../AppProvider';
+import { AppfreelancerContext } from '../../AppProvider';
 
 import UserDetails from './UserDetails';
 import CaseDetails from './CaseDetails';
@@ -13,7 +13,7 @@ import TakeCaseButton from './TakeCaseButton';
 import ApplyCount from './ApplyCount';
 
 const ResultsDisplay = () => {
-    const { filteredResults, isLoading } = useContext(AppContext);
+    const { filteredResults, isLoading } = useContext(AppfreelancerContext);
     const navigate = useNavigate();
 
     useEffect(() => {

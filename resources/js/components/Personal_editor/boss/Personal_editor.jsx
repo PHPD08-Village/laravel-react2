@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from '../../components/auth/AuthContext';
-import Floating from './Floating';
-import { initializePersonalEditor } from '../../JS or jQuery/personal_editor'; // 引入 JavaScript 文件
+import { useAuth } from '../../auth/AuthContext';
+import Floating from '../Floating';
+import { initializePersonalEditor } from '../../../JS or jQuery/personal_editor'; // 引入 JavaScript 文件
 // import Breadcrumb from './Breadcrumb';
 // import Sidebar from './Sidebar';
 // import TopBar from './TopBar';
@@ -55,7 +55,7 @@ const Sidebar = () => (
     <div className="sidebar">
         {/* <!-- 切換按鈕 --> */}
         <div className="switcher">
-            <button id="client-btn" className="switch-btn"><Link to="/infodata" className="alink">案主</Link></button>
+            <button id="client-btn" className="switch-btn"><Link to="/Someonedata" className="alink">案主</Link></button>
             <button id="freelancer-btn" className="switch-btn active"><Link to="/personal_editor" className="alink">接案者</Link></button>
         </div>
         <div className="menu">
@@ -111,6 +111,10 @@ const ContentArea = () => (
         <TopBar />
     </div>
 );
+
+
+
+
 
 
 

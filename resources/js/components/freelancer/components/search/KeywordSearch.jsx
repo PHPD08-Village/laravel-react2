@@ -1,9 +1,9 @@
 // freelancer2/components/filters/KeywordSearch.jsx
 import React, { useContext, useState } from 'react';
-import { AppContext } from '../../AppProvider';
+import { AppfreelancerContext } from '../../AppProvider';
 
 const KeywordSearch = () => {
-    const { setKeywords, keywords, totalResultsCount  } = useContext(AppContext);
+    const { setKeywords, keywords, totalResultsCount  } = useContext(AppfreelancerContext);
     const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (e) => {

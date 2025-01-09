@@ -14,6 +14,7 @@ import Publish from '../pages/Publish';
 import Personal from '../pages/Personal_editor';
 import CaseMng from '../pages/CaseManager';
 import SeleTaker from '../pages/SeleTaker';
+import SomeoneData from '../components/Personal_editor/someone/InfoData';
 
 import NotFound from '../pages/NotfoundPage';
 
@@ -35,10 +36,13 @@ const Index = () => {
             <Route path="/detail" element={<Detail />} />
             <Route path="/personalinfo" element={<PersonalInfo />} />
             <Route path="/star" element={<Star />} />
-            <Route path="/casemng" element={<CaseMng />} />
-            <Route path="/seletaker" element={<SeleTaker />} />
+
             <Route path="/publish" element={<Publish />} />
+            <Route path="/case_manager" element={<CaseMng />} />
+            <Route path="/select_taker" element={<SeleTaker />} />
+            <Route path="/publish" element={<Publish />} />{/* TestForm 頁面 */}
             <Route path="/personal_editor" element={<Personal />} />
+            <Route path="/Someonedata" element={<SomeoneData/>} /> {/* 業主頁面 */}
             <Route path="/*" element={<NotFound />} />
 
             <Route path="/infodata" element={<Info/>} /> {/* 案主頁面 */}

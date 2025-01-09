@@ -1,0 +1,40 @@
+目前正在著手laravel-react專案
+專案主題是：接案網站 
+正在製作的頁面是[個人編輯頁面]
+主要的功能大致上分為以下區塊 
+
+最上方區塊：
+為麵包屑導航，在[個人編輯頁面]中此區塊為固定顯示的區塊，只會根據目前頁面來改變對應的文字
+
+左側1/3區塊：
+此區塊主要包含固定的按鈕以及清單按鈕
+首先有兩個按鈕 1.業主 2.接案者
+依照使用者點擊的按鈕來改變此區塊以及頁面主要顯示的內容
+若點擊業主 則出現業主相關的清單按鈕
+若點擊接案者 則出現接案者相關的清單按鈕 
+點擊清單按鈕來更新右側區塊
+
+ 
+右側的2/3區塊：
+上層為固定的基本個人資訊，例如：大頭照、姓名、會員編號、一個固定的按鈕，在[個人編輯頁面]中此區塊為固定顯示的區塊，只會根據目前登入的使用者來讀取數據並改變對應的文字
+
+根據jsx元件最佳用法以上區塊有時麼最佳建議的邏輯 讓此頁面在製作時能夠最順暢
+
+
+
+
+freelancer2/
+├── AppProvider.js
+├── Container.js
+└── components/
+    ├── filters/
+    │   ├── LanguageFilter.js
+    │   ├── RatingFilter.js
+    │   └── BudgetFilter.js
+    ├── search/
+    │   ├── KeywordSearch.js
+    │   └── SelectedKeywords.js
+    └── display/
+        ├── SortingOptions.js
+        ├── ResultsDisplay.js
+        └── Pagination.js
