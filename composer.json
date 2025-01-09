@@ -14,7 +14,9 @@
         "pusher/pusher-php-server": "^7.2",
         "socialiteproviders/line": "^4.1",
         "socialiteproviders/manager": "^4.7",
-        "tightenco/ziggy": "^2.0"
+        "tightenco/ziggy": "^2.0",
+	"nesbot/carbon": "^2.72.6",
+	"symfony/clock": "^6.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.3",
