@@ -10,10 +10,10 @@ import ResultsDisplay from './components/display/ResultsDisplay';
 import Pagination from './components/display/Pagination';
 import Floating from '../allpage/Floatingbuttons';
 
-import AppProvider, { AppfreelancerContext } from './AppProvider'; // 引入 Context Provider
+import FreelancerProvider, { FreelancerContext } from './FreelancerProvider'; // 引入 Context Provider
 
 const ContainerContent = () => {
-    const { totalPages, currentPage, setCurrentPage } = useContext(AppfreelancerContext);
+    const { totalPages, currentPage, setCurrentPage } = useContext(FreelancerContext);
 
     return (
         <>
@@ -40,9 +40,9 @@ const ContainerContent = () => {
 
 const Container = () => {
     return (
-        <AppProvider>
+        <FreelancerProvider>
             <ContainerContent />
-        </AppProvider>
+        </FreelancerProvider>
     );
 };
 

@@ -3,10 +3,10 @@ import React, { useContext } from 'react';
 import { IonIcon } from '@ionic/react';
 import { star } from 'ionicons/icons';
 
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 
 const RatingFilter = () => {
-    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(AppfreelancerContext);
+    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(FreelancerContext);
 
     const handleRatingClick = (range) => {
         const newButtonKeywords = buttonKeywords.includes(range)

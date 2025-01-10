@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 
 import UserDetails from './UserDetails';
 import CaseDetails from './CaseDetails';
@@ -13,7 +13,7 @@ import TakeCaseButton from './TakeCaseButton';
 import ApplyCount from './ApplyCount';
 
 const ResultsDisplay = () => {
-    const { filteredResults, isLoading } = useContext(AppfreelancerContext);
+    const { filteredResults, isLoading } = useContext(FreelancerContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,6 +39,7 @@ const ResultsDisplay = () => {
     if (!filteredResults || !filteredResults.length) {
         return <div>暫無數據</div>; // 確保沒有數據時顯示合適的提示
     }
+    console.log(filteredResults);
 
     return (
         <>

@@ -15,7 +15,7 @@ const Personal_editor = () => {
 
     useEffect(() => {
         if (!user) {
-            alert('請先登入');
+            // alert('請先登入');
             navigate('/login'); // 如果未登入，重定向到登入頁面
         } else {
             initializePersonalEditor(); // 初始化個人編輯器
@@ -55,7 +55,7 @@ const Sidebar = () => (
     <div className="sidebar">
         {/* <!-- 切換按鈕 --> */}
         <div className="switcher">
-            <button id="client-btn" className="switch-btn"><Link to="/Someonedata" className="alink">案主</Link></button>
+            <button id="client-btn" className="switch-btn"><Link to="/someonedata" className="alink">案主</Link></button>
             <button id="freelancer-btn" className="switch-btn active"><Link to="/personal_editor" className="alink">接案者</Link></button>
         </div>
         <div className="menu">

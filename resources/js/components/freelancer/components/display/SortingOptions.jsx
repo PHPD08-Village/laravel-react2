@@ -1,11 +1,11 @@
 // freelancer2/components/SortingOptions.jsx
 import React, { useContext, useEffect, useState } from 'react';
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 import { arrowUpOutline, arrowDownOutline } from 'ionicons/icons';
 import { IonIcon } from '@ionic/react';
 
 const SortingOptions = () => {
-    const { setSortingCriteria, setItemsPerPage, setKeywords, setButtonKeywords, setCurrentPage, totalResultsCount } = useContext(AppfreelancerContext);
+    const { setSortingCriteria, setItemsPerPage, setKeywords, setButtonKeywords, setCurrentPage, totalResultsCount } = useContext(FreelancerContext);
     const [order, setOrder] = useState('asc');
     const [activeSort, setActiveSort] = useState(null);
 
@@ -69,14 +69,14 @@ const SortingOptions = () => {
                 )}
             </button>
             <div>
-                <label htmlFor="items-per-page-select">每頁顯示</label>
-                <select id="items-per-page-select" defaultValue="10" onChange={handleItemsPerPageChange}>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="all">全部</option>
+                <label htmlFor="items-per-page-select"></label>
+                <select id="items-per-page-select" defaultValue="10" onChange={handleItemsPerPageChange} style={{width:'180px'}}>
+                    <option value="5">每頁顯示5筆資料</option>
+                    <option value="10">每頁顯示10筆資料</option>
+                    <option value="20">每頁顯示20筆資料</option>
+                    <option value="all">顯示全部資料</option>
                 </select>
-                <label htmlFor="items-per-page-select">筆資料</label>
+                <label htmlFor="items-per-page-select"></label>
             </div>
         </div>
     );

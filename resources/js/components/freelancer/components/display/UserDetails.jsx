@@ -5,6 +5,8 @@ import React from 'react';
 import Star from './Star';
 
 const UserDetails = ({ result, handleNavigation }) => {
+    // console.log(result.headshot);
+    
     return (
         <div className="fcontent1" onClick={() => handleNavigation(result)}>
             <div className="fhot"><img src="/img/Icon/Crown.png" alt="hot" /></div>

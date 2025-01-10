@@ -1,10 +1,10 @@
 // freelancer2/components/filters/BudgetFilter.jsx
 import React, { useContext, useState } from 'react';
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 import { Range, getTrackBackground } from 'react-range';
 
 const BudgetFilter = () => {
-    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(AppfreelancerContext);
+    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(FreelancerContext);
     const [values, setValues] = useState([0, 1000000]);
 
     const STEP = 100;

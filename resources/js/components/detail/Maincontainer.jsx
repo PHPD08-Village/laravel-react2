@@ -12,7 +12,7 @@ const Maincontainer = ({ item, timeDifference }) => {
                     <div className='casedescrip'>
                         <div className='title'>
                             <h1>{item.title}</h1>
-                            <p>{timeDifference(item.updated_at)}</p>
+                            {/* <p>{timeDifference(item.updated_at)}</p> */}
                             <p>{moment(item.updated_at).format('YYYY.MM.DD')}更新</p>
                         </div>
                         <hr />
@@ -35,11 +35,12 @@ const Maincontainer = ({ item, timeDifference }) => {
                             <p>{item.username}</p>
                         </div>
                         <p>{item.email}</p>
-                        <p>回覆率：??%</p> {/* {item.reply_rate} */}
-                        <p>最後上線時間：??前</p>
+                        {/* <p>回覆率：??%</p>  */}
+                        {/* {item.reply_rate} */}
+                        {/* <p>最後上線時間：??前</p> */}
                         <div className="detailbtn">
+                            <div><a href="#">收藏</a></div>
                             <div><a href="#">接案</a></div>
-                            <div><a href="#">聊聊</a></div>
                         </div>
                     </div>
                 </div>
@@ -54,3 +55,9 @@ const Maincontainer = ({ item, timeDifference }) => {
 }
 
 export default Maincontainer;
+
+
+
+
+
+

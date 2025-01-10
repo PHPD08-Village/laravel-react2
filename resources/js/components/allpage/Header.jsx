@@ -22,7 +22,7 @@ const Header = () => {
                     <Link to="/freelancer" className="alink">我要接案</Link>
                     <Link to="/owner" className="alink">我要委託</Link>
                     <Link to="/publish" className="alink">我要發案</Link>
-                    <Link to="/Personal_editor" className="alink">FAQ</Link>
+                    <Link to="/useredit" className="alink">FAQ</Link>
                     <Link to="/star" className="alink">Star</Link>
                 </div>
                 <div className="member">

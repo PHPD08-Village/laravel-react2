@@ -71,7 +71,8 @@ const DataList = ({ item, timeDifference, className }) => {
                 </div>
                 <div className="olocation">地區：{item.location}</div>
                 <div className="ocasecontent">
-                    描述內容：{item.details}
+                    {/* {item.details} */}
+                    作品集
                 </div>
                 <div className="orequire">
                     <p style={{ margin: '16px 4px' }}>使用語言：</p>
@@ -87,7 +88,7 @@ const DataList = ({ item, timeDifference, className }) => {
                     <AssignmentButton uid={item.uid} />
                 </div>
                 <div className="opeople">0~5 人爭取中</div>
-                <div className="ofrequency">7777 瀏覽次數</div>
+                <div className="ofrequency">5 瀏覽次數</div>
                 <div style={{ flex: 1.5 }}></div>
             </div>
         </div>
