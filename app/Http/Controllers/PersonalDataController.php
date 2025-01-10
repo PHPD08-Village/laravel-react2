@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class PersonalDataController extends Controller
 {
     // 儲存個人資料
-   public function store(Request $request)
+    public function store(Request $request)
     {
         // 確保請求接受 JSON 回應
         $request->headers->set('Accept', 'application/json');
@@ -42,14 +42,13 @@ class PersonalDataController extends Controller
                 // 'desired_region' => $request->desired_region,
                 // 'desired_type' => $request->desired_type,
             ]);
-             // 記錄成功訊息
+            // 記錄成功訊息
             Log::info('資料儲存成功', ['data' => $request->all()]);
 
             return response()->json(['message' => '資料儲存成功']);
-        }
-        catch (\Exception $e) {
-             // 記錄錯誤訊息到日誌檔案
-             Log::error('資料儲存失敗', [
+        } catch (\Exception $e) {
+            // 記錄錯誤訊息到日誌檔案
+            Log::error('資料儲存失敗', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'input' => $request->all()
