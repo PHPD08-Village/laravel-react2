@@ -44,29 +44,29 @@ function InfoCase() {
                                 </thead>
                                 <tbody className="caseItem">
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
+                                    <td>手機登入頁面設計</td>
+                                    <td>$15000</td>
                                     <td className="status">審核中</td>
-                                    <td>2024.10.11</td>
+                                    <td>2025.01.09</td>
                                     <td className="edit">編輯</td>
                                     <td className="delete">刪除</td>
                                   </tr>
                                   <tr>
+                                    <td>商品資料庫設計</td>
+                                    <td>$45000</td>
+                                    <td className="status">審核中</td>
+                                    <td>2025.01.11</td>
+                                    <td className="edit">編輯</td>
+                                    <td className="delete">刪除</td>
+                                  </tr>
+                                  {/* <tr>
                                     <td>快樂修狗網頁獨立設計</td>
                                     <td>$5000</td>
                                     <td className="status">審核中</td>
                                     <td>2024.10.11</td>
                                     <td className="edit">編輯</td>
                                     <td className="delete">刪除</td>
-                                  </tr>
-                                  <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
-                                    <td className="status">審核中</td>
-                                    <td>2024.10.11</td>
-                                    <td className="edit">編輯</td>
-                                    <td className="delete">刪除</td>
-                                  </tr>
+                                  </tr> */}
                                 </tbody>
                               </table>
                         </div>

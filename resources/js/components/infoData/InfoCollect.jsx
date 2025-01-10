@@ -47,30 +47,30 @@ function InfoCollect() {
                                 <tbody className="cocaseItem">
                                   <tr>
                                     <td><input type="checkbox" name="" id=""/></td>
-                                    <td>王曉名</td>
+                                    <td>李玉兔</td>
+                                    <td>台北市</td>
+                                    <td>1年</td>
+                                    <td  className="costatus">2</td>
+                                    <td className="coedit">28</td>
+                                    <td className="codelete">2024.03.05</td>
+                                  </tr>
+                                  <tr>
+                                    <td><input type="checkbox" name="" id=""/></td>
+                                    <td>王曉美</td>
                                     <td>台中市</td>
                                     <td>3年</td>
-                                    <td  className="costatus">10</td>
-                                    <td className="coedit">666</td>
+                                    <td  className="costatus">5</td>
+                                    <td className="coedit">66</td>
                                     <td className="codelete">2024.10.01</td>
                                   </tr>
                                   <tr>
                                     <td><input type="checkbox" name="" id=""/></td>
-                                    <td>王曉名</td>
-                                    <td>台中市</td>
+                                    <td>林修</td>
+                                    <td>台南市</td>
                                     <td>3年</td>
-                                    <td  className="costatus">10</td>
-                                    <td className="coedit">666</td>
-                                    <td className="codelete">2024.10.01</td>
-                                  </tr>
-                                  <tr>
-                                    <td><input type="checkbox" name="" id=""/></td>
-                                    <td>王曉名</td>
-                                    <td>台中市</td>
-                                    <td>3年</td>
-                                    <td  className="costatus">10</td>
-                                    <td className="coedit">666</td>
-                                    <td className="codelete">2024.10.01</td>
+                                    <td  className="costatus">6</td>
+                                    <td className="coedit">39</td>
+                                    <td className="codelete">2024.12.31</td>
                                   </tr>
                                 </tbody>
                               </table>
