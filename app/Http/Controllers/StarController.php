@@ -62,7 +62,6 @@ class StarController extends Controller
             }
 
             $rating->save();
-            $rating->save();
 
             // Log::info('評價已成功提交', ['rating' => $rating]);
 

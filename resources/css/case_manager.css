@@ -186,6 +186,7 @@
     border-radius: 1rem;
     position: relative;
     cursor: pointer;
+    transition: background 0.3s, left 0.3s;
 }
 
 .caseMngSwitchToggle::after {
@@ -197,11 +198,12 @@
     height: 1.5rem;
     border-radius: 50%;
     background: #FFA500;
-    background-image: url(/img/Icon/X.png);
+    background-image: url(/img/Icon/close-outline.svg);
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: 50%;
     pointer-events: none;
+    transition: background 0.3s, left 0.3s;
 }
 
 .caseMngSwitchHidden:checked+label {
@@ -210,7 +212,7 @@
 
 .caseMngSwitchHidden:checked+label::after {
     left: 1.6rem;
-    background-image: url(/img/Icon/checkmark-outline.png);
+    background-image: url(/img/Icon/checkmark-outline.svg);
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -256,16 +258,28 @@ hr {
     /* 垂直置中 */
 }
 
-
-/* 以下是 footer */
-.footer {
+.caseMngtab {
+    height: 40px;
     display: flex;
-    height: 125px;
-    background-color: #D3D3D3;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
-.icons {
-    flex: 4;
+.caseMngtab a {
+    color: white;
+    background-color: #464646;
+    border-radius: 5px;
+    padding: 9px 20px;
+    margin: 0 2px;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.caseMngtab img {
+    width: 20px;
     display: flex;
     justify-content: center;
     /* 水平置中 */
@@ -273,35 +287,54 @@ hr {
     /* 垂直置中 */
 }
 
-.icons>a {
-    text-align: center;
-    padding: 10px;
-    /* 添加內邊距以提高可點擊區域 */
-    background-color: lightgray;
-    /* 添加背景色便於視覺區分 */
-    margin: 5px;
-    /* 添加外邊距以增加間距 */
-    color: black;
-    /* 設置文字顏色 */
-    transition: 0.3s;
-    /* 添加過渡效果 */
+.caseMngtab p {
+    padding: 0 5px;
+    margin: 0 15px 5px 15px;
 }
 
-.icons a:hover {
-    background-color: gray;
-    /* 鼠標懸停時改變背景色 */
-    color: white;
-    /* 鼠標懸停時改變文字顏色 */
+.caseMngLeftnext {
+    display: flex;
+    height: 20px;
 }
 
-.copyright {
-    flex: 4;
-    text-align: center;
-    margin: 25px 10px;
+.caseMngRightnext {
+    display: flex;
+    height: 20px;
 }
 
-.copyright a,
-.copyright>div+div {
-    color: black;
-    padding: 20px;
+.caseMngLeftnext img {
+    flex: 1;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.caseMngRightnext img {
+    flex: 1;
+}
+
+.caseMngLeftnext p {
+    flex: 3;
+}
+
+.caseMngRightnext p {
+    flex: 3;
+}
+
+
+.caseMngtab {
+    width: 70%;
+    margin: 50px auto 20px auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.caseMngTabNumber {
+    vertical-align: middle;
+    margin-left: 15px;
+    width: 140px;
 }

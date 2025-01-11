@@ -12,6 +12,12 @@ const CaseManager = () => {
     // const pid= cases.pid;
     const navigate = useNavigate();
 
+    // 設置頁數按鈕
+    const [filteredData, setFilteredData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+
+
     // useEffect(() => {
     //     fetchCases(userId);
     // }, [userId]);
@@ -27,45 +33,91 @@ const CaseManager = () => {
     //     }
     // }
 
-    // 獲取應徵者資料
+    // 獲取案件資料
+    // useEffect(() => {
+    //     axios.get(`http://127.0.0.1:8000/api/get-cases/${userId}`)
+    //         .then(response => {
+    //             setCases(response.data);
+    //             setFilteredData(response.data);
+    //             // console.log('成功獲取案件資料', response.data)
+    //         })
+    //         .catch(error => {
+    //             console.error('案件資料獲取失敗', error);
+    //         });
+    //     // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
+    // }, [userId])
+
+    // 獲取案件資料
+    const fetchCasesData = async () => {
+        try {
+            // console.log('開始獲取案件資料')
+            const response = await axios.get(`http://127.0.0.1:8000/api/get-cases/${userId}`);
+            // console.log('成功獲取案件資料')
+            setCases(response.data);
+            setFilteredData(response.data);
+            // console.log(response.data)
+        } catch (error) {
+            console.error('案件資料獲取失敗', error);
+            alert('案件資料獲取失敗，請稍後再試');
+        }
+    };
+
     useEffect(() => {
-        // console.log(`開始獲取 uid = ${userId} 的用戶的所有案件資料`)
-        axios.get(`http://127.0.0.1:8000/api/get-cases/${userId}`)
-            .then(response => {
-                setCases(response.data);
-                // console.log('成功獲取案件資料', response.data)
-            })
-            .catch(error => {
-                console.error('案件資料獲取失敗', error);
-            });
-        // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
-    }, [userId])
+        if(userId){
+            fetchCasesData();
+        }
+    }, [userId]);
 
     // 設定案件的開關按鈕(目前沒辦法用)
-    const handleSwitch = async (pid) => {
+    // const handleSwitch = async (pid) => {
+    //     try {
+    //         // const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    //         // const response = await axios.post(`http://localhost:8000/api/get-cases/switch-case`, cases, {
+    //         //     // pid: pid
+    //         //     headers: {
+    //         //         'X-CSRF-TOKEN': token,
+    //         //     },
+    //         // });
+
+    //         alert(response.data.message);
+    //         const updatedCases = cases.map((caseItem) => {
+    //             if (caseItem.pid === pid) {
+    //                 return { ...caseItem, is_open: response.data.is_open };
+    //             }
+    //             // return caseItem.pid === pid ? response.data : caseItem;
+    //             return caseItem;
+    //         });
+    //         setCases(updatedCases);
+    //     } catch (error) {
+    //         console.error("案件開關失敗：", error);
+    //     }
+    // }
+
+    // 設置案件開關按鈕
+    const handleSwitch = async (caseItem) => {
         try {
-            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            const response = await axios.post(`http://localhost:8000/api/get-cases/switch-case`, cases, {
-                // pid: pid
-                headers: {
-                    'X-CSRF-TOKEN': token,
-                },
+            const response = await axios.post('http://127.0.0.1:8000/api/get-cases/switch-case', {
+                pid: caseItem.pid,
+                is_open: caseItem.is_open
             });
+            console.log(response.data);
+            const updatedCase = response.data.updatedCase
+            // alert(response.data.message)
 
-            alert(response.data.message);
-            const updatedCases = cases.map((caseItem) => {
-                if (caseItem.pid === pid) {
-                    return { ...caseItem, is_open: response.data.is_open };
-                }
-                // return caseItem.pid === pid ? response.data : caseItem;
-                return caseItem;
-            });
-            setCases(updatedCases);
+            // 即時更新特定案件的狀態 
+            setCases(prevCases => prevCases.map(item =>
+                item.pid === caseItem.pid ? { ...item, is_open: !item.is_open } : item
+            ));
+            // console.log('更新後的案件狀態:', newCases);
+
+            fetchCasesData()
+
         } catch (error) {
-            console.error("案件開關失敗：", error);
+            console.error('案件顯示關閉出錯', error);
+            alert('案件顯示/關閉出錯')
         }
-    }
+    };
 
     // 設置完成案件的按鈕函式
     const submitComplete = (caseId, caseName) => {
@@ -81,6 +133,21 @@ const CaseManager = () => {
         navigate('/publish_editor', { state: { caseId } })
 
     }
+
+    // 設置頁數按鈕
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    const goToFirstPage = () => setCurrentPage(1);
+    const goToPreviousPage = () => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+    const goToNextPage = () => setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages);
+    const goToLastPage = () => setCurrentPage(totalPages);
+
+    const handleItemsPerPageChange = (e) => {
+        setItemsPerPage(Number(e.target.value));
+        setCurrentPage(1);
+    };
 
     // 設置幾分鐘前更新
     const timeDifference = (timestamp) => {
@@ -135,7 +202,7 @@ const CaseManager = () => {
             {/* content */}
             <div className="caseMngAllCase">
                 {cases && cases.length > 0 ? (
-                    cases.map((caseItem) => (
+                    currentItems.map((caseItem) => (
                         <React.Fragment key={caseItem.pid}>
                             {/* 這裡的 pid 是資料庫中的案件 id */}
                             <div key={caseItem.pid} className="caseMngContent">
@@ -166,9 +233,9 @@ const CaseManager = () => {
                                             type="checkbox" className="caseMngSwitchHidden"
                                             id={`switch${caseItem.pid}`}
                                             checked={caseItem.is_open}
-                                            onChange={() => handleSwitch(caseItem.pid)}
+                                            onChange={() => handleSwitch(caseItem)}
                                         />
-                                        <label className="caseMngSwitchToggle" htmlFor={`switch${caseItem.pid}`}></label>
+                                        <label className={`caseMngSwitchToggle ${caseItem.is_open ? 'open' : 'closed'}`} htmlFor={`switch${caseItem.pid}`} />
                                     </div>
                                     <div className="caseMngCaseData">
                                         <p>應徵人數：{applicant_count}</p>
@@ -185,20 +252,40 @@ const CaseManager = () => {
                 )
                 }
 
+                <div className="ftab caseMngtab" style={{ marginTop: '50px' }}>
+                    <button onClick={goToFirstPage} disabled={currentPage === 1}>
+                        <img src="/img/left.png" alt="First Page" />
+                    </button>
+                    <button className="fleftnext" onClick={goToPreviousPage} disabled={currentPage === 1}>
+                        <img src="/img/leftnext.png" alt="Previous Page" />
+                        <span>上一頁</span>
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index + 1}
+                            onClick={() => setCurrentPage(index + 1)}
+                            disabled={currentPage === index + 1}
+                            className={currentPage === index + 1 ? 'current-page' : ''}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button className="frightnext" onClick={goToNextPage} disabled={currentPage === totalPages}>
+                        <span>下一頁</span>
+                        <img src="/img/rightnext.png" alt="Next Page" />
+                    </button>
+                    <button onClick={goToLastPage} disabled={currentPage === totalPages}>
+                        <img src="/img/right.png" alt="Last Page" />
+                    </button>
 
-                {/* tab */}
-                <div className="caseMngTab">
-                    <a href="">(箭頭)最前頁</a>
-                    <a href="">(箭頭)上一頁</a>
-                    <a style={{ color: '#464646', backgroundColor: '#FFA500', border: '1px solid #000000' }} href="">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <p style={{ margin: '5px 10px' }}>...</p>
-                    <a href="">7</a>
-                    <a href="">8</a>
-                    <a href="">下一頁(箭頭)</a>
-                    <a href="">最後頁(箭頭)</a>
+                    <select className='caseMngTabNumber' value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                        <option value={5}>顯示5筆資料</option>
+                        <option value={10}>顯示10筆資料</option>
+                        <option value={20}>顯示20筆資料</option>
+                    </select>
+
                 </div>
+
             </div>
         </div>
     );

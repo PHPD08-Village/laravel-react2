@@ -13,6 +13,11 @@ function SelectTaker() {
     // const [selectedTitle, setSelectedTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // 設置頁數按鈕
+    const [filteredData, setFilteredData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+
     // useEffect(() => {
     //     axios.get(`http://127.0.0.1:8000/api/get-project-title/${selectedPid}`)
     //         .then(response => {
@@ -29,6 +34,7 @@ function SelectTaker() {
         axios.get(`http://127.0.0.1:8000/api/get-project-applicants/${selectedPid}`)
             .then(response => {
                 setApplicants(response.data);
+                setFilteredData(response.data);
                 console.log('成功獲取應徵者資料', response.data)
             })
             .catch(error => {
@@ -36,6 +42,21 @@ function SelectTaker() {
             });
         // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
     }, [selectedPid])
+
+    // 設置頁數按鈕
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    const goToFirstPage = () => setCurrentPage(1);
+    const goToPreviousPage = () => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+    const goToNextPage = () => setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages);
+    const goToLastPage = () => setCurrentPage(totalPages);
+
+    const handleItemsPerPageChange = (e) => {
+        setItemsPerPage(Number(e.target.value));
+        setCurrentPage(1);
+    };
 
     // 委託接案者
     const assignTaker = (takerUid) => {
@@ -107,7 +128,7 @@ function SelectTaker() {
             <div className="seleTakerallTaker">
                 {/* {applicants.slice(currentIndex, currentIndex + 3).map(applicant => ( */}
                 {applicants && applicants.length > 0 ? (
-                    applicants.map(applicant => (
+                    currentItems.map(applicant => (
                         // 使用 LatestCard 元件顯示每個案件，並傳遞 latest 資料和唯一的 key
                         <CaseApplicants
                             // 大括號內的 applicant 是來自 map 的參數，代表目前正在處理的物件
@@ -180,7 +201,7 @@ function SelectTaker() {
                 <hr /> */}
 
                 {/* tab */}
-                <div className="seleTakertab">
+                {/* <div className="seleTakertab">
                     <a href="">(箭頭)最前頁</a>
                     <a href="">(箭頭)上一頁</a>
                     <a style={{ color: '#464646', backgroundColor: '#FFA500', border: '1px solid #000000' }} href="">1</a>
@@ -191,6 +212,40 @@ function SelectTaker() {
                     <a href="">8</a>
                     <a href="">下一頁(箭頭)</a>
                     <a href="">最後頁(箭頭)</a>
+                </div> */}
+
+                <div className="ftab seleTakertab">
+                    <button onClick={goToFirstPage} disabled={currentPage === 1}>
+                        <img src="/img/left.png" alt="First Page" />
+                    </button>
+                    <button className="fleftnext" onClick={goToPreviousPage} disabled={currentPage === 1}>
+                        <img src="/img/leftnext.png" alt="Previous Page" />
+                        <span>上一頁</span>
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index + 1}
+                            onClick={() => setCurrentPage(index + 1)}
+                            disabled={currentPage === index + 1}
+                            className={currentPage === index + 1 ? 'current-page' : ''}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button className="frightnext" onClick={goToNextPage} disabled={currentPage === totalPages}>
+                        <span>下一頁</span>
+                        <img src="/img/rightnext.png" alt="Next Page" />
+                    </button>
+                    <button onClick={goToLastPage} disabled={currentPage === totalPages}>
+                        <img src="/img/right.png" alt="Last Page" />
+                    </button>
+
+                    <select className='seleTakerTabNumber' value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                        <option value={5}>顯示5筆資料</option>
+                        <option value={10}>顯示10筆資料</option>
+                        <option value={20}>顯示20筆資料</option>
+                    </select>
+
                 </div>
             </div>
 
