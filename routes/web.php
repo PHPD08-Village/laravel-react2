@@ -130,6 +130,8 @@ Route::post('/api/apply-case',[ApplyController::class, 'applyCase']);
 Route::post('/api/toggle-favorite', [SearchController::class, 'toggleFavorite']);
 // 確認收藏狀態
 Route::post('/api/check-favorite', [SearchController::class, 'checkFavorite']);
+// 更新案件
+Route::post('/api/update-publish', [PublishController::class, 'update']);
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
 Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);

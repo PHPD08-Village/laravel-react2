@@ -1,5 +1,5 @@
 import React from 'react'
-import Personal_editor from '../components/Personal_editor/Personal_editor copy'
+import Personal_editor from '../components/Personal_editor/boss/Personal_editor'
 
 import '../../css/personal_editor.css'
 const Personal = () => {

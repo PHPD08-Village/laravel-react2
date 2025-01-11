@@ -9,7 +9,7 @@ import { chevronBackOutline, chevronForwardOutline, star, starHalf, starOutline 
 
 function SelectTaker() {
     const [applicants, setApplicants] = useState([]);
-    const [selectedPid, setSelectedPid] = useState(8);
+    const [selectedPid, setSelectedPid] = useState(16);
     // const [selectedTitle, setSelectedTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -345,7 +345,7 @@ const CaseApplicants = ({ applicant, assignTaker, sendThanksNote }) => {
                 </div>
                 <div className="seleTakercontent2">
                     <div className="seleTakertitle">
-                        <h2>{applicant.username}</h2>
+                        <h2>{applicant.nickname}</h2>
                         <span className="seleTakerlocation">
                             地區：{applicant.location}
                         </span>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 
 // const StarSystem = ({ userId }) => {
-const StarSystem = ({ userId, caseId }) => {
+const StarSystem = ({ userId }) => {
     // const [uid, setUid] = useState('1');
     const [uid, setUid] = useState(userId); // 用戶 ID
     const [caseInfo, setCaseInfo] = useState(null); // 評價對象的用戶 ID
@@ -13,6 +14,9 @@ const StarSystem = ({ userId, caseId }) => {
     const [cooperation, setCooperation] = useState(null);
     // 重新導向至新頁面的內建函數
     const navigate = useNavigate();
+    const location = useLocation();
+    const { caseId } = location.state || {};
+    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
 
     useEffect(() => {
         setUid(userId); // 確認用戶 ID 已經設置
@@ -21,12 +25,15 @@ const StarSystem = ({ userId, caseId }) => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/case/${caseId}`);
                 setCaseInfo(response.data);
+                console.log(response.data)
             } catch (error) {
                 console.error('發案用戶資料請求失敗', error);
                 alert('發案用戶資料獲取失敗，請稍後再試');
             }
         };
-        fetchCaseInfo();
+        if (caseId) {
+            fetchCaseInfo();
+        }
     }, [caseId, userId]);
 
     const handleSubmit = async (event) => {
@@ -100,7 +107,7 @@ const StarSystem = ({ userId, caseId }) => {
                         <img src={caseInfo.headshot} alt="avatar" />
                         <div className="staruserInfoText">
                             <h3 id="caseName" name="caseName">{caseInfo.title}</h3>
-                            <p id="userName" name="userName">{caseInfo.username}</p>
+                            <p id="userName" name="userName">{caseInfo.targetUsername}</p>
                             <p id="caseDate" name="caseDate">{caseInfo.publish_date}</p>
                         </div>
                     </div>

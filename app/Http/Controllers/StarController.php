@@ -23,7 +23,7 @@ class StarController extends Controller
             ]);
 
             // 確認用戶ID和被評分的用戶ID是否相同
-            if ($request->uid == $request->targetUserId) {
+            if ($request->uid === $request->targetUserId) {
                 return response()->json(['message' => '不能評價自己']);
             }
 

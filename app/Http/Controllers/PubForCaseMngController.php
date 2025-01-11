@@ -17,6 +17,7 @@ class PubForCaseMngController extends Controller
                 // 用 auth()->uid 取得當前登入的使用者 ID
                 // ->where('publish.uid', auth()->uid)
                 ->where('publish.uid', $userId)
+                ->orderBy('publish.updated_at', 'desc')
                 ->get();
 
             // 將 blob 轉換為 Base64 URL，並返回給前端讓前端能順利拿到可用的 url

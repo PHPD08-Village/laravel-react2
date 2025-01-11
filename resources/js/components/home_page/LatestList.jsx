@@ -288,7 +288,7 @@ const LatestCard = ({ latest, handleApply, handleAddFavorite }) => {
             </div>
             {/* </Link> */}
             <div className="homecardFooter">
-                <label>{timeDifference(new Date(latest.updated_at).toISOString())}</label>
+                <label>{timeDifference(new Date(latest.created_at).toISOString())}</label>
                 <button id="talk1" name="talk1" onClick={() => handleAddFavorite(latest.pid)}>收藏</button>
                 {/* 用箭頭函式確保 按鈕被點擊時 handleApply 才被調用 */}
                 {/* <a onClick={() => handleApply(latest.uid, latest.pid)} id="catchCase1" name="catchCase1">接案</a> */}

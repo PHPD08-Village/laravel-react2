@@ -1,15 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 
 const CaseManager = () => {
     const [cases, setCases] = useState([]);
-    const [userId, setUserId] = useState(4);
+    const [userId, setUserId] = useState(13);
     // const userId = 4;   // 假設已登入的用戶 ID
     // const pid= cases.pid;
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     fetchCases(userId);
@@ -28,11 +29,11 @@ const CaseManager = () => {
 
     // 獲取應徵者資料
     useEffect(() => {
-        console.log(`開始獲取 uid = ${userId} 的用戶的所有案件資料`)
+        // console.log(`開始獲取 uid = ${userId} 的用戶的所有案件資料`)
         axios.get(`http://127.0.0.1:8000/api/get-cases/${userId}`)
             .then(response => {
                 setCases(response.data);
-                console.log('成功獲取案件資料', response.data)
+                // console.log('成功獲取案件資料', response.data)
             })
             .catch(error => {
                 console.error('案件資料獲取失敗', error);
@@ -64,6 +65,21 @@ const CaseManager = () => {
         } catch (error) {
             console.error("案件開關失敗：", error);
         }
+    }
+
+    // 設置完成案件的按鈕函式
+    const submitComplete = (caseId, caseName) => {
+        const userConfirmed = window.confirm(`是否確定完成案件 ${caseName}?`)
+        if (userConfirmed) {
+            alert('已完成案件！點擊確定後將跳轉至評價頁面。')
+            navigate('/star', { state: { caseId } })
+        }
+    }
+
+    // 設置編輯案件的按鈕函式
+    const editPublish = (caseId) => {
+        navigate('/publish_editor', { state: { caseId } })
+
     }
 
     // 設置幾分鐘前更新
@@ -131,6 +147,18 @@ const CaseManager = () => {
                                         <h2>{caseItem.title}</h2>
                                     </Link>
                                     <div className="caseMngCaseContent" dangerouslySetInnerHTML={createMarkup(caseItem.details)} />
+                                </div>
+                                <div className="caseMngSeeAllTakerAndComplete">
+                                    <button className='caseMngCaseEditor'
+                                        onClick={() => editPublish(caseItem.pid)}>編輯
+                                    </button>
+                                    <Link to="/select_taker" className='caseMngSeeAllTaker'>應徵者</Link>
+                                    <button
+                                        className={caseItem.taker_uid ? 'completeBtn' : 'nonCompleteBtn'}
+                                        disabled={!caseItem.taker_uid}
+                                        onClick={() => submitComplete(caseItem.pid, caseItem.title)}
+                                    >完成案件
+                                    </button>
                                 </div>
                                 <div className="caseMngSwitchAndData">
                                     <div className="caseMngSwitch">

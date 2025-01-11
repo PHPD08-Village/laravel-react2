@@ -19,7 +19,7 @@ class ApplicantsController extends Controller
                 ->leftJoin('star', 'applicants.uid', '=', 'star.uid')
                 ->select(
                     'applicants.*',
-                    'userinfo.username',
+                    'userinfo.nickname',
                     'userinfo.headshot',
                     'userinfo.email',
                     'userinfo.introduction',

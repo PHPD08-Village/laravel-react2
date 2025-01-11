@@ -11,6 +11,7 @@ import Detail from '../pages/Detail';
 import PersonalInfo from '../pages/PersonalInfo';
 import Star from '../pages/StarPage';
 import Publish from '../pages/Publish';
+import PublishEditor from '../pages/Publish_editor';
 import Personal from '../pages/Personal_editor';
 import CaseMng from '../pages/CaseManager';
 import SeleTaker from '../pages/SeleTaker';
@@ -38,6 +39,7 @@ const Index = () => {
             <Route path="/star" element={<Star />} />
 
             <Route path="/publish" element={<Publish />} />
+            <Route path="/publish_editor" element={<PublishEditor />} />
             <Route path="/case_manager" element={<CaseMng />} />
             <Route path="/select_taker" element={<SeleTaker />} />
             <Route path="/publish" element={<Publish />} />{/* TestForm 頁面 */}
