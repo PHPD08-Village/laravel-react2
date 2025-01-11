@@ -1,10 +1,10 @@
-// freelancer2/AppProvider.jsx
+// freelancer2/FreelancerProvider.jsx
 import React, { createContext, useState, useEffect, useCallback, useImperativeHandle } from 'react';
 import axios from 'axios';
 
-export const AppfreelancerContext = createContext();
+export const FreelancerContext = createContext();
 
-const AppProvider = ({ children }) => {
+const FreelancerProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false); // 新增加載狀態
     const [results, setResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
@@ -150,14 +150,14 @@ const AppProvider = ({ children }) => {
     
 
     return (
-        <AppfreelancerContext.Provider value={{
+        <FreelancerContext.Provider value={{
             filteredResults, keywords, buttonKeywords, setKeywords, setButtonKeywords,
             sortingCriteria, setSortingCriteria, itemsPerPage, setItemsPerPage, 
             currentPage, setCurrentPage, totalPages, removeKeyword, removeButtonKeyword, filterData, isLoading, error, totalResultsCount
         }}>
             {children}
-        </AppfreelancerContext.Provider>
+        </FreelancerContext.Provider>
     );
 };
 
-export default AppProvider;
+export default FreelancerProvider;

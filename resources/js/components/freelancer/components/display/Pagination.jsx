@@ -1,9 +1,9 @@
 // freelancer2/components/Pagination.jsx
 import React, { useContext } from 'react';
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 
 const Pagination = () => {
-    const { totalPages, currentPage, setCurrentPage } = useContext(AppfreelancerContext);
+    const { totalPages, currentPage, setCurrentPage } = useContext(FreelancerContext);
 
     const createPageButtons = () => {
         const pageButtons = [];

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\ErrorLogController;
+
 // 以下是 柯基 的
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -10,10 +12,10 @@ use App\Http\Controllers\Auth\LineController;
 // 以上是 柯基 的
 
 // 以下是村民的
-use App\Http\Controllers\PublishController;
-use App\Http\Controllers\UserInfoController;
-use App\Http\Controllers\ErrorLogController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Simon\PublishController;
+use App\Http\Controllers\Simon\UserInfoController;
+use App\Http\Controllers\Simon\SearchController;
+use App\Http\Controllers\Simon\PersonalController;
 // 以上是村民的
 
 // 以下是的阿桂的
@@ -78,6 +80,10 @@ Route::post('/api/take-case', [SearchController::class, 'takeCase']);
 Route::post('/api/add-favorite', [SearchController::class, 'addFavorite']);
 // 處理 "委託" 請求
 Route::post('/api/assignment', [SearchController::class, 'assignment']);
+// 個人編輯頁面
+Route::post('/api/personal-edit', [PersonalController::class, 'edit']);
+Route::middleware('auth')->get('/api/personal-info', [PersonalController::class, 'getinfo']);
+// Route::get('/api/personal-info', [PersonalController::class, 'getinfo']);
 // 以上是村民的
 
 
@@ -90,6 +96,7 @@ Route::put('/api/projects/{id}', [ProjectController::class, 'update']); // 更�
 Route::delete('/api/projects/{id}', [ProjectController::class, 'destroy']); // 刪除專案
 Route::get('/api/personalworks', [PersonalworksController::class, 'index']); // 取得所有作品
 Route::post('/api/store-user', [PersonalDataController::class, 'store']); // 新增使用者資料
+Route::get('/api/userdata/{uid}', [PersonalDataController::class, 'show']); // 取得單一使用者
 // 以上是的阿桂
 
 

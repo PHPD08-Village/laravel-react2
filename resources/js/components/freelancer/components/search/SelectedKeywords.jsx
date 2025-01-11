@@ -1,9 +1,9 @@
 // freelancer2/components/SelectedKeywords.jsx
 import React, { useContext } from 'react';
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 
 const SelectedKeywords = () => {
-    const { keywords, removeKeyword, buttonKeywords } = useContext(AppfreelancerContext);
+    const { keywords, removeKeyword, buttonKeywords } = useContext(FreelancerContext);
 
     return (
         <div>

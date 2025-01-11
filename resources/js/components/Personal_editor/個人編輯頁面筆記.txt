@@ -38,3 +38,30 @@ freelancer2/
         ├── SortingOptions.js
         ├── ResultsDisplay.js
         └── Pagination.js
+
+
+userinfo 新增 usertype 欄位 儲存 owner、freelancer
+
+刷新頁面登入的使用者數據消失
+使用本地存儲（Local Storage）
+    你可以在數據成功加載後將其存儲到本地存儲中，然後在頁面加載時從本地存儲中恢復數據。
+    說明
+    1. 初始化狀態：從本地存儲中加載已保存的 userData，如果存在則初始化狀態。
+
+    2. 存儲數據：在成功從 API 獲取數據後，將其存儲到本地存儲中。
+
+    3. 加載數據：在頁面刷新時，首先嘗試從本地存儲加載數據，如果不存在則從 API 獲取。
+
+
+個人編輯頁面目前無法顯示照片我滿頭問號 氣鼠
+
+
+
+
+
+
+
+
+
+
+

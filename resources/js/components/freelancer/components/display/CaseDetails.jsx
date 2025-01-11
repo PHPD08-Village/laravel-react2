@@ -3,6 +3,12 @@
 
 import React from 'react';
 
+const TextLimit = ({ text, limit }) => {
+    const truncatedText = text.length > limit ? text.substring(0, limit) + '...' : text;
+
+    return <div className="fcasecontent">描述內容：{truncatedText}</div>;
+};
+
 const CaseDetails = ({ result, handleNavigation }) => {
     return (
         <div className="fcontent2" onClick={() => handleNavigation(result)}>
@@ -18,9 +24,7 @@ const CaseDetails = ({ result, handleNavigation }) => {
                 </div>
             </div>
             <div className="flocation">地區：{result.location}</div>
-            <div className="fcasecontent">
-                描述內容{result.details}
-            </div>
+            <TextLimit text={result.details} limit={72} />
             <div className="frequire">
                 <p style={{ margin: '16px 4px' }}>需求語言：</p>
                 <div>

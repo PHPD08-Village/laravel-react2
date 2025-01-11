@@ -43,21 +43,21 @@ function InfoCloseCase() {
                                 </thead>
                                 <tbody className="caseItem">
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
+                                    <td>漢堡網頁設計</td>
+                                    <td>$50000</td>
                                     <td>已完成</td>
                                     <td className="edit">編輯</td>
                                     <td className="delete">刪除</td>
                                   </tr>
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
+                                    <td>登入介面網頁設計</td>
+                                    <td>$10000</td>
                                     <td>已完成</td>
                                     <td className="edit">編輯</td>
                                     <td className="delete">刪除</td>
                                   </tr>
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
+                                    <td>導覽列設計</td>
                                     <td>$5000</td>
                                     <td>已取消</td>
                                     <td className="edit">編輯</td>

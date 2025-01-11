@@ -1,9 +1,9 @@
 // freelancer2/components/filters/RatingFilter.jsx
 import React, { useContext } from 'react';
-import { AppfreelancerContext } from '../../AppProvider';
+import { FreelancerContext } from '../../FreelancerProvider';
 
 const RatingFilter = () => {
-    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(AppfreelancerContext);
+    const { buttonKeywords, setButtonKeywords, filterData, keywords } = useContext(FreelancerContext);
 
     const handleRatingClick = (range) => {
         const newButtonKeywords = buttonKeywords.includes(range)

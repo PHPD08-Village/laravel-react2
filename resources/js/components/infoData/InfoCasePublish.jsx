@@ -39,30 +39,30 @@ function InfoCasePublish() {
                                     <th>案件標題</th>
                                     <th>預算金額</th>
                                     <th>刊登日期</th>
-                                    <th>編輯</th>
+                                    <th>查看更多</th>
                                     <th>刪除</th>
                                   </tr>
                                 </thead>
                                 <tbody className="caseItem">
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
-                                    <td>2024.10.11</td>
-                                    <td className="edit">編輯</td>
+                                    <td>拉拉漢堡網頁設計</td>
+                                    <td>$35000</td>
+                                    <td>2024.12.11</td>
+                                    <td className="edit">查看更多</td>
                                     <td className="delete">刪除</td>
                                   </tr>
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
-                                    <td>2024.10.11</td>
-                                    <td className="edit">編輯</td>
+                                    <td>拉拉漢堡手機APP設計</td>
+                                    <td>$30000</td>
+                                    <td>2024.12.15</td>
+                                    <td className="edit">查看更多</td>
                                     <td className="delete">刪除</td>
                                   </tr>
                                   <tr>
-                                    <td>快樂修狗網頁獨立設計</td>
-                                    <td>$5000</td>
-                                    <td>2024.10.11</td>
-                                    <td className="edit">編輯</td>
+                                    <td>網站購物車設計</td>
+                                    <td>$25000</td>
+                                    <td>2024.12.21</td>
+                                    <td className="edit">查看更多</td>
                                     <td className="delete">刪除</td>
                                   </tr>
                                 </tbody>
