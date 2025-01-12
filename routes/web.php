@@ -82,8 +82,8 @@ Route::post('/api/add-favorite', [SearchController::class, 'addFavorite']);
 Route::post('/api/assignment', [SearchController::class, 'assignment']);
 // 個人編輯頁面
 Route::post('/api/personal-edit', [PersonalController::class, 'edit']);
-Route::middleware('auth')->get('/api/personal-info', [PersonalController::class, 'getinfo']);
-// Route::get('/api/personal-info', [PersonalController::class, 'getinfo']);
+Route::get('/api/personal-info', [PersonalController::class, 'getinfo']);
+// Route::middleware('auth')->get('/api/personal-info', [PersonalController::class, 'getinfo']);
 // 以上是村民的
 
 

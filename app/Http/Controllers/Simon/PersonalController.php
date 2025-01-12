@@ -35,7 +35,7 @@ class PersonalController extends Controller
     public function edit(Request $request)
     {
         $updated = DB::table('userinfo')
-            ->where('id', $request->input('id'))
+            ->where('uid', $request->input('uid'))
             ->update([
                 'name' => $request->input('name'),
                 'avatar' => $request->input('avatar'),
