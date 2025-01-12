@@ -16,4 +16,6 @@ Route::post('/store-user', [PersonalDataController::class, 'store']);
 // Route::middleware('auth:api')->group(function () {
     Route::get('/cases', [FavoriteController::class, 'index']);
     Route::post('/delete-cases', [FavoriteController::class, 'destroy']);
+    Route::get('/freelancers', [FavoriteController::class, 'findex']);
+    Route::post('/delete-freelancers', [FavoriteController::class, 'delete']);
 // });

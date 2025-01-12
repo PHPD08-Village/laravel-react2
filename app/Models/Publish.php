@@ -40,7 +40,7 @@ class Publish extends Model
     // 關聯到收藏的案件
     public function savedcase()
     {
-        return $this->hasMany(SavedCase::class);
+        return $this->hasMany(FavoriteCase::class);
     }
 
 }

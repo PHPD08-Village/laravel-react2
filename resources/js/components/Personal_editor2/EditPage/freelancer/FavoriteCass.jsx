@@ -44,6 +44,13 @@ const FavoriteCass = () => {
             alert("請選擇要刪除的案件！");
             return;
         }
+         // 彈出確認對話框
+         const isConfirmed = window.confirm("確定要刪除選中的案件嗎？");
+
+         if (!isConfirmed) {
+             console.log("刪除已取消");
+             return;  // 使用者選擇取消刪除，退出函式
+         }
     try {
         const response = await fetch("/api/delete-cases", {
             method: "POST",
