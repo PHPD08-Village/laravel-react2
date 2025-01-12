@@ -113,7 +113,7 @@ body {
 }
 
 .pleft p:nth-child(2) {
-    font-size: 36px;
+    font-size: 72px;
     font-weight: 700;
     margin: 0;
     color: #FD6F00;
@@ -122,15 +122,15 @@ body {
 .pleft p:nth-child(3) {
     font-size: 84px;
     font-weight: 800;
-    margin: -20px 0;
+    margin: 10px 0;
 }
 
-.pleft p:nth-child(4) {
+/* .pleft p:nth-child(4) {
     font-size: 84px;
     font-weight: 800;
     margin: -30px 0 0 0;
     padding-left: 200px;
-}
+} */
 
 .pleft p:nth-child(5) {
     background-color: #F5F5DC66;
