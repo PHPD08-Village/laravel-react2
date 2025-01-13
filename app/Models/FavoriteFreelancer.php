@@ -12,7 +12,7 @@ class FavoriteFreelancer extends Model
     // 關聯到使用者表
     public function user()
     {
-        return $this->belongsTo(UserInfo::class, 'user_id');
+        return $this->belongsTo(UserInfo::class, 'taker_id');
     }
 
 }

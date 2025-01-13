@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\PersonalDataController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\PersonalworksController;
 
 // Route::get('/userinfo', [UserInfoController::class, 'index']);
 // Route::post('/userinfo', [UserInfoController::class, 'store']);
@@ -19,3 +20,6 @@ Route::post('/store-user', [PersonalDataController::class, 'store']);
     Route::get('/freelancers', [FavoriteController::class, 'findex']);
     Route::post('/delete-freelancers', [FavoriteController::class, 'delete']);
 // });
+
+// 儲存作品集
+Route::post('/store-works', [PersonalworksController::class, 'store']);
