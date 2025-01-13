@@ -31,23 +31,73 @@ class PersonalController extends Controller
 
 
 
-    // 儲存數據的方法
-    public function edit(Request $request)
+    public function show($id)
     {
-        $updated = DB::table('userinfo')
-            ->where('uid', $request->input('uid'))
-            ->update([
-                'name' => $request->input('name'),
-                'avatar' => $request->input('avatar'),
-                'nickname' => $request->input('nickname'),
-                'location' => $request->input('location'),
-                'job_title' => $request->input('job_title'),
-                'job_status' => $request->input('job_status') ? true : false
-            ]);
+        try {
+            // 使用查詢構造器來獲取數據
+            $userInfo = DB::table('userinfo')->where('uid', $id)->first();
 
-        if ($updated) {
-            return response()->json(['message' => 'User info updated successfully']);
+            // 將照片轉換為 Base64 編碼格式
+            if ($userInfo && $userInfo->headshot) {
+                $userInfo->headshot = 'data:image/jpeg;base64,' . base64_encode($userInfo->headshot);
+            }
+
+            if (!$userInfo) {
+                return response()->json(['message' => 'User not found'], 404);
+            }
+
+            return response()->json($userInfo, 200, [], JSON_UNESCAPED_UNICODE);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error fetching user info'], 500);
         }
-        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            // 清理輸入數據
+            $cleanedData = array_map(function ($value) {
+                return is_string($value) ? mb_convert_encoding($value, 'UTF-8', 'UTF-8') : $value;
+            }, $request->all());
+
+            // 使用查詢構造器來更新數據
+            $updateCount = DB::table('userinfo')
+                ->where('uid', $id)
+                ->update($cleanedData);
+
+            if ($updateCount === 0) {
+                return response()->json(['message' => 'User not found or no change made'], 404);
+            }
+
+            // 獲取更新後的數據
+            $updatedUserInfo = DB::table('userinfo')->where('uid', $id)->first();
+
+            return response()->json($updatedUserInfo, 200, [], JSON_UNESCAPED_UNICODE);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error updating user info'], 500);
+        }
     }
 }
+
+
+
+
+
+
+
+
+// 以下為使用模型的方法
+// public function show($id)
+// {
+//     // 使用模型來獲取數據
+//     $userInfo = UserInfo::findOrFail($id);
+//     return response()->json($userInfo);
+// }
+
+// public function update(Request $request, $id)
+// {
+//     // 使用模型來更新數據
+//     $userInfo = UserInfo::findOrFail($id);
+//     $userInfo->update($request->all());
+//     return response()->json($userInfo);
+// }

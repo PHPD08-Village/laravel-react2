@@ -1,31 +1,38 @@
 /* 個人資料頁面-接案者-menu-item */
 .sidebar {
-    position: relative; /* 設為相對定位，提供基準 */
-    flex: 0 0 250px; /* 固定寬度 */
+    position: relative;
+    /* 設為相對定位，提供基準 */
+    flex: 0 0 250px;
+    /* 固定寬度 */
     height: 500px;
     background-color: #f5f5f5;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px 10px; /* 留出內邊距，控制內容距邊 */
-    overflow: hidden; /* 防止內容溢出 */
+    padding: 15px 10px;
+    /* 留出內邊距，控制內容距邊 */
+    overflow: hidden;
+    /* 防止內容溢出 */
 }
 
 .switcher {
-    position: absolute; /* 絕對定位 */
+    position: absolute;
+    /* 絕對定位 */
     top: 0;
     left: 10px;
-    right: 10px; 
+    right: 10px;
     display: flex;
     gap: 10px;
     background-color: #f5f5f5;
-    padding: 10px 0; 
-    border-bottom: 2px solid #fff; 
+    padding: 10px 0;
+    border-bottom: 2px solid #fff;
 }
 
 .switch-btn,
 .switch-btn.active {
-    flex: 1; /* 按鈕平分 switcher 寬度 */
-    padding: 10px 0; /* 按鈕上下內邊距 */
+    flex: 1;
+    /* 按鈕平分 switcher 寬度 */
+    padding: 10px 0;
+    /* 按鈕上下內邊距 */
     border: 1px solid #ddd;
     background-color: #fff;
     cursor: pointer;
@@ -33,18 +40,20 @@
     text-align: center;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 8px;
-    color: #333; /* 預設字體顏色 */
+    color: #333;
+    /* 預設字體顏色 */
 }
 
 .switch-btn:hover,
 .switch-btn.active {
-    background-color: #007bff; 
+    background-color: #007bff;
     color: white;
 }
 
 /* 主要選項 */
 .menu {
-    margin-top: 70px; /* 留出空間給 switcher */
+    margin-top: 70px;
+    /* 留出空間給 switcher */
 }
 
 .menu-item {
@@ -52,7 +61,7 @@
     margin-top: 30px;
 }
 
-.menu-item > p {
+.menu-item>p {
     font-size: 16px;
     font-weight: bold;
     color: #333;
@@ -87,6 +96,10 @@
 
 
 
+.user-container {
+    margin: 0 6%;
+}
+
 /* 右邊刷新主要內容 */
 
 /* 頂部長條框樣式 */
@@ -117,6 +130,24 @@
 
 .top-bar-button:hover {
     background-color: #0056b3;
+    /* 按鈕滑過時變化 */
+}
+
+/* 編輯按鈕樣式 */
+.edit-button{
+    width: 50px;
+    padding: 5px 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #ee7b1d;
     /* 按鈕滑過時變化 */
 }
 
@@ -158,16 +189,22 @@
 .avatar-info {
     display: flex;
     align-items: center;
-    gap: 20px; /* 大頭貼與文字之間的間距 */
+    gap: 20px;
+    /* 大頭貼與文字之間的間距 */
 }
 
 .avatar-details {
     display: flex;
-    justify-content: space-between; /* 兩邊對齊 */
-    align-items: center; /* 垂直置中 */
-    font-size: 14px; /* 字體大小 */
-    color: #333; /* 字體顏色 */
-    line-height: 1.8; /* 增加文字行間距 */
+    justify-content: space-between;
+    /* 兩邊對齊 */
+    align-items: center;
+    /* 垂直置中 */
+    font-size: 14px;
+    /* 字體大小 */
+    color: #333;
+    /* 字體顏色 */
+    line-height: 1.8;
+    /* 增加文字行間距 */
     gap: 30px;
 }
 
@@ -176,13 +213,14 @@
 }
 
 .avatar-details span:last-child {
-    text-align: right; /* 右側文字靠右對齊 */
+    text-align: right;
+    /* 右側文字靠右對齊 */
 }
 
 
 /* 全局樣式 */
 .content-wrapper {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -197,7 +235,8 @@
 .top-row,
 .bottom-row {
     display: flex;
-    flex-wrap: wrap; /* 啟用換行，當空間不足時將項目換行 */
+    flex-wrap: wrap;
+    /* 啟用換行，當空間不足時將項目換行 */
     gap: 20px;
 }
 
@@ -212,8 +251,10 @@
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    width: calc(100% - 40px); /* 留出左右內邊距 */
-    margin: 0 auto; /* 內容居中 */
+    width: calc(100% - 40px);
+    /* 留出左右內邊距 */
+    margin: 0 auto;
+    /* 內容居中 */
 }
 
 
@@ -321,6 +362,7 @@
     margin-bottom: 10px;
     display: block;
 }
+
 /* form-group label 的 select 和 radio 間距調整 */
 .form-group label select,
 .form-group label input,
@@ -352,8 +394,10 @@ hr {
 .form-group.form-inline {
     display: flex;
     align-items: center;
-    gap: 15px; /* 控制標籤和輸入框之間的間距 */
-    margin-bottom: 20px; /* 控制每個項目的間距 */
+    gap: 15px;
+    /* 控制標籤和輸入框之間的間距 */
+    margin-bottom: 20px;
+    /* 控制每個項目的間距 */
 }
 
 /* 接案身份布局与接案状态保持一致 */
@@ -365,32 +409,39 @@ hr {
 
 .radio-group-inline label {
     display: flex;
-    gap: 5px; /* 控制文字与单选框的距离 */
+    gap: 5px;
+    /* 控制文字与单选框的距离 */
 }
 
 /* 選項換行排列 */
 .radio-group-stacked {
     display: flex;
-    flex-direction: column; /* 選項垂直排列 */
-    gap: 5px; /* 控制選項之間的間距 */
+    flex-direction: column;
+    /* 選項垂直排列 */
+    gap: 5px;
+    /* 控制選項之間的間距 */
 }
 
 .radio-group-stacked label,
 .radio-group-inline label {
     display: flex;
-    align-items: center; /* 單選框與文字垂直居中 */
-    gap: 5px; /* 控制單選框與文字之間的距離 */
+    align-items: center;
+    /* 單選框與文字垂直居中 */
+    gap: 5px;
+    /* 控制單選框與文字之間的距離 */
 }
 
 /* 控制輸入框的寬度 */
 .form-group input,
 .form-group select {
-    width: 50%; /* 縮短輸入框的長度 */
+    width: 50%;
+    /* 縮短輸入框的長度 */
     padding: 8px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    text-align: left; /* 輸入內容靠左 */
+    text-align: left;
+    /* 輸入內容靠左 */
 }
 
 /* 表單元素通用樣式 */
@@ -458,7 +509,8 @@ hr {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem; /* 标题字体稍微缩小 */
+    font-size: 1.2rem;
+    /* 标题字体稍微缩小 */
     margin-bottom: 10px;
 }
 
@@ -469,7 +521,8 @@ hr {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9rem; /* 调整按钮字体大小 */
+    font-size: 0.9rem;
+    /* 调整按钮字体大小 */
     transition: background-color 0.3s;
 }
 
@@ -483,13 +536,17 @@ hr {
     border-collapse: collapse;
     text-align: left;
     margin-top: 10px;
-    font-size: 0.85rem; /* 表格字体整体缩小 */
+    font-size: 0.85rem;
+    /* 表格字体整体缩小 */
 }
 
-.saved-jobs-table th, .saved-jobs-table td {
+.saved-jobs-table th,
+.saved-jobs-table td {
     border-bottom: 1px solid #ddd;
-    padding: 6px; /* 减少单元格间距 */
-    font-size: 0.85rem; /* 统一表格字体 */
+    padding: 6px;
+    /* 减少单元格间距 */
+    font-size: 0.85rem;
+    /* 统一表格字体 */
 }
 
 .saved-jobs-table th {
@@ -515,7 +572,8 @@ hr {
     margin-top: 10px;
 }
 
-.services-table th, .services-table td {
+.services-table th,
+.services-table td {
     border-bottom: 1px solid #ddd;
     padding: 8px;
     font-size: 0.9rem;
@@ -572,31 +630,37 @@ hr {
     border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #4caf50;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(20px);
 }
 
 /* 統一開關按鈕樣式 */
 .toggle-all-btn {
-    background-color: #e6f7ff; /* 淺藍色背景 */
-    color: #007bff; /* 深藍字體 */
-    border: 1px solid #007bff; /* 深藍邊框 */
+    background-color: #e6f7ff;
+    /* 淺藍色背景 */
+    color: #007bff;
+    /* 深藍字體 */
+    border: 1px solid #007bff;
+    /* 深藍邊框 */
     border-radius: 5px;
     padding: 5px 15px;
     font-size: 14px;
     cursor: pointer;
-    float: right; /* 靠右對齊 */
+    float: right;
+    /* 靠右對齊 */
     margin-bottom: 10px;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .toggle-all-btn:hover {
-    background-color: #cceeff; /* 更亮的藍色 */
-    color: #0056b3; /* 更深的字體顏色 */
+    background-color: #cceeff;
+    /* 更亮的藍色 */
+    color: #0056b3;
+    /* 更深的字體顏色 */
 }
 
 /* 作品專區 */
@@ -605,13 +669,16 @@ input:checked + .slider:before {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    border: 1px solid #ddd; /* 表格的整體外框 */
+    border: 1px solid #ddd;
+    /* 表格的整體外框 */
 }
 
-.portfolio-table th, .portfolio-table td {
+.portfolio-table th,
+.portfolio-table td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center; /* 確保內容置中 */
+    text-align: center;
+    /* 確保內容置中 */
     vertical-align: middle;
 }
 
@@ -629,8 +696,11 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-.add-btn, .save-btn, .page-btn {
-    background-color: #4caf50; /* 綠色按鈕 */
+.add-btn,
+.save-btn,
+.page-btn {
+    background-color: #4caf50;
+    /* 綠色按鈕 */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -639,12 +709,16 @@ input:checked + .slider:before {
     transition: background-color 0.3s ease;
 }
 
-.add-btn:hover, .save-btn:hover, .page-btn:hover {
-    background-color: #45a049; /* 深綠色 */
+.add-btn:hover,
+.save-btn:hover,
+.page-btn:hover {
+    background-color: #45a049;
+    /* 深綠色 */
 }
 
 .delete-btn {
-    background-color: #f44336; /* 紅色按鈕 */
+    background-color: #f44336;
+    /* 紅色按鈕 */
     color: white;
     border: none;
     padding: 5px 10px;
@@ -654,22 +728,28 @@ input:checked + .slider:before {
 }
 
 .delete-btn:hover {
-    background-color: #d32f2f; /* 深紅色 */
+    background-color: #d32f2f;
+    /* 深紅色 */
 }
 
 /* 儲存與刪除按鈕置中 */
 .portfolio-actions-cell {
     display: flex;
-    flex-direction: column; /* 垂直排列按鈕 */
-    gap: 5px; /* 按鈕之間的間距 */
-    justify-content: center; /* 垂直置中 */
-    align-items: center; /* 水平置中 */
+    flex-direction: column;
+    /* 垂直排列按鈕 */
+    gap: 5px;
+    /* 按鈕之間的間距 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-items: center;
+    /* 水平置中 */
     height: 203px;
 }
 
 /* 新增作品按鈕與表格框架的間距 */
 .portfolio-actions {
-    margin-top: 20px; /* 與表格之間的間距 */
+    margin-top: 20px;
+    /* 與表格之間的間距 */
     display: flex;
     flex-direction: column;
     align-items: flex-start;

@@ -10,13 +10,13 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({ id: null, email: null });
     const navigate = useNavigate(); // 使用 useNavigate 鉤子
 
     const checkAuthStatus = async () => {
         try {
             const response = await axios.get('/user');
-            setUser(response.data.user);
+            setUser({ id: response.data.user.id, email: response.data.user.email });
         } catch (error) {
             setUser(null);
         }

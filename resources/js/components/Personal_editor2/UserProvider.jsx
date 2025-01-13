@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
                 try {
                     const response = await axios.get('/personal-info');
                     const data = response.data;
-                    console.log('data:', data);
+                    // console.log('data:', data);
                     setUserData(data); // 保存獲取的數據
 
                 } catch (error) {

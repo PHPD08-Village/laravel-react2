@@ -80,10 +80,12 @@ Route::post('/api/take-case', [SearchController::class, 'takeCase']);
 Route::post('/api/add-favorite', [SearchController::class, 'addFavorite']);
 // 處理 "委託" 請求
 Route::post('/api/assignment', [SearchController::class, 'assignment']);
-// 個人編輯頁面
-Route::post('/api/personal-edit', [PersonalController::class, 'edit']);
+// 個人頁面數據提取
 Route::get('/api/personal-info', [PersonalController::class, 'getinfo']);
 // Route::middleware('auth')->get('/api/personal-info', [PersonalController::class, 'getinfo']);
+// 個人編輯頁面數據提取、編輯
+Route::get('/api/userinfo/{id}', [PersonalController::class, 'show']);
+Route::post('/api/userinfo/{id}', [PersonalController::class, 'update']);
 // 以上是村民的
 
 

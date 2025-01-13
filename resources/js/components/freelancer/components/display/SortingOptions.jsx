@@ -9,9 +9,13 @@ const SortingOptions = () => {
     const [order, setOrder] = useState('asc');
     const [activeSort, setActiveSort] = useState(null);
 
+    
     useEffect(() => {
         setItemsPerPage(10); // 在初始渲染時設置預設值
-    }, [setItemsPerPage]);
+        setSortingCriteria({ criteria: 'updated_at', order: 'desc' }); // 預設排序標準為 updated_at，順序為 desc
+        // setActiveSort('updated_at'); // 標記 activeSort 為預設排序標準
+        setOrder('desc'); // 預設排序順序為 desc
+    }, [setItemsPerPage, setSortingCriteria]);
 
     const handleSort = (criteria) => {
         setSortingCriteria({ criteria, order });
