@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
     const [userData, setUserData] = useState();
     const [loading, setLoading] = useState(!userData); // 如果本地有數據，則不顯示載入中
     const [userRole, setUserRole] = useState(); // 用戶角色狀態
-    const [section, setSection] = useState('接案資料'); // 用戶點擊區塊狀態
+    const [section, setSection] = useState('訊息通知'); // 用戶點擊區塊狀態
     const [error, setError] = useState(null);
     
     useEffect(() => {
