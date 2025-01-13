@@ -8,8 +8,8 @@ import moment from 'moment';
 const CaseManager = () => {
     const [cases, setCases] = useState([]);
     const [userId, setUserId] = useState(13);
-    // const userId = 4;   // 假設已登入的用戶 ID
-    // const pid= cases.pid;
+    const [applicants, setApplicants] = useState([]);
+    // const [selectedPid, setSelectedPid] = useState(16);
     const navigate = useNavigate();
 
     // 設置頁數按鈕
@@ -63,36 +63,25 @@ const CaseManager = () => {
     };
 
     useEffect(() => {
-        if(userId){
+        if (userId) {
             fetchCasesData();
         }
     }, [userId]);
 
-    // 設定案件的開關按鈕(目前沒辦法用)
-    // const handleSwitch = async (pid) => {
-    //     try {
-    //         // const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-    //         // const response = await axios.post(`http://localhost:8000/api/get-cases/switch-case`, cases, {
-    //         //     // pid: pid
-    //         //     headers: {
-    //         //         'X-CSRF-TOKEN': token,
-    //         //     },
-    //         // });
-
-    //         alert(response.data.message);
-    //         const updatedCases = cases.map((caseItem) => {
-    //             if (caseItem.pid === pid) {
-    //                 return { ...caseItem, is_open: response.data.is_open };
-    //             }
-    //             // return caseItem.pid === pid ? response.data : caseItem;
-    //             return caseItem;
+    // 獲取應徵人數資料
+    // useEffect(() => {
+    //     console.log(`開始獲取 pid 為 ${selectedPid} 的應徵者資料`)
+    //     axios.get(`http://127.0.0.1:8000/api/get-project-applicants/${selectedPid}`)
+    //         .then(response => {
+    //             setApplicants(response.data);
+    //             setFilteredData(response.data);
+    //             console.log('成功獲取應徵者資料', response.data)
+    //         })
+    //         .catch(error => {
+    //             console.error('應徵者資料獲取失敗', error);
     //         });
-    //         setCases(updatedCases);
-    //     } catch (error) {
-    //         console.error("案件開關失敗：", error);
-    //     }
-    // }
+    //     // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
+    // }, [selectedPid])
 
     // 設置案件開關按鈕
     const handleSwitch = async (caseItem) => {
@@ -182,6 +171,9 @@ const CaseManager = () => {
     // 偵測到資料庫中的文字換行時就換行
     // 這邊設置一個函式，return 的東西需要放在標籤中，並使用 dangerouslySetInnerHTML 屬性
     const createMarkup = (text) => {
+        if (!text) {
+            return { __html: '' };
+        }
         return { __html: text.replace(/\n/g, '<br>') };
     };
 
