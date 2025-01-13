@@ -7,11 +7,13 @@ import CaseInformation from './EditPage/freelancer/CaseInformation'
 import Portfolio from './EditPage/freelancer/Portfolio'
 import Myservice from './EditPage/freelancer/Myservice'
 import FavoriteCass from './EditPage/freelancer/FavoriteCass'
+import CaseIng from './EditPage/freelancer/CaseIng'
 
 import Review from './EditPage/owner/Review'
 import Publishe from './EditPage/owner/Publishe'
 import CaseState from './EditPage/owner/CaseState'
 import FavoriteFreelance from './EditPage/owner/FavoriteFreelance'
+
 
 const Edit = () => {
     const { section } = useUser();
@@ -26,6 +28,7 @@ const Edit = () => {
             {section === '作品專區' ? <Portfolio /> : ''}
             {/* {section === '我的刊登服務' ? <Myservice /> : ''} */}
             {section === '已收藏案件' ? <FavoriteCass /> : ''}
+            {section === '進行中的工作' ? <CaseIng /> : ''}
 
             {/* 以下為業主 */}
             {section === '審核中' ? <Review /> : ''}
