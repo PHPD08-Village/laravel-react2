@@ -8,6 +8,7 @@ use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\PersonalDataController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\PersonalworksController;
+use App\Http\Controllers\PersonalworkstestController;
 
 // Route::get('/userinfo', [UserInfoController::class, 'index']);
 // Route::post('/userinfo', [UserInfoController::class, 'store']);
@@ -23,3 +24,4 @@ Route::post('/store-user', [PersonalDataController::class, 'store']);
 
 // 儲存作品集
 Route::post('/store-works', [PersonalworksController::class, 'store']);
+Route::post('/storeworks', [PersonalworkstestController::class, 'web_store']); //測試用
