@@ -44,38 +44,38 @@ const FavoriteCass = () => {
             alert("請選擇要刪除的案件！");
             return;
         }
-         // 彈出確認對話框
-         const isConfirmed = window.confirm("確定要刪除選中的案件嗎？");
+        // 彈出確認對話框
+        const isConfirmed = window.confirm("確定要刪除選中的案件嗎？");
 
-         if (!isConfirmed) {
-             console.log("刪除已取消");
-             return;  // 使用者選擇取消刪除，退出函式
-         }
-    try {
-        const response = await fetch("/api/delete-cases", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ ids: selectedCases }),
-        });
-        if (response.ok) {
-            const updatedCases = cases.filter(
-                (caseItem) => !selectedCases.includes(caseItem.id)
-            );
-            setCases(updatedCases);
-            setSelectedCases([]);
-        } else {
-            alert("刪除失敗，請稍後再試！");
+        if (!isConfirmed) {
+            console.log("刪除已取消");
+            return;  // 使用者選擇取消刪除，退出函式
         }
-    } catch (error) {
-        console.error("刪除請求失敗:", error);
-    }
-};
-    
+        try {
+            const response = await fetch("/api/delete-cases", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ids: selectedCases }),
+            });
+            if (response.ok) {
+                const updatedCases = cases.filter(
+                    (caseItem) => !selectedCases.includes(caseItem.id)
+                );
+                setCases(updatedCases);
+                setSelectedCases([]);
+            } else {
+                alert("刪除失敗，請稍後再試！");
+            }
+        } catch (error) {
+            console.error("刪除請求失敗:", error);
+        }
+    };
+
     if (loading) {
         return <div>正在載入中... Loading...</div>;
-      }
+    }
     // 日期顯示樣式
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -94,15 +94,15 @@ const FavoriteCass = () => {
             <table className="saved-jobs-table">
                 <thead>
                     <tr>
-                        <th><input 
-                            type="checkbox" 
+                        <th><input
+                            type="checkbox"
                             id="select-all"
                             onChange={handleSelectAll}
                             checked={
                                 selectedCases.length === cases.length &&
                                 cases.length > 0
                             }
-                         />
+                        />
                         </th>
                         <th>名稱</th>
                         <th>所在地</th>
@@ -128,7 +128,7 @@ const FavoriteCass = () => {
                         <td>500</td>
                         <td>2023/12/02</td>
                     </tr> */}
-                     {cases.map((caseItem) => (
+                    {cases.map((caseItem) => (
                         <tr key={caseItem.id}>
                             <td>
                                 <input
