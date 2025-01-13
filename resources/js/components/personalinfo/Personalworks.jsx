@@ -39,15 +39,15 @@ function Personalworks() {
     <>
       {/* <!-- 作品集 --> */}
       <h2>作品集</h2>
-      <p>累積設計經驗：2-3年</p>
+      {/* <p>累積經驗：2-3年</p> */}
       {/* <!-- 作品標籤 --> */}
-      <div class="pworkTag">
+      {/* <div class="pworkTag">
         <a href="">All</a>
         <a href="">UI/UX</a>
         <a href="">網頁設計</a>
         <a href="">IOS/Android</a>
         <a href="">平面設計</a>
-      </div>
+      </div> */}
       {/* 顯示加載中的提示 */}
       {loading && <p>載入中...</p>}
 

@@ -33,6 +33,7 @@ use App\Http\Controllers\FreelancerForHomeController;
 use App\Http\Controllers\PubForCaseMngController;
 use App\Http\Controllers\AssignTakerController;
 use App\Http\Controllers\ApplyController;
+use App\Http\Controllers\NotificationController;
 // 以上是戶長的
 
 
@@ -141,6 +142,8 @@ Route::post('/api/toggle-favorite', [SearchController::class, 'toggleFavorite'])
 Route::post('/api/check-favorite', [SearchController::class, 'checkFavorite']);
 // 更新案件
 Route::post('/api/update-publish', [PublishController::class, 'update']);
+// 獲取通知
+Route::get('/api/get-notification/{userId}', [NotificationController::class, 'getUserNotifications']);
 // 案件管理(暫時把登入條件拿掉)
 // Route::middleware('auth')->group(function () {
 Route::get('/api/get-cases/{userId}', [PubForCaseMngController::class, 'getCases']);

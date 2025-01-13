@@ -513,6 +513,13 @@ hr {
     /* 标题字体稍微缩小 */
     margin-bottom: 10px;
 }
+.saved-jobs-content h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem; /* 标题字体稍微缩小 */
+    margin-bottom: 10px;
+}
 
 .delete-btn {
     background-color: red;

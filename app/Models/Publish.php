@@ -37,5 +37,10 @@ class Publish extends Model
     {
         return $this->belongsTo(UserInfo::class, 'uid', 'uid');
     }
+    // 關聯到收藏的案件
+    public function savedcase()
+    {
+        return $this->hasMany(FavoriteCase::class);
+    }
 
 }

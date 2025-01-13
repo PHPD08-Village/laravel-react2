@@ -11,7 +11,7 @@ function PersonalInfo({ userId }) {
     useEffect(() => {
       const fetchUser = async () => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/api/userdata/2`); //${userId}
+          const response = await axios.get(`http://127.0.0.1:8000/api/userdata/6`); //${userId}
           if (response.status === 200) {
             setUserdata(response.data);
             console.log('Fetched user:', response.data);
@@ -37,10 +37,10 @@ function PersonalInfo({ userId }) {
             <div className="pinfo">
                 {/* 左側自介 */}
                 <div className="pleft">
-                    <p>Hi I am</p>
-                    <p>{userdata.data.username || "使用者！"}</p>
-                    <p>Frontend</p>
-                    <p>Engineer</p>
+                    <p>你好，我是</p>
+                    <p>{userdata.data.username || "使用者"}</p>
+                    <p>{userdata.data.job_title || "前端工程師"}</p>
+                    <p></p>
                     <p>
                         是一名擁有5年經驗的軟體工程師。我專注於前端開發和系統架構設計，特別擅長於使用Java和Python開發高效、可擴展的應用程式。<br />
                         在過去的工作中，我參與了多個大型項目的開發，從需求分析、系統設計到實施和維護，都積累了豐富的經驗。我熱衷於解決複雜的技術挑戰，並且具備良好的團隊合作和溝通能力，能夠在跨部門合作中有效推動項目進展。<br />

@@ -54,4 +54,14 @@ class UserInfo extends Model
     {
         return $this->hasMany(Projects::class, 'uid');
     }
+    // 關聯到收藏的案件
+    public function savedcase()
+    {
+        return $this->hasMany(FavoriteCase::class, 'uid', 'uid');
+    }
+    // 關聯到收藏的使用者
+    public function saveduser()
+    {
+        return $this->hasMany(FavoriteFreelancer::class, 'user_id', 'uid');
+    }
 }

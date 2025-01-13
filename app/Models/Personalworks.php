@@ -15,9 +15,11 @@ class Personalworks extends Model
     protected $fillable = [
         'uid',
         'work_title',
-        // 'work_image',
+        'work_image',
         'completion_date',
-        'work_category'
+        'work_category',
+        'description',
+        'url'
     ];
 
     public function user()

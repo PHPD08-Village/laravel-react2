@@ -40,7 +40,7 @@ const Userstype = () => {
                         <ul>
                             <li id="case-info" className={`sidebar-item ${section === '接案資料' ? 'active' : ''}`} onClick={() => handleSectionChange('接案資料')}>接案資料</li>
                             <li id="portfolio" className={`sidebar-item ${section === '作品專區' ? 'active' : ''}`} onClick={() => handleSectionChange('作品專區')}>作品專區</li>
-                            <li id="my-services" className={`sidebar-item ${section === '我的刊登服務' ? 'active' : ''}`} onClick={() => handleSectionChange('我的刊登服務')}>我的刊登服務</li>
+                            {/* <li id="my-services" className={`sidebar-item ${section === '我的刊登服務' ? 'active' : ''}`} onClick={() => handleSectionChange('我的刊登服務')}>我的刊登服務</li> */}
                         </ul>
                     </div>
                     <div className="menu-item">

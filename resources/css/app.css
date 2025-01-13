@@ -119,6 +119,7 @@ a {
 .space>div:nth-child(1) {
     flex: 1;
 }
+
 .space>div:nth-child(2) {
     flex: 1;
     display: flex;
@@ -158,8 +159,10 @@ a {
 .toparraw {
     display: flex;
     border-radius: 8px;
-    position: absolute; /* 絕對定位 */ 
-    bottom: 0; /* 緊貼容器底部 */
+    position: absolute;
+    /* 絕對定位 */
+    bottom: 0;
+    /* 緊貼容器底部 */
     margin: 10px;
 }
 
@@ -279,3 +282,87 @@ div img.spacered {
     transform: translateY(-3px);
     /* 微微上移 */
 }
+
+/* 以下是通知彈出視窗 */
+notification-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+notification-btn:hover {
+    background-color: #45a049;
+}
+
+.notification-box {
+    position: fixed;
+    right: 110px;
+    /* 調整位置 */
+    top: 110px;
+    /* 調整位置 */
+    width: 300px;
+    padding: 0 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    overflow-y: auto;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-box h3 {
+    background-color: white;
+    margin: 0;
+    padding: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    z-index: 100;
+}
+
+.notification-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.notification-box ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-box ul li:last-child {
+    border-bottom: none;
+}
+
+.notification-box ul li:hover {
+    background-color: #f9f9f9;
+}
+
+.notification-box ul li>h4 {
+    margin: 0;
+}
+
+.notification-box ul li>p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.notification-box ul li>label{
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+.notification-box:focus {
+    outline: none;
+}
+
+/* 以上是通知彈出視窗 */

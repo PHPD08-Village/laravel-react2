@@ -29,19 +29,38 @@ function SelectTaker() {
     //         });
     // }, []);
 
+    const fetchApplicantsData = async () => {
+        try {
+            console.log(`開始獲取 pid 為 ${selectedPid} 的應徵者資料`)
+            const response = await axios.get(`http://127.0.0.1:8000/api/get-project-applicants/${selectedPid}`)
+            setApplicants(response.data);
+            setFilteredData(response.data);
+            console.log('成功獲取應徵者資料', response.data)
+        } catch (error) {
+            console.error('應徵者資料獲取失敗', error);
+            alert('應徵者資料獲取失敗，請稍後再試');
+        }
+    }
+
     useEffect(() => {
-        console.log(`開始獲取 pid 為 ${selectedPid} 的應徵者資料`)
-        axios.get(`http://127.0.0.1:8000/api/get-project-applicants/${selectedPid}`)
-            .then(response => {
-                setApplicants(response.data);
-                setFilteredData(response.data);
-                console.log('成功獲取應徵者資料', response.data)
-            })
-            .catch(error => {
-                console.error('應徵者資料獲取失敗', error);
-            });
-        // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
+        if (selectedPid) {
+            fetchApplicantsData();
+        }
     }, [selectedPid])
+
+    // useEffect(() => {
+    //     console.log(`開始獲取 pid 為 ${selectedPid} 的應徵者資料`)
+    //     axios.get(`http://127.0.0.1:8000/api/get-project-applicants/${selectedPid}`)
+    //         .then(response => {
+    //             setApplicants(response.data);
+    //             setFilteredData(response.data);
+    //             console.log('成功獲取應徵者資料', response.data)
+    //         })
+    //         .catch(error => {
+    //             console.error('應徵者資料獲取失敗', error);
+    //         });
+    //     // 中括號內的變數代表當這個變數的值改變時才會觸發這個函式然後進行渲染
+    // }, [selectedPid])
 
     // 設置頁數按鈕
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -78,13 +97,15 @@ function SelectTaker() {
         if (userConfirmed) {
             axios.post(`http://127.0.0.1:8000/api/send-thanks-note/${selectedPid}`, {
                 applicant_uid: applicantUid,
-                message: thanksMessage
+                // message: thanksMessage
             })
                 .then(response => {
                     console.log('成功發送感謝函', response.data.message);
                     alert(`已成功發送感謝函給 ${response.data.username}`);
                     setApplicants(
-                        prevApplicants => prevApplicants.filter(applicant => applicant.uid !== applicantUid))
+                        prevApplicants => prevApplicants.filter(applicant => applicant.uid !== applicantUid)
+                    )
+                    fetchApplicantsData();
                 })
                 .catch(error => {
                     console.error('發送感謝函失敗', error);
