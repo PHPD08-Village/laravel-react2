@@ -36,6 +36,9 @@ use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\NotificationController;
 // 以上是戶長的
 
+// 測試用
+use App\Http\Controllers\PersonalworkstestController;
+// 測試用
 
 // 將現有的 API 路由置於開始處
 
@@ -152,6 +155,9 @@ Route::post('/api/get-cases/switch-case', [PubForCaseMngController::class, 'togg
 // });
 // 以上是戶長的
 
+
+// 測試儲存作品集
+Route::post('/api/storeworks', [PersonalworkstestController::class, 'web_store']);
 
 // 添加錯誤日誌的路由
 Route::post('/api/log-error', [ErrorLogController::class, 'logError']);
