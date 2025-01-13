@@ -20,9 +20,9 @@ const Edit = () => {
         <>
             {/* 共用 */}
             {section === '編輯個人資料' ? <EditProfile /> : ''}
+            {section === '訊息通知' ? <CaseInformation /> : ''}
 
             {/* 以下為接案者 */}
-            {section === '接案資料' ? <CaseInformation /> : ''}
             {section === '作品專區' ? <Portfolio /> : ''}
             {/* {section === '我的刊登服務' ? <Myservice /> : ''} */}
             {section === '已收藏案件' ? <FavoriteCass /> : ''}

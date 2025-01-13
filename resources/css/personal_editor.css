@@ -543,7 +543,7 @@ hr {
     border-collapse: collapse;
     text-align: left;
     margin-top: 10px;
-    font-size: 0.85rem;
+    font-size: 1rem;
     /* 表格字体整体缩小 */
 }
 
@@ -552,7 +552,7 @@ hr {
     border-bottom: 1px solid #ddd;
     padding: 6px;
     /* 减少单元格间距 */
-    font-size: 0.85rem;
+    font-size: 1rem;
     /* 统一表格字体 */
 }
 

@@ -5,7 +5,7 @@ const CaseInformation = () => {
         <>
             <div className="top-row">
                 <div className="info-box">
-                    <h3>案件訊息通知</h3>
+                    <h3>訊息通知</h3>
                     <hr />
                     <ul>
                         <li><a href="#">獨立設計網站專案</a></li>
@@ -24,7 +24,7 @@ const CaseInformation = () => {
             </div>
             <div className="bottom-row">
                 <div className="info-box">
-                    <h3>案件瀏覽紀錄 <span className="view-icon">👁️</span></h3>
+                    <h3>瀏覽紀錄 <span className="view-icon">👁️</span></h3>
                     <hr />
                     <ul>
                         <li><a href="#">專案一</a></li>
