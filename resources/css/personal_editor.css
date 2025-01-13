@@ -537,6 +537,22 @@ hr {
     background-color: darkred;
 }
 
+.edit-btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    /* 调整按钮字体大小 */
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: darkblue;
+}
+
 /* 表格样式 */
 .saved-jobs-table {
     width: 100%;

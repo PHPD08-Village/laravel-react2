@@ -33,13 +33,25 @@ const Portfolio = () => {
   };
 
   const handleImageUpload = (id, file) => {
-    const updatedRows = rows.map((row) => {
-      if (row.id === id && file) {
-        return { ...row, imageFile: file, imageUrl: URL.createObjectURL(file) };
-      }
-      return row;
-    });
-    setRows(updatedRows);
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      const updatedRows = rows.map((row) => {
+        if (row.id === id) {
+          return { ...row, imageFile: file, imageUrl: objectUrl };
+        }
+        return row;
+      });
+      setRows(updatedRows);
+  
+      // 清理內存
+      return () => URL.revokeObjectURL(objectUrl);
+    }
+  };
+  const handleFileChange = (id, e) => {
+    const file = e.target.files[0];
+    if (file) {
+      handleImageUpload(id, file);
+    }
   };
 
   const handleUrlChange = (id, value) => {
@@ -169,18 +181,18 @@ const Portfolio = () => {
                 <tr key={row.id}>
                   <td>
                     <label>
-                      <input
+                    <input
                         type="file"
                         className="icon-upload"
                         accept="image/*"
                         hidden
-                        onChange={(e) => handleImageUpload(row.id, e.target.files[0])}
+                        onChange={(e) => handleFileChange(row.id, e)}
                       />
                       <img
-                        src={row.imageFile ? URL.createObjectURL(row.imageFile) : "./img/placeholder.png"}
+                        src={row.imageFile ? row.imageUrl : "./img/placeholder.png"}
                         className="icon-preview"
                         alt="點擊上傳圖片"
-                        onClick={(e) => e.target.previousSibling.click()}
+                        onClick={(e) => e.currentTarget.previousSibling.click()}
                       />
                     </label>
                   </td>

@@ -27,6 +27,7 @@ class Publish extends Model
         'click_count',
         'click_count',
         'updated_at',
+        'status'
     ];
 
     protected $hidden = [
