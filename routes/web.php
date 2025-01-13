@@ -36,6 +36,9 @@ use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\NotificationController;
 // 以上是戶長的
 
+// 測試用
+use App\Http\Controllers\PersonalworkstestController;
+// 測試用
 
 // 將現有的 API 路由置於開始處
 
@@ -81,10 +84,12 @@ Route::post('/api/take-case', [SearchController::class, 'takeCase']);
 Route::post('/api/add-favorite', [SearchController::class, 'addFavorite']);
 // 處理 "委託" 請求
 Route::post('/api/assignment', [SearchController::class, 'assignment']);
-// 個人編輯頁面
-Route::post('/api/personal-edit', [PersonalController::class, 'edit']);
+// 個人頁面數據提取
 Route::get('/api/personal-info', [PersonalController::class, 'getinfo']);
 // Route::middleware('auth')->get('/api/personal-info', [PersonalController::class, 'getinfo']);
+// 個人編輯頁面數據提取、編輯
+Route::get('/api/userinfo/{id}', [PersonalController::class, 'show']);
+Route::post('/api/userinfo/{id}', [PersonalController::class, 'update']);
 // 以上是村民的
 
 
@@ -152,6 +157,9 @@ Route::post('/api/get-cases/switch-case', [PubForCaseMngController::class, 'togg
 // });
 // 以上是戶長的
 
+
+// 測試儲存作品集
+Route::post('/api/storeworks', [PersonalworkstestController::class, 'web_store']);
 
 // 添加錯誤日誌的路由
 Route::post('/api/log-error', [ErrorLogController::class, 'logError']);

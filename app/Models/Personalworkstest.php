@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Personalworks extends Model
+class Personalworkstest extends Model
 {
     use HasFactory;
 
@@ -14,16 +14,17 @@ class Personalworks extends Model
     // 指定可以批量賦值的欄位
     protected $fillable = [
         'uid',
-        'work_title',
         'work_image',
+        'work_title',
         'completion_date',
+        'url',
         'work_category',
-        'description',
-        'url'
+        'updated_at',
+        'created_at',
     ];
 
     public function user()
     {
-        return $this->belongsTo(UserInfo::class, 'uid', 'uid');
+        return $this->belongsTo(UserInfo::class, 'uid', 'uid'); // 一對多關係的「被屬於者」
     }
 }

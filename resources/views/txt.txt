@@ -13,29 +13,34 @@ publish 資料表
 	11		created_at：記錄創建時間 
 	12		updated_at：記錄更新時間
 
-userinfo 資料表		
-	1. uid: 自動遞增主鍵的唯一ID。
-	2. usertype: 儲存 owner or freelancer
-	4. username: 使用者名稱，可以空值。
-	3. headshot: 儲存大頭照的URL，允許空值。
-	profile_back_img: 
-	5. nickname: 使用者的暱稱，可以空值。
-	6. company_name: 企業名稱，可以空值。
-	7. job_title: 使用者的接案身分（例如，開發者、設計師等），可以空值。
-	8. location: 使用者的居住地，可以空值。
-	9. contact_phone: 使用者的連絡電話，可以空值。
-	10. phone_verified: 電話是否已認證，BOOLEAN類型，用於表示 true 或 false。
-	11. email: 使用者的電子信箱，這是一個必填欄位。
-	12. email_verified: 電子信箱是否已認證，BOOLEAN類型，用於表示 true 或 false。
-	13. line_id: 使用者的 LINE ID，可以空值。
-	14. login_status: 使用者的登入狀態，使用 ENUM 類型限制只允許 online 或 offline。
-	15. job_status: 使用者是否可接案，BOOLEAN類型，用於表示 true 或 false。
-	16. rating: 使用者的星數評價，使用 TINYINT 並加上 CHECK 條件限制範圍在1到5之間，可以空值。
-	17. preferred_location: 理想的接案地區，可以空值。
-	18. job_category: 接案類別，可以空值。
-	19. accumulated_experience: 累積經驗，使用 TEXT 類型以存儲較長的描述。
-	20. job_experience: 接案經驗，使用 TEXT 類型以存儲較長的描述。
-	
+
+
+userinfo 資料表
+
+	1. uid: 自動遞增主鍵的唯一ID
+	2. usertype: 儲存 owner 或 freelancer
+	3. username: 使用者名稱，可以空值
+	4. headshot: 儲存大頭照的URL，允許空值
+	5. profile_back_img: 儲存背景圖片的URL，允許空值
+	6. nickname: 使用者的暱稱，可以空值
+	7. phone: 使用者的電話號碼，可以空值
+	8. company_name: 企業名稱，可以空值
+	9. job_title: 使用者的接案身分（例如，開發者、設計師等），可以空值
+	10. location: 使用者的居住地，可以空值
+	11. phone_verified: 電話是否已認證，BOOLEAN類型，用於表示 true 或 false
+	12. email: 使用者的電子信箱，這是一個必填欄位
+	13. email_verified: 電子信箱是否已認證，BOOLEAN類型，用於表示 true 或 false
+	14. line_id: 使用者的 LINE ID，可以空值
+	15. login_status: 使用者的登入狀態，使用 ENUM 類型限制只允許 online 或 offline
+	16. job_status: 使用者是否可接案，BOOLEAN類型，用於表示 true 或 false
+	17. rating: 使用者的星數評價，使用 TINYINT 並加上 CHECK 條件限制範圍在 1 到 5 之間，可以空值
+	18. preferred_location: 理想的接案地區，可以空值
+	19. job_category: 理想的接案類別，可以空值
+	20. accumulated_experience: 累積經驗，使用 TEXT 類型以存儲較長的描述
+	21. job_experience: 接案經驗，使用 TEXT 類型以存儲較長的描述
+	22. click_count: 點擊次數
+	23. created_at: 建立時間
+	24. updated_at: 更新時間
 	
 
 	

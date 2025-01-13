@@ -25,7 +25,7 @@ const UserProfile = () => {
                     <span>會員編號：000{userData.uid}</span>
                 </div>
             </div>
-            <button className="top-bar-button"><Link to="/publish" className='alink'>刊登新服務</Link></button>
+            <button className="top-bar-button"><Link to="/publish" className='alink'>刊登新案件</Link></button>
         </div>
     );
 };

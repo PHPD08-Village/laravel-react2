@@ -22,7 +22,7 @@ const Container = () => {
                     </div>
                 </div>
             </div>
-            <Floating />
+            {/* <Floating /> */}
         </>
     );
 };

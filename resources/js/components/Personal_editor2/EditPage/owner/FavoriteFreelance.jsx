@@ -49,31 +49,31 @@ const FavoriteFreelance = () => {
             console.log("刪除已取消");
             return;  // 使用者選擇取消刪除，退出函式
         }
-    try {
-        const response = await fetch("/api/delete-freelancers", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ ids: selectedFreelancers }),
-        });
-        if (response.ok) {
-            const updatedFreelancers = freelancers.filter(
-                (freeItem) => !selectedFreelancers.includes(freeItem.id)
-            );
-            setFreelancers(updatedFreelancers);
-            setSelectedFreelancers([]);
-        } else {
-            alert("刪除失敗，請稍後再試！");
+        try {
+            const response = await fetch("/api/delete-freelancers", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ ids: selectedFreelancers }),
+            });
+            if (response.ok) {
+                const updatedFreelancers = freelancers.filter(
+                    (freeItem) => !selectedFreelancers.includes(freeItem.id)
+                );
+                setFreelancers(updatedFreelancers);
+                setSelectedFreelancers([]);
+            } else {
+                alert("刪除失敗，請稍後再試！");
+            }
+        } catch (error) {
+            console.error("刪除請求失敗:", error);
         }
-    } catch (error) {
-        console.error("刪除請求失敗:", error);
-    }
-};
-    
+    };
+
     if (loading) {
         return <div>正在載入中... Loading...</div>;
-      }
+    }
     // 日期顯示樣式
     const formatDate = (isoDate) => {
         const date = new Date(isoDate);
@@ -90,15 +90,15 @@ const FavoriteFreelance = () => {
             <table className="saved-jobs-table">
                 <thead>
                     <tr>
-                        <th><input 
-                            type="checkbox" 
+                        <th><input
+                            type="checkbox"
                             className="select-all"
                             onChange={handleSelectAll}
                             checked={
                                 selectedFreelancers.length === freelancers.length &&
                                 freelancers.length > 0
                             }
-                         />
+                        />
                         </th>
                         <th>名稱</th>
                         <th>所在地</th>
@@ -124,7 +124,7 @@ const FavoriteFreelance = () => {
                         <td>500</td>
                         <td>2023/12/02</td>
                     </tr> */}
-                     {freelancers.map((freeItem) => (
+                    {freelancers.map((freeItem) => (
                         <tr key={freeItem.id}>
                             <td>
                                 <input

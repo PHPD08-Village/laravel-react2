@@ -10,19 +10,19 @@ export const UserProvider = ({ children }) => {
     const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
     const [userData, setUserData] = useState();
     const [loading, setLoading] = useState(!userData); // 如果本地有數據，則不顯示載入中
-    const [userRole, setUserRole] = useState('接案者'); // 用戶角色狀態
-    const [section, setSection] = useState(''); // 用戶點擊區塊狀態
+    const [userRole, setUserRole] = useState(); // 用戶角色狀態
+    const [section, setSection] = useState('訊息通知'); // 用戶點擊區塊狀態
     const [error, setError] = useState(null);
-
+    
     useEffect(() => {
         const fetchData = async () => {
             if (user) { // 確認已登入且本地沒有數據
                 try {
                     const response = await axios.get('/personal-info');
                     const data = response.data;
-                    console.log('data:', data);
+                    // console.log('data:', data);
                     setUserData(data); // 保存獲取的數據
-
+                    setUserRole(data.usertype);
                 } catch (error) {
                     setError('Error fetching data');
                     console.error('Error fetching data:', error);

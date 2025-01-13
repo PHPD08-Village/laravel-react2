@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Floatingbuttons from '../allpage/Floatingbuttons';
 import UserProject from './UserProject'; // 引入 UserProject 組件
 import Personalworks from './Personalworks'; // 引入 Personalworks 組件
+import Floating from '../Personal_editor/Floating';
 
 function PersonalInfo({ userId }) {
     const [userdata, setUserdata] = useState(null);
@@ -42,10 +43,10 @@ function PersonalInfo({ userId }) {
                     <p>{userdata.data.job_title || "前端工程師"}</p>
                     <p></p>
                     <p>
-                        是一名擁有5年經驗的軟體工程師。我專注於前端開發和系統架構設計，特別擅長於使用Java和Python開發高效、可擴展的應用程式。<br />
-                        在過去的工作中，我參與了多個大型項目的開發，從需求分析、系統設計到實施和維護，都積累了豐富的經驗。我熱衷於解決複雜的技術挑戰，並且具備良好的團隊合作和溝通能力，能夠在跨部門合作中有效推動項目進展。<br />
-                        此外，我對學習和應用新技術保持著濃厚的興趣，近期我學習了Docker和Kubernetes，並在實際項目中成功應用了這些技術來提升系統的可靠性和可維護性。<br />
-                        在工作之餘，我也喜歡參與開源項目和技術社群，分享知識並從中獲得啟發。我相信，不斷學習和積極實踐是提升自己專業技能的最佳方式。<br />
+                        我是一名擁有多年經驗的軟體工程師，專注於網頁設計與前端開發，熟悉使用 HTML、CSS、JavaScript 以及 PHP 進行網站與應用程式的開發。<br />
+                        在過去的工作中，我參與了多個完整的網站建置專案，從需求分析、設計響應式介面，到實現互動功能與後端資料串接，累積了豐富的實戰經驗。特別是對於打造 用戶友好的網站介面 與 高效的後端邏輯，有深刻的理解與實踐。<br />
+                        我熱衷於解決複雜的技術挑戰，並且具備優秀的團隊合作與溝通能力，能有效協調跨部門資源來完成項目目標。近期，我也將學習重點放在現代網頁技術上，如 React.js 和 Laravel，結合這些技術於開發流程中，提升系統的效能與可維護性。<br />
+                        在工作之餘，我也喜歡參與開源項目和技術社群，分享知識並從中獲得啟發。我相信，不斷學習和積極實踐是提升自己專業技能的最佳方式。
                         感謝您考慮我的申請，期待有機會與您深入交流。
                     </p>
                 </div>
@@ -58,9 +59,10 @@ function PersonalInfo({ userId }) {
                             <img src="../imgs/Star 4.png" alt="Star" />
                             <img src="../imgs/Star 4.png" alt="Star" />
                             <img src="../imgs/Star 4.png" alt="Star" />
-                            {/* <img src="../imgs/Star 4.png" alt="Star" /> */}
+                            {/* <img src="../img/star_system/star.svg" style={{width:36 }} alt="Star" /> */}
+                            <img src="https://github.com/PHPD08-Village/PHPD08-Team/blob/main/img/Icon/Star%205.png?raw=true" style={{width:22 }} alt="Star" />
                         </p>
-                        <span>4/5</span>
+                        <span>4.3/5</span>
                     </div>
                     {/* 排版 */}
                     <div className="pckBtn">
@@ -119,8 +121,8 @@ function PersonalInfo({ userId }) {
             </div> */}
             <Personalworks/>
             {/* 已完成專案 */}
-            <UserProject /> {/* 使用 UserProject 組件 */}
-            <Floatingbuttons />
+            {/* <UserProject /> 使用 UserProject 組件 */}
+            {/* <Floating /> */}
         </div>
     );
 }

@@ -39,6 +39,7 @@ class PublishController extends Controller
             $publish->email = $request->input('email');
             $publish->details = $request->input('details');
             $publish->require_code = $request->input('require_code');
+            $publish->status = 'pending';  // 設定預設狀態為 'pending'
             $publish->save();
 
             return response()->json(['message' => '資料已成功提交'], 200);
@@ -143,4 +144,86 @@ class PublishController extends Controller
             return back()->withErrors(['message' => '更新數據時發生錯誤']);
         }
     }
+    // 透過狀態取得案件
+    public function getPublishByStatus(Request $request, $status)
+    {
+        $validStatuses = ['pending', 'active', 'cancelled', 'completed'];
+
+        if (!in_array($status, $validStatuses)) {
+            return response()->json(['message' => '無效的狀態'], 400);
+        }
+
+        try {
+            $cases = Publish::where('status', $status)->get();
+
+            if ($cases->isEmpty()) {
+                return response()->json(['message' => '無相關案件'], 404);
+            }
+
+        return response()->json($cases, 200);
+        } catch (\Exception $e) {
+            Log::error('Error fetching cases by status: ' . $e->getMessage());
+            return response()->json(['message' => '獲取案件時發生錯誤'], 500);
+        }
+    }
+    // 更新案件狀態
+    public function updateStatus(Request $request)
+    {
+        $request->validate([
+            'pid' => 'required|integer',
+            'status' => 'required|string|in:pending,active,cancelled,completed',
+        ]);
+
+        try {
+            $publish = Publish::find($request->pid);
+
+            if (!$publish) {
+                return response()->json(['message' => '案件不存在'], 404);
+            }
+
+            $publish->status = $request->status;
+            $publish->save();
+
+            return response()->json(['message' => '案件狀態已成功更新'], 200);
+        } catch (\Exception $e) {
+            Log::error('Error updating case status: ' . $e->getMessage());
+            return response()->json(['message' => '更新案件狀態時發生錯誤'], 500);
+        }
+    }
+    // 統計不同狀態的案件數量
+    public function getStatusCounts()
+    {
+        try {
+            $counts = Publish::select('status', DB::raw('count(*) as total'))
+                ->groupBy('status')
+                ->get();
+
+            return response()->json($counts, 200);
+        } catch (\Exception $e) {
+            Log::error('Error fetching status counts: ' . $e->getMessage());
+            return response()->json(['message' => '獲取案件統計時發生錯誤'], 500);
+        }
+    }
+    // 刪除指定案件
+    public function destroy($pid)
+    {
+        try {
+            // 找到指定案件
+            $publish = Publish::find($pid);
+        
+            // 如果案件不存在，返回錯誤
+            if (!$publish) {
+                return response()->json(['message' => '案件不存在'], 404);
+            }
+        
+            // 刪除案件
+            $publish->delete();
+        
+            return response()->json(['message' => '案件已成功刪除'], 200);
+        } catch (\Exception $e) {
+            Log::error('Error deleting case: ' . $e->getMessage());
+            return response()->json(['message' => '刪除案件時發生錯誤'], 500);
+        }
+    }
+
 }
