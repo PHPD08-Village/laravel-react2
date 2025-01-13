@@ -125,7 +125,8 @@ a {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 110px;
+    top: 40%;
+    bottom: 60%;
     right: 50px;
     height: 400px;
 }
@@ -284,20 +285,6 @@ div img.spacered {
 }
 
 /* 以下是通知彈出視窗 */
-notification-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-notification-btn:hover {
-    background-color: #45a049;
-}
-
 .notification-box {
     position: fixed;
     right: 110px;
@@ -356,13 +343,36 @@ notification-btn:hover {
     font-size: 0.9rem;
 }
 
-.notification-box ul li>label{
+.notification-box ul li>div {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 5px;
+}
+
+.notification-box ul li>div>label {
     font-size: 0.8rem;
     text-align: right;
+    margin-left: auto;
+    margin-bottom: 0;
 }
 
 .notification-box:focus {
     outline: none;
+}
+
+.rating-btn {
+    /* margin-top: 10px; */
+    padding: 5px 10px;
+    background-color: #F5F5DC;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 4px #00000040;
+}
+
+.rating-btn:hover {
+    background-color: #ffffa7;
 }
 
 /* 以上是通知彈出視窗 */

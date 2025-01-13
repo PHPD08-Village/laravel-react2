@@ -17,10 +17,11 @@ class FreelancerForHomeController extends Controller
 
             $freelancers = DB::table('userinfo')
                 ->leftJoin('star', 'userinfo.uid', '=', 'star.uid')
-                
+
                 // 兩個select方法都可以提取出averating和count，但差別在於一個是有值就顯示，一個是沒值就顯示0
                 // ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
-                ->select('userinfo.*', 'star.averating', 'star.count')
+                ->whereIn('userinfo.usertype', ['freelancer', 'both'])
+                ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
                 ->orderBy('averating', 'desc')
                 ->take(10)
                 ->get();

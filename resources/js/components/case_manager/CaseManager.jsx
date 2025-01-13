@@ -109,12 +109,29 @@ const CaseManager = () => {
     };
 
     // 設置完成案件的按鈕函式
-    const submitComplete = (caseId, caseName) => {
-        const userConfirmed = window.confirm(`是否確定完成案件 ${caseName}?`)
-        if (userConfirmed) {
-            alert('已完成案件！點擊確定後將跳轉至評價頁面。')
-            navigate('/star', { state: { caseId } })
+    const submitComplete = async (caseId, caseName, userId, caseIsOpen) => {
+        try {
+            const userConfirmed = window.confirm(`是否確定完成案件 ${caseName}?`)
+            const response = await axios.post('http://127.0.0.1:8000/api/complete-case', {
+                pid: caseId,
+                is_open: caseIsOpen
+            });
+            console.log(response.data);
+            // alert(response.data.message)
+            fetchCasesData()
+            if (response.data) {
+                alert('已完成案件！點擊確定後將跳轉至評價頁面。')
+                navigate('/star', { state: { caseId, userId } })
+            }
+        } catch (error) {
+            console.error('案件完成出錯', error);
+            alert('案件完成出錯，請稍後再試')
         }
+        // const userConfirmed = window.confirm(`是否確定完成案件 ${caseName}?`)
+        // if (userConfirmed) {
+        //     alert('已完成案件！點擊確定後將跳轉至評價頁面。')
+        //     navigate('/star', { state: { caseId } })
+        // }
     }
 
     // 設置編輯案件的按鈕函式
@@ -215,7 +232,7 @@ const CaseManager = () => {
                                     <button
                                         className={caseItem.taker_uid ? 'completeBtn' : 'nonCompleteBtn'}
                                         disabled={!caseItem.taker_uid}
-                                        onClick={() => submitComplete(caseItem.pid, caseItem.title)}
+                                        onClick={() => submitComplete(caseItem.pid, caseItem.title, caseItem.uid, caseItem.is_open)}
                                     >完成案件
                                     </button>
                                 </div>
@@ -230,8 +247,8 @@ const CaseManager = () => {
                                         <label className={`caseMngSwitchToggle ${caseItem.is_open ? 'open' : 'closed'}`} htmlFor={`switch${caseItem.pid}`} />
                                     </div>
                                     <div className="caseMngCaseData">
-                                        <p>應徵人數：{applicant_count}</p>
-                                        <p>點閱次數：{click_count}</p>
+                                        <p>應徵人數：{caseItem.applicant_count}</p>
+                                        <p>點閱次數：{caseItem.click_count}</p>
                                         <p>{timeDifference(new Date(caseItem.updated_at).toISOString())}</p>
                                     </div>
                                 </div>

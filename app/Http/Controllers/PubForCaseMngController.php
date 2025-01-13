@@ -65,7 +65,7 @@ class PubForCaseMngController extends Controller
             $updatedCase = DB::table('publish')
                 ->select('*')
                 ->where('pid', $request->pid)
-                ->orderBy('created_at','desc')
+                ->orderBy('created_at', 'desc')
                 ->first();
 
             $message = $updatedCase->is_open ? "目前案件狀態為開啟" : "目前案件狀態為關閉";
@@ -82,6 +82,51 @@ class PubForCaseMngController extends Controller
         } catch (\Exception $e) {
             log::error('toggle: ' . $e->getMessage());
             return response()->json(['message' => '無法切換案件狀態，請稍後再試', 'error' => $e->getMessage()]);
+        }
+    }
+
+    public function completeCase(Request $request)
+    {
+        $request->validate([
+            'pid' => 'required|integer',
+            'is_open' => 'required|boolean'
+        ]);
+
+        try {
+            $case = DB::table('publish')
+                // 用 auth()->uid 取得當前登入的使用者 ID
+                // ->where('publish.uid', auth()->uid)
+                ->select('*')
+                ->where('publish.pid', $request->pid)
+                // ->orderBy('publish.created_at', 'desc')
+                ->first();
+
+            // 將完成案件新增到通知
+            $message = $request->input('message', "恭喜您的案件「{$case->title}」已完成！請點擊按鈕立即為對方評價。");
+
+            DB::table('notifications')
+            ->insert([
+                'uid' => $case->uid,
+                'target_uid' => $case->taker_uid,
+                'pid' => $request->pid,
+                'message' => $message,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            // 更新 is_open 的值
+            $currentStatus = $request->is_open;
+            $newStatus = !$currentStatus;
+
+            DB::table('publish')
+                ->where('pid', $request->pid)
+                ->update(['is_open' => $newStatus]);
+
+            // Log::info('getLatestProjects: ' . $cases->toJson());
+            return response()->json(['messgae'=>"已成功完成案件{$case->title}！"]);
+        } catch (\Exception $e) {
+            log::error('完成案件失敗: ' . $e->getMessage());
+            return response()->json(['message' => '完成案件失敗，請稍後再試', 'error' => $e->getMessage()]);
         }
     }
 }

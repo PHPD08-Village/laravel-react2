@@ -26,7 +26,7 @@ function StarHighestList() {
     }, []);
 
     // 委託接案者
-    const assignTaker = async(takerUid) => {
+    const assignTaker = async (takerUid) => {
         if (!user) {
             alert('請先登入才能進行委託。');
             return;
@@ -67,29 +67,48 @@ function StarHighestList() {
         }
     }
 
-    const nextFreelancer = () => {
-        // 當 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動
-        // 這邊的 currentIndex 是指目前顯示的第一個案件的索引，所以當 currentIndex 小於 freelancers 陣列的長度減 3 時，代表還有案件可以顯示
-        // 如果 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動 
-        if (currentIndex + 3 < freelancers.length) {
-            // 檢查如果當前顯示的是第7,8,9筆資料，則只增加一筆資料 
-            if (currentIndex >= freelancers.length - 4 && currentIndex < freelancers.length - 1) {
-                setCurrentIndex(currentIndex + 1);
-            } else {
-                setCurrentIndex(currentIndex + 3);
-            }
-        } else if (currentIndex + 1 < freelancers.length) {
-            setCurrentIndex(currentIndex + 1);
-        }
+    // const nextFreelancer = () => {
+    //     // 當 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動
+    //     // 這邊的 currentIndex 是指目前顯示的第一個案件的索引，所以當 currentIndex 小於 freelancers 陣列的長度減 3 時，代表還有案件可以顯示
+    //     // 如果 currentIndex 小於 freelancers 陣列的長度減 3 時，才能往下一個滑動 
+    //     if (currentIndex + 3 < freelancers.length) {
+    //         // 檢查如果當前顯示的是第7,8,9筆資料，則只增加一筆資料 
+    //         if (currentIndex >= freelancers.length - 4 && currentIndex < freelancers.length - 1) {
+    //             setCurrentIndex(currentIndex + 1);
+    //         } else {
+    //             setCurrentIndex(currentIndex + 3);
+    //         }
+    //     } else if (currentIndex + 1 < freelancers.length) {
+    //         setCurrentIndex(currentIndex + 1);
+    //     }
 
-        if (currentIndex >= freelancers.length - 3) {
-            setCurrentIndex(freelancers.length - 3); // 停留在第8、9、10筆資料顯示的狀態 
-        }
+    //     // if (currentIndex >= freelancers.length - 3) {
+    //     //     setCurrentIndex(freelancers.length - 3); // 停留在第8、9、10筆資料顯示的狀態 
+    //     // }
+    // };
+
+    // const prevFreelancer = () => {
+    //     if (currentIndex - 3 >= 0) {
+    //         setCurrentIndex(currentIndex - 3);
+
+    //     } else {
+    //         setCurrentIndex(0);
+    //     }
+    // }
+
+    // 上一個下一個
+    const nextFreelancer = () => {
+        if (currentIndex < freelancers.length - 3) {
+            setCurrentIndex(currentIndex + 1);
+        } 
     };
 
     const prevFreelancer = () => {
-        if (currentIndex - 3 >= 0) { setCurrentIndex(currentIndex - 3); } else { setCurrentIndex(0); }
-    }
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
+
 
     return (
         <div className="homestarHighestTaker">
@@ -105,10 +124,12 @@ function StarHighestList() {
                 ))}
             </div>
             {/* <!-- 右箭頭 --> */}
-            <button id="starHighestTakerRight" onClick={nextFreelancer}>
+            <button id="starHighestTakerRight" onClick={nextFreelancer}
+            // disabled={currentIndex + 3 >= freelancers.length}
+            >
                 <IonIcon icon={chevronForwardOutline} />
             </button>
-        </div>
+        </div >
     );
 }
 
@@ -256,8 +277,8 @@ const StarHighestCard = ({ starHighest, assignTaker, handleFavorite }) => {
         <div className="homecardSingle">
             <div className="homecardHeader">
                 <div className="homeimgGroup">
-                    <img className="homebackImg" src={starHighest.profile_back_img ?? '/img/Person/Background.jpg'}
-                        alt="user background img" />
+                    {/* <img className="homebackImg" src={starHighest.profile_back_img ?? '/img/Person/Background.jpg'}
+                        alt="user background img" /> */}
                     <img className="homeavatar" src={starHighest.headshot ?? '/img/Icon/Male User.png'}
                         alt="avatar" />
                 </div>

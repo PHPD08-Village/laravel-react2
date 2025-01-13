@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or jQuery/floatingbuttons';
@@ -7,9 +7,10 @@ import { initializeScrollTopButton, initializeFormSubmission } from '../../JS or
 const Floatingbuttons = () => {
     const [notifications, setNotifications] = useState([]);
     const [showNotifications, setShowNotifications] = useState(false);
-    const [userId, setUserId] = useState(10); // 假設使用者的 id
+    const [userId, setUserId] = useState(12); // 假設使用者的 id
     const notificationBoxRef = useRef(null)
     const notificationBtnRef = useRef(null)
+    const navigate = useNavigate();
 
     useEffect(() => {
         initializeScrollTopButton();
@@ -17,19 +18,20 @@ const Floatingbuttons = () => {
     }, []);
 
 
-
+    // 獲取通知資料的函式
     const fetchNotification = async () => {
         try {
-            console.log(`開始獲取 uid 為 ${userId} 的通知資料`)
+            // console.log(`開始獲取 uid 為 ${userId} 的通知資料`)
             const response = await axios.get(`http://127.0.0.1:8000/api/get-notification/${userId}`)
             setNotifications(response.data);
-            console.log('成功獲取通知資料', response.data)
+            // console.log('成功獲取通知資料', response.data)
         } catch (error) {
             console.error('通知資料獲取失敗', error);
-            alert('通知資料獲取失敗，請稍後再試');
+            // alert('通知資料獲取失敗，請稍後再試');
         }
     }
 
+    // 獲取通知資料
     useEffect(() => {
         if (userId) {
             fetchNotification();
@@ -64,9 +66,15 @@ const Floatingbuttons = () => {
         };
     }, [showNotifications]);
 
+    // 設定通知框的顯示
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
         fetchNotification()
+    };
+
+    // 案件完成通知的按鈕事件
+    const handleRatingClick = (pid, uid) => {
+        navigate(`/star`, { state: { caseId: pid, userId: uid } });
     };
 
     // 設置幾分鐘前更新
@@ -129,7 +137,16 @@ const Floatingbuttons = () => {
                             <li key={notification.nid}>
                                 <h4>{notification.nickname}</h4>
                                 <p>{notification.message}</p>
-                                <label>{timeDifference(new Date(notification.created_at).toISOString())}</label>
+                                <div>
+
+                                    {/* 如果 message 包含 '完成案件'，顯示評價按鈕 */}
+                                    {notification.message.includes('點擊按鈕') && (
+                                        <button className="rating-btn"
+                                            onClick={() => handleRatingClick(notification.pid, notification.target_uid)} >
+                                            評價此案件
+                                        </button>)}
+                                    <label>{timeDifference(new Date(notification.created_at).toISOString())}</label>
+                                </div>
                             </li>))}
                     </ul>
                 </div>

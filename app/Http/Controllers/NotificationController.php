@@ -34,7 +34,7 @@ class NotificationController extends Controller
                 ->orderBy('notifications.created_at', 'desc')
                 ->get();
 
-            Log::info('成功獲取通知資料' . $notificationDetail);
+            // Log::info('成功獲取通知資料' . $notificationDetail);
             return response()->json($notificationDetail);
         } catch (\Exception $e) {
             Log::error('通知資料獲取失敗: ' . $e->getMessage());

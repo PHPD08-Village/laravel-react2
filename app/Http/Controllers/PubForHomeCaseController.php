@@ -21,12 +21,14 @@ class PubForHomeCaseController extends Controller
                 // 兩個select方法都可以提取出averating和count，但差別在於一個是有值就顯示，一個是沒值就顯示0
                 // ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
                 ->select(
-                    'publish.*', 
-                    'userinfo.headshot', 
-                    'userinfo.nickname', 
-                    DB::raw('COALESCE(star.averating, 0) as averating'), 
-                    DB::raw('COALESCE(star.count, 0) as count'), 
-                    )
+                    'publish.*',
+                    'userinfo.headshot',
+                    'userinfo.nickname',
+                    DB::raw('COALESCE(star.averating, 0) as averating'),
+                    DB::raw('COALESCE(star.count, 0) as count'),
+                )
+                ->where('publish.is_open', '=', 1)
+                ->whereNull('publish.taker_uid')    // 確保taker_uid 為 null
                 ->orderBy('publish.created_at', 'desc')
                 ->take(10)
                 ->get();
@@ -63,12 +65,14 @@ class PubForHomeCaseController extends Controller
                 // 兩個select方法都可以提取出averating和count，但差別在於一個是有值就顯示，一個是沒值就顯示0
                 // ->select('userinfo.*', DB::raw('COALESCE(star.averating, 0) as averating'), DB::raw('COALESCE(star.count, 0) as count'))
                 ->select(
-                    'publish.*', 
-                    'userinfo.headshot', 
-                    'userinfo.nickname', 
-                    DB::raw('COALESCE(star.averating, 0) as averating'), 
-                    DB::raw('COALESCE(star.count, 0) as count'), 
-                    )
+                    'publish.*',
+                    'userinfo.headshot',
+                    'userinfo.nickname',
+                    DB::raw('COALESCE(star.averating, 0) as averating'),
+                    DB::raw('COALESCE(star.count, 0) as count'),
+                )
+                ->where('publish.is_open', '=', 1)
+                ->whereNull('publish.taker_uid')    // 確保taker_uid 為 null
                 ->orderBy('publish.click_count', 'desc')
                 ->take(10)
                 ->get();
@@ -80,7 +84,7 @@ class PubForHomeCaseController extends Controller
                     $project->headshot = 'data:image/jpeg;base64,' . base64_encode($project->headshot);
                 }
             }
-            
+
             // foreach ($projects as $project) {
             //     if ($project->headshot) {
             //         $project->headshot = 'data:image/jpeg;base64,' . base64_encode($project->user->headshot);

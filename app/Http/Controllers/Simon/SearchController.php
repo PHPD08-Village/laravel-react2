@@ -115,7 +115,7 @@ class SearchController extends Controller
             'updated_at' => now()
         ]);
 
-        return response()->json(['message' => '案件已成功收藏']);
+        return response()->json(['message' => '用戶已成功收藏']);
     }
 
     // 收藏及移除接案者
@@ -135,7 +135,7 @@ class SearchController extends Controller
             DB::table('favorite_freelancer')
                 ->where('id', $favorite->id)
                 ->delete();
-            return response()->json(['message' => '案件已成功取消收藏', 'action' => 'removed']);
+            return response()->json(['message' => '用戶已成功取消收藏', 'action' => 'removed']);
         } else {
             // 如果不存在，則新增
             DB::table('favorite_freelancer')->insert([
@@ -144,7 +144,7 @@ class SearchController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
-            return response()->json(['message' => '案件已成功收藏', 'action' => 'added']);
+            return response()->json(['message' => '用戶已成功收藏', 'action' => 'added']);
         }
     }
 

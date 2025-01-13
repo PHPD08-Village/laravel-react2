@@ -5,30 +5,32 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 // const StarSystem = ({ userId }) => {
-const StarSystem = ({ userId }) => {
+const StarSystem = () => {
+    // 重新導向至新頁面的內建函數
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { caseId, userId } = location.state || {};
+    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
     // const [uid, setUid] = useState('1');
     const [uid, setUid] = useState(userId); // 用戶 ID
     const [caseInfo, setCaseInfo] = useState(null); // 評價對象的用戶 ID
     const [professionalism, setProfessionalism] = useState(null);
     const [responseSpeed, setResponseSpeed] = useState(null);
     const [cooperation, setCooperation] = useState(null);
-    // 重新導向至新頁面的內建函數
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { caseId } = location.state || {};
-    const { user } = useAuth(); // 使用 useAuth 來取得 user 狀態
+
 
     useEffect(() => {
         setUid(userId); // 確認用戶 ID 已經設置
         // 當組件加載時請求用戶資料
         const fetchCaseInfo = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/case/${caseId}`);
+                console.log('開始獲取用戶資料')
+                const response = await axios.get(`http://127.0.0.1:8000/api/case/${caseId}/${userId}`);
                 setCaseInfo(response.data);
                 console.log(response.data)
             } catch (error) {
-                console.error('發案用戶資料請求失敗', error);
-                alert('發案用戶資料獲取失敗，請稍後再試');
+                console.error('用戶資料請求失敗', error);
+                alert('用戶資料獲取失敗，請稍後再試');
             }
         };
         if (caseId) {
@@ -56,7 +58,7 @@ const StarSystem = ({ userId }) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/star', {
                 uid,        // 評價者的用戶 ID
-                targetUserId: caseInfo.publisher_uid, // 評價對象的用戶 ID     
+                targetUserId: caseInfo.target_uid, // 評價對象的用戶 ID     
                 averating,
                 count: 1, // 新增一條評論時，count 設置為 1
                 caseId,     // 傳遞案件 ID 以便後端進行檢查
@@ -114,7 +116,7 @@ const StarSystem = ({ userId }) => {
                 )}
                 <div className="rating">
                     <div className="starPro">
-                        <p>對方專業度：</p>
+                        <p>對方溝通清晰度：</p>
                         <div className="ratingStar">
                             <input type="radio" name="star1" id="star15" value="5" onChange={() => setProfessionalism(5)} />
                             <label htmlFor="star15"></label>

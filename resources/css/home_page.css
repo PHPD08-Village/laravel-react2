@@ -242,6 +242,7 @@
 .homecardHeader>.homeuserInfo>img {
     width: 75px;
     height: 75px;
+    border-radius: 50%;
 }
 
 .homecardHeader>.homeuserInfo>.homeuserName {
@@ -404,6 +405,9 @@
 }
 
 /* 最高評價接案者 */
+.homestarHighestTaker>.homecard>.homecardSingle{
+    height: 300px;
+}
 .homestarHighestTaker>.homecard>.homecardSingle>.homecardHeader {
     margin: 0;
 }
@@ -415,7 +419,7 @@
 .homeimgGroup {
     position: relative;
     width: 340px;
-    height: 165px;
+    height: 55px;
 }
 
 .homeimgGroup>.homebackImg {
@@ -427,8 +431,8 @@
 }
 
 .homeimgGroup>.homeavatar {
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     object-fit: cover;
     position: absolute;
     border-radius: 50%;

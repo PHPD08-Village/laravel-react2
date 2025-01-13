@@ -31,21 +31,23 @@ class AssignTakerController extends Controller
                 return response()->json(['message' => '用戶不存在'], 404);
             }
 
-            // 更新 `collaborator` 欄位
+            // 更新 `taker_uid` 欄位
             DB::table('publish')
                 ->where('pid', $projectId)
                 ->update(['taker_uid' => $takerUid]);
 
+            $message = $request->input('message', "恭喜您成功接案「{$project->title}」！請與我聯繫洽談詳細資訊：{$project->email}");
+
             // 新增通知
-            // DB::table('notifications')
-            //     ->insert([
-            //         'uid' => $project->uid,
-            //         'target_uid' => $takerUid,
-            //         'pid' => $projectId,
-            //         'message' => $message,
-            //         'created_at' => now(),
-            //         'updated_at' => now()
-            //     ]);
+            DB::table('notifications')
+                ->insert([
+                    'uid' => $project->uid,
+                    'target_uid' => $takerUid,
+                    'pid' => $projectId,
+                    'message' => $message,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
 
             Log::info('confirmTaker: 合作者已添加到此案件' . $projectId);
             return response()->json(['message' => '已成功委託' . ($taker->username), 'username' => $taker->username]);
@@ -80,7 +82,7 @@ class AssignTakerController extends Controller
             // 如果前端請求沒有提供 message 的值，會直接以下面這個內容(預設值) 送出
             $message = $request->input('message', "感謝您應徵「{$project->title}」！經考慮後認為您的專長或設計風格非我司所需，謝謝您的應徵！");
 
-            // 發送感謝函（可以在這裡新增你的邏輯，例如保存到資料庫或發送通知） 
+            // 發送感謝函(新增到通知資料表)
             DB::table('notifications')
                 ->insert([
                     'uid' => $project->uid,
